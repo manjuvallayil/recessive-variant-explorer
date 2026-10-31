@@ -1,2023 +1,675 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-31T04:28:01.738640+00:00",
-  "code_version": "73c9962",
+  "generated_at": "2026-10-31T05:20:38.887780+00:00",
+  "code_version": "3b32ad9",
   "source_files": {
-    "ext_fig9b": "dryad/source_data/source_data.ExtFig9b.csv"
+    "ext_fig9b": "dryad/source_data/source_data.ExtFig9b.csv",
+    "gen_11_1": "dryad/gens/gen_11.1.bed/.bim/.fam (30 QTL columns only)",
+    "phen_8_1": "dryad/phens/phen_8.1.txt"
   },
   "detection": {
     "n_total": 624323,
     "n_detected": 6572,
     "n_not_detected": 617751,
     "n_detected_additive": 6274,
-    "n_detected_dominance": 312,
-    "n_rows_exported": 624323,
+    "n_detected_dominance": 312
+  },
+  "qtl_truth": {
     "rows": [
       {
         "chr": 1,
-        "bp": 1,
-        "p_s": 0.515506694824594,
-        "p_d": 0.621709987011084,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 2930,
-        "p_s": 0.147198615019623,
-        "p_d": 0.847707213496528,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 5840,
-        "p_s": 0.348112833226736,
-        "p_d": 0.939974034139827,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 8760,
-        "p_s": 0.210047785343765,
-        "p_d": 0.863045799733945,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 11680,
-        "p_s": 0.662314923279783,
-        "p_d": 0.446947600822312,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 20420,
-        "p_s": 0.24053634083933,
-        "p_d": 0.471400525703062,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 23340,
-        "p_s": 0.795240946985817,
-        "p_d": 0.290357398906482,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 29170,
-        "p_s": 0.284545411931384,
-        "p_d": 0.290751207198918,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 32090,
-        "p_s": 0.289178514316668,
-        "p_d": 0.21252094481483,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 35010,
-        "p_s": 0.880875512196932,
-        "p_d": 0.312610828855984,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 40840,
-        "p_s": 0.144190524588093,
-        "p_d": 0.140507963684575,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 43750,
-        "p_s": 0.844605160625221,
-        "p_d": 0.00317147601873528,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 46670,
-        "p_s": 0.76468192617653,
-        "p_d": 0.224387367322074,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 49590,
-        "p_s": 0.559564473696303,
-        "p_d": 0.539411557380355,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 52500,
-        "p_s": 0.311825835785424,
-        "p_d": 0.792078331390331,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 55420,
-        "p_s": 0.811852588642912,
-        "p_d": 0.745838176358314,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 58340,
-        "p_s": 0.340429431340541,
-        "p_d": 0.605288954380692,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 61250,
-        "p_s": 0.150114904978898,
-        "p_d": 0.539125676577732,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 64170,
-        "p_s": 0.141822750538583,
-        "p_d": 0.547605647214569,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 67080,
-        "p_s": 0.128359500388214,
-        "p_d": 0.0852669571819517,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 70000,
-        "p_s": 0.619364912731075,
-        "p_d": 0.43276060572528,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 75830,
-        "p_s": 0.645910215167324,
-        "p_d": 0.506045766818697,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 81670,
-        "p_s": 0.217097031979326,
-        "p_d": 0.668656858923188,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 87500,
-        "p_s": 0.238980420420152,
-        "p_d": 0.766934685278859,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 90410,
-        "p_s": 0.0820269388417658,
-        "p_d": 0.298228684761806,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 96250,
-        "p_s": 0.99324814861673,
-        "p_d": 0.265810064623749,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 102080,
-        "p_s": 0.698735478671804,
-        "p_d": 0.117746258866604,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 105000,
-        "p_s": 0.802080111688071,
-        "p_d": 0.390795547356483,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 107910,
-        "p_s": 0.800949533661722,
-        "p_d": 0.801912066522202,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 110830,
-        "p_s": 0.981504174861134,
-        "p_d": 0.956258627906703,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 113740,
-        "p_s": 0.306679997937166,
-        "p_d": 0.666533679028648,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 119580,
-        "p_s": 0.980166240643245,
-        "p_d": 0.9372621694043,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 122490,
-        "p_s": 0.361468425447848,
-        "p_d": 0.792588305632004,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 125410,
-        "p_s": 0.599629696533683,
-        "p_d": 0.454989685882146,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 128330,
-        "p_s": 0.349486534179614,
-        "p_d": 0.792639081615564,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 131240,
-        "p_s": 0.155292611667315,
-        "p_d": 0.837396230721294,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 134160,
-        "p_s": 0.591423797717102,
-        "p_d": 0.818229312212659,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 137070,
-        "p_s": 0.208466161066942,
-        "p_d": 0.698159896498813,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 139990,
-        "p_s": 0.558846408547841,
-        "p_d": 0.568383886009397,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 142910,
-        "p_s": 0.529157450977131,
-        "p_d": 0.776430346516092,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 151660,
-        "p_s": 0.4052086834696,
-        "p_d": 0.457827039005032,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 154570,
-        "p_s": 0.888293238384865,
-        "p_d": 0.0755107499740281,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 157490,
-        "p_s": 0.645738712849251,
-        "p_d": 0.277418046406675,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 160400,
-        "p_s": 0.887778671892091,
-        "p_d": 0.522481919910396,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 163320,
-        "p_s": 0.901783119791233,
-        "p_d": 0.0898281246217651,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 169150,
-        "p_s": 0.57480075476773,
-        "p_d": 0.357053057227158,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 174990,
-        "p_s": 0.570340255679289,
-        "p_d": 0.223336168184519,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 177900,
-        "p_s": 0.198209404640787,
-        "p_d": 0.979165414796273,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 183730,
-        "p_s": 0.93324767157122,
-        "p_d": 0.623796943511821,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 186650,
-        "p_s": 0.788833051691767,
-        "p_d": 0.177913806548388,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 189570,
-        "p_s": 0.862322701449223,
-        "p_d": 0.114757716275493,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 192480,
-        "p_s": 0.774851604130871,
-        "p_d": 0.367024299957506,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 195400,
-        "p_s": 0.943938156862077,
-        "p_d": 0.837565396004205,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 198320,
-        "p_s": 0.913027018831428,
-        "p_d": 0.576946627153586,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 204150,
-        "p_s": 0.0920532881317223,
-        "p_d": 0.286422290006761,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 207060,
-        "p_s": 0.195754963328504,
-        "p_d": 0.729977616075458,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 209980,
-        "p_s": 0.817601916695648,
-        "p_d": 0.765086627108984,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 212900,
-        "p_s": 0.223112389902634,
-        "p_d": 0.883119735245861,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 215810,
-        "p_s": 0.957737700348134,
-        "p_d": 0.146559918577377,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 221650,
-        "p_s": 0.311052322928113,
-        "p_d": 0.0860044988789547,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 224560,
-        "p_s": 0.210400269574218,
-        "p_d": 0.933138300042815,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 227480,
-        "p_s": 0.220785843170343,
-        "p_d": 0.203266791028456,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 230400,
-        "p_s": 0.792098939676963,
-        "p_d": 0.654003391301679,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 233310,
-        "p_s": 0.981961410036654,
-        "p_d": 0.668650155972253,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 236230,
-        "p_s": 0.961766092815709,
-        "p_d": 0.11961852062131,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 239140,
-        "p_s": 0.394096090976376,
-        "p_d": 0.699676792410647,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 242060,
-        "p_s": 0.148165110004014,
-        "p_d": 0.924633017313172,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 247890,
-        "p_s": 0.678885244652701,
-        "p_d": 0.432625165632738,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 250810,
-        "p_s": 0.347089424721415,
-        "p_d": 0.855101039245552,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 256640,
-        "p_s": 0.536394250841964,
-        "p_d": 0.46301164720099,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 259560,
-        "p_s": 0.153842625750575,
-        "p_d": 0.761121805195419,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 262470,
-        "p_s": 0.0693960027367202,
-        "p_d": 0.132036385701892,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 265390,
-        "p_s": 0.714262348695962,
-        "p_d": 0.446932172387557,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 268310,
-        "p_s": 0.518737319683493,
-        "p_d": 0.384019427439184,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 271220,
-        "p_s": 0.350640258500534,
-        "p_d": 0.294170651812767,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 277060,
-        "p_s": 0.36729546443286,
-        "p_d": 0.581552110549256,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 279970,
-        "p_s": 0.519926322830054,
-        "p_d": 0.438771433288459,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 282890,
-        "p_s": 0.0933649851734041,
-        "p_d": 0.135930864220944,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 285800,
-        "p_s": 0.953183403369436,
-        "p_d": 0.539547742043978,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 288720,
-        "p_s": 0.973459337194538,
-        "p_d": 0.497071961919655,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 291640,
-        "p_s": 0.529333516977675,
-        "p_d": 0.453655107485386,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 294550,
-        "p_s": 0.593785287027623,
-        "p_d": 0.362787404910595,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 297470,
-        "p_s": 0.963105858671402,
-        "p_d": 0.507872179856197,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 306220,
-        "p_s": 0.764896067729916,
-        "p_d": 0.444256843616575,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 309130,
-        "p_s": 0.112565944594023,
-        "p_d": 0.094853153399489,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 312050,
-        "p_s": 0.568905677126972,
-        "p_d": 0.824331477734399,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 314970,
-        "p_s": 0.909191460241574,
-        "p_d": 0.639325150378441,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 317880,
-        "p_s": 0.685089353172783,
-        "p_d": 0.821769331539963,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 320800,
-        "p_s": 0.568237592351574,
-        "p_d": 0.339739720724463,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 323720,
-        "p_s": 0.329477116973944,
-        "p_d": 0.482019412006687,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 326630,
-        "p_s": 0.986803631558284,
-        "p_d": 0.929284983650111,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 329550,
-        "p_s": 0.7298514362696,
-        "p_d": 0.408656781652572,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 335380,
-        "p_s": 0.594290219179167,
-        "p_d": 0.30644502298388,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 338300,
-        "p_s": 0.620199211483945,
-        "p_d": 0.119026766704574,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 341210,
-        "p_s": 0.75913251101527,
-        "p_d": 0.437571163565138,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 344130,
-        "p_s": 0.712402861997811,
-        "p_d": 0.822389618615089,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 347050,
-        "p_s": 0.533433632969617,
-        "p_d": 0.205176374998597,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 352880,
-        "p_s": 0.625331481979074,
-        "p_d": 0.102529055255859,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 355790,
-        "p_s": 0.594309658446968,
-        "p_d": 0.230925466377296,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 358710,
-        "p_s": 0.947924921787213,
-        "p_d": 0.889147305458355,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 361630,
-        "p_s": 0.900289986500221,
-        "p_d": 0.406625889709541,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 367460,
-        "p_s": 0.923842282160196,
-        "p_d": 0.693940251852898,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 370380,
-        "p_s": 0.875474559242987,
-        "p_d": 0.48593103041208,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 373290,
-        "p_s": 0.0882260729489193,
-        "p_d": 0.0864934013592699,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 382040,
-        "p_s": 0.111919531964217,
-        "p_d": 0.047393362468018,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 384960,
-        "p_s": 0.0987864642663816,
-        "p_d": 0.0908419441822786,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 387870,
-        "p_s": 0.96533478488507,
-        "p_d": 0.913260165339198,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 393710,
-        "p_s": 0.810928144102243,
-        "p_d": 0.581701566552437,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 399540,
-        "p_s": 0.480548480625824,
-        "p_d": 0.194037628043388,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 402450,
-        "p_s": 0.116032078125597,
-        "p_d": 0.0810283812004641,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 408290,
-        "p_s": 0.59682201484934,
-        "p_d": 0.400639163001591,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 411200,
-        "p_s": 0.0890157500825847,
-        "p_d": 0.141896975727458,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 414120,
-        "p_s": 0.655905807456611,
-        "p_d": 0.298427575749632,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 422870,
-        "p_s": 0.570661940630328,
-        "p_d": 0.166720602593691,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 425780,
-        "p_s": 0.0828196149326102,
-        "p_d": 0.0463687253088005,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 428700,
-        "p_s": 0.0601277488309205,
-        "p_d": 0.0531826830584697,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 431620,
-        "p_s": 0.594217373740344,
-        "p_d": 0.124262786310933,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 437450,
-        "p_s": 0.54953147082089,
-        "p_d": 0.364581898514426,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 440370,
-        "p_s": 0.557217117671575,
-        "p_d": 0.196097671795772,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 443280,
-        "p_s": 0.59225895659633,
-        "p_d": 0.19410202017508,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 449120,
-        "p_s": 0.482112307942682,
-        "p_d": 0.975156602725688,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 452030,
-        "p_s": 0.635440166707521,
-        "p_d": 0.130222137701125,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 457860,
-        "p_s": 0.641046801868436,
-        "p_d": 0.208551543402213,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 460780,
-        "p_s": 0.501850175578515,
-        "p_d": 0.0352569671261585,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 463700,
-        "p_s": 0.728021748814825,
-        "p_d": 0.792668660282681,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 466610,
-        "p_s": 0.892794530307812,
-        "p_d": 0.546822415935442,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 469530,
-        "p_s": 0.3382089211535,
-        "p_d": 0.479520425660872,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 472450,
-        "p_s": 0.0641743038642215,
-        "p_d": 0.050265469374891,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 475360,
-        "p_s": 0.610654028510766,
-        "p_d": 0.395762600870471,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 478280,
-        "p_s": 0.0712490134397201,
-        "p_d": 0.071824009544176,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 481190,
-        "p_s": 0.522972483848595,
-        "p_d": 0.648231668547817,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 484110,
-        "p_s": 0.724270519152341,
-        "p_d": 0.300784053765953,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 487030,
-        "p_s": 0.635668269098858,
-        "p_d": 0.00820364248849517,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 489940,
-        "p_s": 0.911316890874223,
-        "p_d": 0.686653079859673,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 492860,
-        "p_s": 0.58915163781261,
-        "p_d": 0.174599082820524,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 495780,
-        "p_s": 0.783530587140337,
-        "p_d": 0.352678202198081,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 498690,
-        "p_s": 0.615303933093344,
-        "p_d": 0.660648094929142,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 501610,
-        "p_s": 0.498682588729793,
-        "p_d": 0.289446759546027,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 504520,
-        "p_s": 0.609479187389955,
-        "p_d": 0.705317192392034,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 507440,
-        "p_s": 0.64660010675625,
-        "p_d": 0.194489951636158,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 510360,
-        "p_s": 0.953268900015673,
-        "p_d": 0.752402545320443,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 513270,
-        "p_s": 0.325895258968944,
-        "p_d": 0.644825269549683,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 516190,
-        "p_s": 0.776823123357224,
-        "p_d": 0.808273029492523,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 519110,
-        "p_s": 0.990219653764158,
-        "p_d": 0.806103011717057,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 524940,
-        "p_s": 0.615554729831171,
-        "p_d": 0.135248019940187,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 527850,
-        "p_s": 0.617357477825528,
-        "p_d": 0.203937236089201,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 530770,
-        "p_s": 0.686143221537401,
-        "p_d": 0.27049316043314,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 533690,
-        "p_s": 0.877417540724316,
-        "p_d": 0.334618856194055,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 536600,
-        "p_s": 0.295159268361752,
-        "p_d": 0.925680217700953,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 539520,
-        "p_s": 0.63631054927282,
-        "p_d": 0.146169204398926,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 542440,
-        "p_s": 0.998998541738946,
-        "p_d": 0.754485914152518,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 545350,
-        "p_s": 0.0807092433014079,
-        "p_d": 0.0435566065860154,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 548270,
-        "p_s": 0.464999052908459,
-        "p_d": 0.228360388684464,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 551180,
-        "p_s": 0.0672059500422687,
-        "p_d": 0.0457495385758948,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 554100,
-        "p_s": 0.676805951022704,
-        "p_d": 0.629092235858741,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 557020,
-        "p_s": 0.568192295901046,
-        "p_d": 0.934359080458302,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 559930,
-        "p_s": 0.82101968642443,
-        "p_d": 0.785710642335225,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 562850,
-        "p_s": 0.97438995829111,
-        "p_d": 0.960923031256933,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 568680,
-        "p_s": 0.672164680037812,
-        "p_d": 0.260433516292625,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 571600,
-        "p_s": 0.412354957208897,
-        "p_d": 0.562268874726604,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 577430,
-        "p_s": 0.99357876358978,
-        "p_d": 0.512796588773943,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 580350,
-        "p_s": 0.484566990927733,
-        "p_d": 0.643540904798584,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 583260,
-        "p_s": 0.586915261090111,
-        "p_d": 0.885605685982308,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 586180,
-        "p_s": 0.476780582450852,
-        "p_d": 0.606463898509148,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 594930,
-        "p_s": 0.471380654598937,
-        "p_d": 0.544604531501475,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 597840,
-        "p_s": 0.484279062359755,
-        "p_d": 0.88975145111989,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 600760,
-        "p_s": 0.880596403469376,
-        "p_d": 0.141681995141073,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 603680,
-        "p_s": 0.89488313390762,
-        "p_d": 0.092271326035166,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 606590,
-        "p_s": 0.703336703630757,
-        "p_d": 0.703253355156938,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 609510,
-        "p_s": 0.728097956516986,
-        "p_d": 0.0718431331867304,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 612430,
-        "p_s": 0.947793962004368,
-        "p_d": 0.498163570121425,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 615340,
-        "p_s": 0.684400494412973,
-        "p_d": 0.108544690214148,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 618260,
-        "p_s": 0.601561502571374,
-        "p_d": 0.10416974570804,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 621170,
-        "p_s": 0.371804662640358,
-        "p_d": 0.269648288327899,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 629920,
-        "p_s": 0.944499737005819,
-        "p_d": 0.583492744453812,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 632840,
-        "p_s": 0.46112819339667,
-        "p_d": 0.657178860401118,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 635760,
-        "p_s": 0.437970269177407,
-        "p_d": 0.162709802121635,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 638670,
-        "p_s": 0.486522097772839,
-        "p_d": 0.690367254501505,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 641590,
-        "p_s": 0.922791450629237,
-        "p_d": 0.624352409733444,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 644510,
-        "p_s": 0.460858326816868,
-        "p_d": 0.674542351938968,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 647420,
-        "p_s": 0.862664414067,
-        "p_d": 0.819478808928058,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 650340,
-        "p_s": 0.990625309223357,
-        "p_d": 0.566752338671656,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 653250,
-        "p_s": 0.710269529731225,
-        "p_d": 0.540155783618402,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 656170,
-        "p_s": 0.380563867415957,
-        "p_d": 0.297598186304507,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 662000,
-        "p_s": 0.940721854648554,
-        "p_d": 0.176735562881608,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 664920,
-        "p_s": 0.988426015066538,
-        "p_d": 0.31603200382276,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 667840,
-        "p_s": 0.739825966009625,
-        "p_d": 0.0582605752787869,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 670750,
-        "p_s": 0.972426724775063,
-        "p_d": 0.95230036355197,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 673670,
-        "p_s": 0.534937002427418,
-        "p_d": 0.00137325915126958,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 676580,
-        "p_s": 0.994966674682219,
-        "p_d": 0.173004767079408,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 679500,
-        "p_s": 0.589701747368727,
-        "p_d": 0.728600151538625,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 682420,
-        "p_s": 0.53307210828429,
-        "p_d": 0.952959537414488,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 685330,
-        "p_s": 0.805602625108717,
-        "p_d": 0.0748519589876923,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 688250,
-        "p_s": 0.651407974342658,
-        "p_d": 0.676567577160698,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 691170,
-        "p_s": 0.768303941092985,
-        "p_d": 0.965790182141843,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 694080,
-        "p_s": 0.928900194822577,
-        "p_d": 0.41281829475603,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 697000,
-        "p_s": 0.721337933365212,
-        "p_d": 0.147909956174848,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 699910,
-        "p_s": 0.597740306832992,
-        "p_d": 0.876837506966872,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 702830,
-        "p_s": 0.571958009374499,
-        "p_d": 0.393181020378464,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
-      },
-      {
-        "chr": 1,
-        "bp": 705750,
-        "p_s": 0.959090201773019,
-        "p_d": 0.387029091883176,
-        "dominance_qtl": false,
-        "detected_additive": false,
-        "detected_dominance": false,
-        "detected": false
+        "maf": 0.01989,
+        "maf_bin": "<2%",
+        "genotype_counts": {
+          "0": 76850,
+          "1": 3117,
+          "2": 33
+        },
+        "additive_effect": -0.7007,
+        "dominance_effect": 0.5118,
+        "additive_t": -7.08,
+        "dominance_t": 5.07,
+        "hom_effect_sd": 1.2319,
+        "effect_bin": ">=1.0 SD",
+        "p_additive": 0.988705614584468,
+        "p_dominance": 6.03111914166334e-12,
+        "detected_additive": false,
+        "detected_dominance": true
+      },
+      {
+        "chr": 1,
+        "maf": 0.00982,
+        "maf_bin": "<2%",
+        "genotype_counts": {
+          "0": 78437,
+          "1": 1555,
+          "2": 8
+        },
+        "additive_effect": -0.2967,
+        "dominance_effect": 0.1872,
+        "additive_t": -1.48,
+        "dominance_t": 0.92,
+        "hom_effect_sd": 0.5216,
+        "effect_bin": "0.5-1.0 SD",
+        "p_additive": 0.252350909405283,
+        "p_dominance": 0.037546669533545,
+        "detected_additive": false,
+        "detected_dominance": false
+      },
+      {
+        "chr": 2,
+        "maf": 0.03938,
+        "maf_bin": "3-4%",
+        "genotype_counts": {
+          "0": 73813,
+          "1": 6074,
+          "2": 113
+        },
+        "additive_effect": -0.3004,
+        "dominance_effect": 0.2658,
+        "additive_t": -5.61,
+        "dominance_t": 4.79,
+        "hom_effect_sd": 0.5281,
+        "effect_bin": "0.5-1.0 SD",
+        "p_additive": 0.20812090079234,
+        "p_dominance": 1.31161970234119e-08,
+        "detected_additive": false,
+        "detected_dominance": true
+      },
+      {
+        "chr": 3,
+        "maf": 0.03918,
+        "maf_bin": "3-4%",
+        "genotype_counts": {
+          "0": 73850,
+          "1": 6032,
+          "2": 118
+        },
+        "additive_effect": -0.7583,
+        "dominance_effect": 0.6134,
+        "additive_t": -14.5,
+        "dominance_t": 11.29,
+        "hom_effect_sd": 1.3332,
+        "effect_bin": ">=1.0 SD",
+        "p_additive": 0.150359902748991,
+        "p_dominance": 5.82023790748617e-45,
+        "detected_additive": false,
+        "detected_dominance": true
+      },
+      {
+        "chr": 4,
+        "maf": 0.0304,
+        "maf_bin": "3-4%",
+        "genotype_counts": {
+          "0": 75215,
+          "1": 4706,
+          "2": 79
+        },
+        "additive_effect": -0.2812,
+        "dominance_effect": 0.2376,
+        "additive_t": -4.39,
+        "dominance_t": 3.59,
+        "hom_effect_sd": 0.4943,
+        "effect_bin": "<0.5 SD",
+        "p_additive": 0.0505822769469187,
+        "p_dominance": 3.52316576548128e-06,
+        "detected_additive": false,
+        "detected_dominance": false
+      },
+      {
+        "chr": 5,
+        "maf": 0.01043,
+        "maf_bin": "<2%",
+        "genotype_counts": {
+          "0": 78343,
+          "1": 1646,
+          "2": 11
+        },
+        "additive_effect": -0.6988,
+        "dominance_effect": 0.5834,
+        "additive_t": -4.08,
+        "dominance_t": 3.36,
+        "hom_effect_sd": 1.2286,
+        "effect_bin": ">=1.0 SD",
+        "p_additive": 0.605851514718757,
+        "p_dominance": 0.000139561603998192,
+        "detected_additive": false,
+        "detected_dominance": false
+      },
+      {
+        "chr": 6,
+        "maf": 0.03984,
+        "maf_bin": "3-4%",
+        "genotype_counts": {
+          "0": 73742,
+          "1": 6142,
+          "2": 116
+        },
+        "additive_effect": -0.1637,
+        "dominance_effect": 0.2158,
+        "additive_t": -3.1,
+        "dominance_t": 3.94,
+        "hom_effect_sd": 0.2877,
+        "effect_bin": "<0.5 SD",
+        "p_additive": 0.829710273264028,
+        "p_dominance": 2.90709617888831e-05,
+        "detected_additive": false,
+        "detected_dominance": false
+      },
+      {
+        "chr": 7,
+        "maf": 0.01947,
+        "maf_bin": "<2%",
+        "genotype_counts": {
+          "0": 76911,
+          "1": 3063,
+          "2": 26
+        },
+        "additive_effect": -0.6158,
+        "dominance_effect": 0.5579,
+        "additive_t": -5.52,
+        "dominance_t": 4.92,
+        "hom_effect_sd": 1.0827,
+        "effect_bin": ">=1.0 SD",
+        "p_additive": 0.232911977420952,
+        "p_dominance": 1.72711753783153e-08,
+        "detected_additive": false,
+        "detected_dominance": true
+      },
+      {
+        "chr": 8,
+        "maf": 0.03076,
+        "maf_bin": "3-4%",
+        "genotype_counts": {
+          "0": 75156,
+          "1": 4766,
+          "2": 78
+        },
+        "additive_effect": -0.0827,
+        "dominance_effect": 0.3557,
+        "additive_t": -1.28,
+        "dominance_t": 5.36,
+        "hom_effect_sd": 0.1453,
+        "effect_bin": "<0.5 SD",
+        "p_additive": 0.97413231501811,
+        "p_dominance": 6.0523688172635e-12,
+        "detected_additive": false,
+        "detected_dominance": true
+      },
+      {
+        "chr": 9,
+        "maf": 0.05011,
+        "maf_bin": ">=4%",
+        "genotype_counts": {
+          "0": 72177,
+          "1": 7629,
+          "2": 194
+        },
+        "additive_effect": -0.8166,
+        "dominance_effect": 0.5228,
+        "additive_t": -20.07,
+        "dominance_t": 12.25,
+        "hom_effect_sd": 1.4356,
+        "effect_bin": ">=1.0 SD",
+        "p_additive": 5.91065086281625e-08,
+        "p_dominance": 1.19492451049481e-56,
+        "detected_additive": false,
+        "detected_dominance": true
+      },
+      {
+        "chr": 10,
+        "maf": 0.01099,
+        "maf_bin": "<2%",
+        "genotype_counts": {
+          "0": 78249,
+          "1": 1743,
+          "2": 8
+        },
+        "additive_effect": -0.7407,
+        "dominance_effect": 0.439,
+        "additive_t": -3.69,
+        "dominance_t": 2.17,
+        "hom_effect_sd": 1.3022,
+        "effect_bin": ">=1.0 SD",
+        "p_additive": 0.985258665348544,
+        "p_dominance": 0.0340482890581421,
+        "detected_additive": false,
+        "detected_dominance": false
+      },
+      {
+        "chr": 11,
+        "maf": 0.02916,
+        "maf_bin": "2-3%",
+        "genotype_counts": {
+          "0": 75394,
+          "1": 4546,
+          "2": 60
+        },
+        "additive_effect": -0.4908,
+        "dominance_effect": 0.4604,
+        "additive_t": -6.68,
+        "dominance_t": 6.11,
+        "hom_effect_sd": 0.8628,
+        "effect_bin": "0.5-1.0 SD",
+        "p_additive": 0.19005718826633,
+        "p_dominance": 2.38945171404451e-14,
+        "detected_additive": false,
+        "detected_dominance": true
+      },
+      {
+        "chr": 12,
+        "maf": 0.02937,
+        "maf_bin": "2-3%",
+        "genotype_counts": {
+          "0": 75355,
+          "1": 4591,
+          "2": 54
+        },
+        "additive_effect": -0.1808,
+        "dominance_effect": 0.115,
+        "additive_t": -2.33,
+        "dominance_t": 1.45,
+        "hom_effect_sd": 0.3178,
+        "effect_bin": "<0.5 SD",
+        "p_additive": 0.312190666169823,
+        "p_dominance": 0.0183488294608841,
+        "detected_additive": false,
+        "detected_dominance": false
+      },
+      {
+        "chr": 13,
+        "maf": 0.05056,
+        "maf_bin": ">=4%",
+        "genotype_counts": {
+          "0": 72114,
+          "1": 7683,
+          "2": 203
+        },
+        "additive_effect": -0.1939,
+        "dominance_effect": 0.2571,
+        "additive_t": -4.85,
+        "dominance_t": 6.12,
+        "hom_effect_sd": 0.3408,
+        "effect_bin": "<0.5 SD",
+        "p_additive": 0.0530473613793389,
+        "p_dominance": 5.53652567861939e-15,
+        "detected_additive": false,
+        "detected_dominance": true
+      },
+      {
+        "chr": 14,
+        "maf": 0.05046,
+        "maf_bin": ">=4%",
+        "genotype_counts": {
+          "0": 72124,
+          "1": 7678,
+          "2": 198
+        },
+        "additive_effect": -0.6637,
+        "dominance_effect": 0.5835,
+        "additive_t": -16.43,
+        "dominance_t": 13.75,
+        "hom_effect_sd": 1.1668,
+        "effect_bin": ">=1.0 SD",
+        "p_additive": 0.023082987354922,
+        "p_dominance": 5.93760893834551e-49,
+        "detected_additive": false,
+        "detected_dominance": true
+      },
+      {
+        "chr": 15,
+        "maf": 0.02053,
+        "maf_bin": "2-3%",
+        "genotype_counts": {
+          "0": 76752,
+          "1": 3211,
+          "2": 37
+        },
+        "additive_effect": -0.6097,
+        "dominance_effect": 0.5415,
+        "additive_t": -6.52,
+        "dominance_t": 5.66,
+        "hom_effect_sd": 1.072,
+        "effect_bin": ">=1.0 SD",
+        "p_additive": 0.480500006938746,
+        "p_dominance": 6.45690746393499e-10,
+        "detected_additive": false,
+        "detected_dominance": true
+      },
+      {
+        "chr": 16,
+        "maf": 0.04036,
+        "maf_bin": ">=4%",
+        "genotype_counts": {
+          "0": 73687,
+          "1": 6168,
+          "2": 145
+        },
+        "additive_effect": -0.2374,
+        "dominance_effect": 0.3219,
+        "additive_t": -5.02,
+        "dominance_t": 6.51,
+        "hom_effect_sd": 0.4173,
+        "effect_bin": "<0.5 SD",
+        "p_additive": 0.361160427458666,
+        "p_dominance": 3.09610147570883e-15,
+        "detected_additive": false,
+        "detected_dominance": true
+      },
+      {
+        "chr": 17,
+        "maf": 0.04023,
+        "maf_bin": ">=4%",
+        "genotype_counts": {
+          "0": 73707,
+          "1": 6149,
+          "2": 144
+        },
+        "additive_effect": -0.7063,
+        "dominance_effect": 0.5291,
+        "additive_t": -14.92,
+        "dominance_t": 10.69,
+        "hom_effect_sd": 1.2417,
+        "effect_bin": ">=1.0 SD",
+        "p_additive": 1.08612817241942e-05,
+        "p_dominance": 2.20183189866674e-39,
+        "detected_additive": false,
+        "detected_dominance": true
+      },
+      {
+        "chr": 18,
+        "maf": 0.0396,
+        "maf_bin": "3-4%",
+        "genotype_counts": {
+          "0": 73808,
+          "1": 6048,
+          "2": 144
+        },
+        "additive_effect": -0.7015,
+        "dominance_effect": 0.517,
+        "additive_t": -14.82,
+        "dominance_t": 10.44,
+        "hom_effect_sd": 1.2332,
+        "effect_bin": ">=1.0 SD",
+        "p_additive": 0.00250541492795152,
+        "p_dominance": 2.04774643201341e-35,
+        "detected_additive": false,
+        "detected_dominance": true
+      },
+      {
+        "chr": 19,
+        "maf": 0.02038,
+        "maf_bin": "2-3%",
+        "genotype_counts": {
+          "0": 76769,
+          "1": 3201,
+          "2": 30
+        },
+        "additive_effect": -0.3961,
+        "dominance_effect": 0.2971,
+        "additive_t": -3.81,
+        "dominance_t": 2.81,
+        "hom_effect_sd": 0.6964,
+        "effect_bin": "0.5-1.0 SD",
+        "p_additive": 0.970977599646284,
+        "p_dominance": 0.000150876661358864,
+        "detected_additive": false,
+        "detected_dominance": false
+      },
+      {
+        "chr": 20,
+        "maf": 0.01972,
+        "maf_bin": "<2%",
+        "genotype_counts": {
+          "0": 76879,
+          "1": 3087,
+          "2": 34
+        },
+        "additive_effect": -0.1744,
+        "dominance_effect": 0.1981,
+        "additive_t": -1.79,
+        "dominance_t": 1.99,
+        "hom_effect_sd": 0.3065,
+        "effect_bin": "<0.5 SD",
+        "p_additive": 0.979226594568165,
+        "p_dominance": 0.00308650488560907,
+        "detected_additive": false,
+        "detected_dominance": false
+      },
+      {
+        "chr": 21,
+        "maf": 0.02982,
+        "maf_bin": "2-3%",
+        "genotype_counts": {
+          "0": 75302,
+          "1": 4625,
+          "2": 73
+        },
+        "additive_effect": -0.3791,
+        "dominance_effect": 0.5912,
+        "additive_t": -5.7,
+        "dominance_t": 8.62,
+        "hom_effect_sd": 0.6664,
+        "effect_bin": "0.5-1.0 SD",
+        "p_additive": 0.142982614899762,
+        "p_dominance": 1.70004909978886e-27,
+        "detected_additive": false,
+        "detected_dominance": true
+      },
+      {
+        "chr": 22,
+        "maf": 0.00958,
+        "maf_bin": "<2%",
+        "genotype_counts": {
+          "0": 78480,
+          "1": 1508,
+          "2": 12
+        },
+        "additive_effect": -0.5128,
+        "dominance_effect": 0.5325,
+        "additive_t": -3.12,
+        "dominance_t": 3.19,
+        "hom_effect_sd": 0.9016,
+        "effect_bin": "0.5-1.0 SD",
+        "p_additive": 0.672563419418895,
+        "p_dominance": 0.00262656773183238,
+        "detected_additive": false,
+        "detected_dominance": false
+      },
+      {
+        "chr": 23,
+        "maf": 0.00987,
+        "maf_bin": "<2%",
+        "genotype_counts": {
+          "0": 78434,
+          "1": 1553,
+          "2": 13
+        },
+        "additive_effect": -0.4827,
+        "dominance_effect": 0.4086,
+        "additive_t": -3.06,
+        "dominance_t": 2.55,
+        "hom_effect_sd": 0.8486,
+        "effect_bin": "0.5-1.0 SD",
+        "p_additive": 0.735229261698926,
+        "p_dominance": 1.03541201377437e-05,
+        "detected_additive": false,
+        "detected_dominance": false
+      },
+      {
+        "chr": 24,
+        "maf": 0.04998,
+        "maf_bin": ">=4%",
+        "genotype_counts": {
+          "0": 72185,
+          "1": 7633,
+          "2": 182
+        },
+        "additive_effect": -0.6587,
+        "dominance_effect": 0.5302,
+        "additive_t": -15.64,
+        "dominance_t": 12.03,
+        "hom_effect_sd": 1.1581,
+        "effect_bin": ">=1.0 SD",
+        "p_additive": 0.00133845172158169,
+        "p_dominance": 7.72085500169818e-55,
+        "detected_additive": false,
+        "detected_dominance": true
+      },
+      {
+        "chr": 25,
+        "maf": 0.03067,
+        "maf_bin": "3-4%",
+        "genotype_counts": {
+          "0": 75161,
+          "1": 4771,
+          "2": 68
+        },
+        "additive_effect": -0.5103,
+        "dominance_effect": 0.5177,
+        "additive_t": -7.4,
+        "dominance_t": 7.3,
+        "hom_effect_sd": 0.8971,
+        "effect_bin": "0.5-1.0 SD",
+        "p_additive": 0.258493312316035,
+        "p_dominance": 1.46134584374536e-20,
+        "detected_additive": false,
+        "detected_dominance": true
+      },
+      {
+        "chr": 26,
+        "maf": 0.05042,
+        "maf_bin": ">=4%",
+        "genotype_counts": {
+          "0": 72126,
+          "1": 7680,
+          "2": 194
+        },
+        "additive_effect": -0.2412,
+        "dominance_effect": 0.3033,
+        "additive_t": -5.9,
+        "dominance_t": 7.07,
+        "hom_effect_sd": 0.4241,
+        "effect_bin": "<0.5 SD",
+        "p_additive": 0.139890118048243,
+        "p_dominance": 4.12083210834288e-18,
+        "detected_additive": false,
+        "detected_dominance": true
+      },
+      {
+        "chr": 27,
+        "maf": 0.05004,
+        "maf_bin": ">=4%",
+        "genotype_counts": {
+          "0": 72187,
+          "1": 7620,
+          "2": 193
+        },
+        "additive_effect": -0.3871,
+        "dominance_effect": 0.2573,
+        "additive_t": -9.45,
+        "dominance_t": 5.99,
+        "hom_effect_sd": 0.6806,
+        "effect_bin": "0.5-1.0 SD",
+        "p_additive": 0.0322381565020242,
+        "p_dominance": 5.68303779034311e-16,
+        "detected_additive": false,
+        "detected_dominance": true
+      },
+      {
+        "chr": 28,
+        "maf": 0.01022,
+        "maf_bin": "<2%",
+        "genotype_counts": {
+          "0": 78378,
+          "1": 1609,
+          "2": 13
+        },
+        "additive_effect": -0.4803,
+        "dominance_effect": 0.1957,
+        "additive_t": -3.05,
+        "dominance_t": 1.22,
+        "hom_effect_sd": 0.8443,
+        "effect_bin": "0.5-1.0 SD",
+        "p_additive": 0.764668152555583,
+        "p_dominance": 0.052704958760449,
+        "detected_additive": false,
+        "detected_dominance": false
+      },
+      {
+        "chr": 29,
+        "maf": 0.021,
+        "maf_bin": "2-3%",
+        "genotype_counts": {
+          "0": 76676,
+          "1": 3288,
+          "2": 36
+        },
+        "additive_effect": -0.3982,
+        "dominance_effect": 0.4417,
+        "additive_t": -4.2,
+        "dominance_t": 4.56,
+        "hom_effect_sd": 0.7001,
+        "effect_bin": "0.5-1.0 SD",
+        "p_additive": 0.484086862861956,
+        "p_dominance": 2.43440189809618e-08,
+        "detected_additive": false,
+        "detected_dominance": true
       }
-    ]
+    ],
+    "by_maf_bin": [
+      {
+        "bin": "<2%",
+        "n_qtl": 9,
+        "n_detected_dominance": 2,
+        "n_detected_additive": 0
+      },
+      {
+        "bin": "2-3%",
+        "n_qtl": 6,
+        "n_detected_dominance": 4,
+        "n_detected_additive": 0
+      },
+      {
+        "bin": "3-4%",
+        "n_qtl": 7,
+        "n_detected_dominance": 5,
+        "n_detected_additive": 0
+      },
+      {
+        "bin": ">=4%",
+        "n_qtl": 8,
+        "n_detected_dominance": 8,
+        "n_detected_additive": 0
+      }
+    ],
+    "by_effect_bin": [
+      {
+        "bin": "<0.5 SD",
+        "n_qtl": 8,
+        "n_detected_dominance": 4,
+        "n_detected_additive": 0
+      },
+      {
+        "bin": "0.5-1.0 SD",
+        "n_qtl": 11,
+        "n_detected_dominance": 6,
+        "n_detected_additive": 0
+      },
+      {
+        "bin": ">=1.0 SD",
+        "n_qtl": 11,
+        "n_detected_dominance": 9,
+        "n_detected_additive": 0
+      }
+    ],
+    "trait_sd": 1.1376,
+    "n_individuals": 80000
   },
   "notes": [
-    "Phase 4c trimmed: primary source = source_data.ExtFig9b.csv.",
-    "MAF bin x effect size vs detected not computable (no MAF columns).",
-    "Rescan of gen_11.1 skipped by decision."
+    "Truth: the 30 ExtFig9b rows flagged dominance_QTL (simulated recessive QTL).",
+    "MAF and effects estimated from gen_11.1 and phen_8.1 (single-locus OLS).",
+    "Detection uses P_S (additive) and P_D (dominance) from ExtFig9b at 5e-8. The recessive and genotype-class tests are not in the source file.",
+    "Background (non-QTL) variants: 624,293 rows counted; only aggregates exported."
   ]
 }
