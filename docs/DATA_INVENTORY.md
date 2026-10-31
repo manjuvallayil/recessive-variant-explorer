@@ -121,9 +121,12 @@ PLINK genotype coding: 0 = reference homozygote, 1 = heterozygote, 2 = mutant ho
 
 ### `gen_3` row-order caveat
 
-`gen_3.*` row order is **identical to `gen_1.*` at all nine lead loci** (identity = 1.0), but the
-`.fam` IID order differs from `gen_1`. To attach `gen_3` genotypes to discovery animals, map
-row `i` to `gen_1.<locus>.fam` row `i`; do not join `gen_3` by its own `.fam` IID.
+`gen_3.*` genotype rows are **identical to `gen_1.*` at all nine lead loci** (identity = 1.0),
+but the `.fam` IID labels are permuted between the two sets. `phen_1.*` IDs align with
+`gen_1.*.fam`; `phen_4.*` IDs align with `gen_3.*.fam`. Join `phen_1` to `gen_1` by IID and
+`phen_4` to `gen_3` by IID. Using one `.fam` file for both phenotype families misassigns
+genotypes: PLCD4 bodyweight raw effect is about −80.6 kg with `gen_1` mapping versus −7.9 kg
+with `gen_3`; PLCD4 milk effect is about −2.42 with `gen_3` versus −0.25 with `gen_1`.
 
 ## Summary statistics and other tables
 
@@ -294,28 +297,32 @@ Additional corrections/notes:
 |---|---|---|
 | V1 join key | PASS | IID-joined adjusted PLCD4 hom-alt = **−110.93 kg**; row-order raw = **+6.48 kg**. |
 | V2 allele coding | PASS | A1 = mutant; max all-population frequency delta = 0.00043; max breed delta = 0.0099 (MYH1 J 0.1189 vs 0.109). |
-| V3 ID spaces | PASS | `gen_1` 80,027 vs `phen_1.1` 79,945 (82 extra); `gen_3` 80,027 vs `phen_4.1` 79,659 (368 extra); `other_5` 2,197 trios / 4,276 union; `gen_3` row identity 1.0 but `.fam` order differs. |
-| V4 weighting | PASS | Mean absolute error vs Table 1: unweighted 1.357, `rinverse` 1.376, `1/rinverse` 1.348 kg. Choose **unweighted** as primary; sensitivity = `1/rinverse`. |
+| V3 ID spaces | PASS | `gen_1` 80,027 vs `phen_1.1` 79,945 (82 extra); `gen_3` 80,027 vs `phen_4.1` 79,659 (368 extra); `other_5` 2,197 trios / 4,276 union; `gen_3` row identity 1.0 but `.fam` order differs; `phen_1` uses `gen_1.fam`, `phen_4` uses `gen_3.fam`. |
+| V4 weighting | PASS | Mean absolute error vs Table 1: unweighted 1.357, `rinverse` 1.376, `1/rinverse` 1.348 kg. Choose **unweighted** as primary; labelled sensitivity = `weights = rinverse`. |
 | V5 `other_7` | PASS | 68,578 rows; F 0–3.1, 179 values >1; slope −79.24 kg per F = **−0.792 kg per 1%** (paper −0.77); col 3 r = 0.838 with `yd_trait`, 0.095 with adjusted. |
 | V6 pedigree order | PASS | Best `(0,1,2)`/`(0,2,1)` = 9/15,379 violations (0.0585%); `other_3` 172,572 rows; `other_4` 314,677 rows. |
 | V7 national burden | PASS | `gen_10` 5,550 sires; `other_11` 2,799,022 animals; birth years 2010–2019; 100% of SIRE_ID/MGS_ID in `gen_10.KEY`. |
 | V8 LOSO files | PASS | Trait mapping 1→body weight, 2→BCS, 3→stature; 13 windows; 501 columns each. |
-| V9 summary stats | PASS | `other_1.1` 16,128,394 rows / 16,128,339 distinct (CHR,BP) keys (55 dups); `other_9` 100% coverage; `other_10` 99.553% (72,092 missing); `other_15` 0.284%; chromosomes 1–29 only. |
-| V10 RNA/chip IDs | PASS | `gen_6` 350 IDs = `phen_7.1.KEY` = `phen_7.2.ID`; 17,180,153 variants; `gen_7` = `phen_6` (12); `gen_8` = `phen_5` (34); exact candidate positions for 7/9; MTRF1 nearest 78 bp, MUS81 nearest 103 bp; DPF2 exact. |
+| V9 summary stats | PASS | `other_1.1` 16,128,394 rows / 16,128,339 distinct (CHR,BP) keys (55 dups); `other_9` 100% coverage; `other_10` 99.553% (72,092 missing); **100% of `other_15` rows are in `other_1.1`** (45,865/45,865), while `other_15` covers 0.284% of `other_1.1`; chromosomes 1–29 only. |
+| V10 RNA/chip IDs | PASS | `gen_6` 350 IDs = `phen_7.1.KEY` = `phen_7.2.ID`; 17,180,153 variants; `gen_7` = `phen_6` (12); `gen_8` = `phen_5` (34); exact candidate positions for 7/9; MTRF1 nearest 78 bp, MUS81 nearest 103 bp; DPF2 exact. DPF2↔nearest-MUS81 r² = 0.018 in the 350 RNA animals (paper candidate-variant R² ≈ 0.98). |
 | V11 source data | PASS | 10 CSVs + 16 images; see table above. |
 
 ## Data quirks and mismatches to remember
 
 - `other_2` trait order is swapped relative to the README (verified).
-- `gen_3` row order matches `gen_1`, but `.fam` IID order does not; use row mapping.
+- `gen_1`/`gen_3` genotype rows match at the nine lead loci, but `.fam` labels differ; `phen_1` uses `gen_1.fam`, `phen_4` uses `gen_3.fam`.
 - `other_5` has 2,197 trios, not 4,276 rows; 4,276 is the union of offspring/sire/dam.
 - `gen_9.1` README says DPF2/MUS81 chip; it contains exactly those two variants.
 - MTRF1 and MUS81 exact mutations are **not** in `gen_6.1`; nearest variants are 78 bp and
-  103 bp away. The phrase “4 RNA candidate variants” in the brief is ambiguous; the paper's RNA
-  analyses focus on FGD4, GALNT2, and MUS81.
+  103 bp away. RNA targets are FGD4, GALNT2, and MUS81 (splice: FGD4/GALNT2; expression: all
+  three). DPF2 is exact in `gen_6.1` and is used as a labelled proxy for MUS81; the nearest
+  MUS81 variant (`rs41652267`) has r² = 0.018 with DPF2 in the 350 RNA animals, so this proxy is
+  a caveat, not a substitute for the missing candidate variant.
 - MYH1 genotypes are the left-flank proxy SNP, not the full delins.
 - `ExtFig2c` IDs are renumbered and cannot be row-joined to `phen_1.1`.
-- `other_10` covers 99.55% of `other_1.1` keys; `other_15` covers 0.284%.
+- `other_10` covers 99.55% of `other_1.1` keys. `other_15` is the reverse direction: **100% of its
+  45,865 distinct rows are present in `other_1.1`**, but it covers only 0.284% of `other_1.1`
+  (it is the 50k-chip subset).
 - `other_7` F is a fraction; 179 values exceed 1 and should be flagged, not silently clipped.
 - Numeric ID ranges overlap across populations; never join across populations.
 - `other_1.1` sign convention: `B_A` appears to be the A2/reference-allele additive effect;

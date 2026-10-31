@@ -696,6 +696,12 @@ def check_v9() -> dict:
             f"LEFT JOIN (SELECT DISTINCT CHR,BP FROM {o15}) b USING (CHR,BP)"
         ).fetchone()[0]
     )
+    out["other_15_rows_in_other_1"] = int(
+        con.execute(
+            f"SELECT COUNT(*) FROM (SELECT DISTINCT CHR,BP FROM {o15}) a "
+            f"SEMI JOIN (SELECT DISTINCT CHR,BP FROM {o1}) b USING (CHR,BP)"
+        ).fetchone()[0]
+    )
     out["other_1_chroms"] = [
         int(v[0]) for v in con.execute(f"SELECT DISTINCT CHR FROM {o1} ORDER BY 1").fetchall()
     ]
@@ -709,6 +715,9 @@ def check_v9() -> dict:
         "other_10": out["other_10_coverage"] / n,
         "other_15": out["other_15_coverage"] / n,
     }
+    out["other_15_rows_in_other_1_frac"] = (
+        out["other_15_rows_in_other_1"] / out["other_15"]["distinct_rows"]
+    )
     out["pass"] = (
         out["other_1_1"]["rows"] - out["other_1_1"]["distinct_keys"] == 55
         and out["coverage_frac"]["other_9"] > 0.999
@@ -759,6 +768,24 @@ def check_v10() -> dict:
             "distance": int(d.loc[i]),
         }
 
+    proxy_idx = int(bim.index[(bim.CHR == 29) & (bim.BP == 44213160)][0])
+    nearest_idx = int(bim.index[(bim.CHR == 29) & (bim.BP == 44645366)][0])
+    bed = open_bed(GENS / "gen_6.1.bed")
+    g = bed.read((slice(None), [proxy_idx, nearest_idx]), dtype="int8")
+    r = float(np.corrcoef(g[:, 0].astype(float), g[:, 1].astype(float))[0, 1])
+    mus81_proxy_ld = {
+        "proxy_snp": "Chr29_44213160",
+        "proxy_bp": 44213160,
+        "nearest_mus81_snp": "rs41652267",
+        "nearest_mus81_bp": 44645366,
+        "distance_bp": 103,
+        "n": int(g.shape[0]),
+        "proxy_genotype_counts": np.bincount(g[:, 0], minlength=3).tolist(),
+        "nearest_genotype_counts": np.bincount(g[:, 1], minlength=3).tolist(),
+        "r": r,
+        "r2": r * r,
+    }
+
     gen7 = pd.read_csv(GENS / "gen_7.1.txt", sep=r"\s+")
     gen8 = pd.read_csv(GENS / "gen_8.1.txt", sep=r"\s+", header=None)
     gen9_bim = pd.read_csv(GENS / "gen_9.1.bim", sep=r"\s+", header=None)
@@ -777,6 +804,7 @@ def check_v10() -> dict:
         "gen_6_1_bim_rows": int(len(bim)),
         "gen_6_1_bim_chroms": [int(v) for v in sorted(bim.CHR.unique())],
         "candidate_nearest": found,
+        "mus81_proxy_ld": mus81_proxy_ld,
         "gen_7_ids_equal_phen_6": bool(set(gen7.ID.astype(int)) == set(phen6_ids.astype(int))),
         "gen_8_ids_equal_phen_5": bool(
             set(gen8.iloc[:, 0].astype(int)) == set(phen5_ids.astype(int))

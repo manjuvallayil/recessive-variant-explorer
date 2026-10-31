@@ -92,6 +92,7 @@ def test_v9_summary_stat_coverage(checks: dict) -> None:
     assert v9["coverage_frac"]["other_9"] == 1.0
     assert v9["coverage_frac"]["other_10"] > 0.99
     assert v9["coverage_frac"]["other_15"] < 0.01
+    assert v9["other_15_rows_in_other_1_frac"] == 1.0
     assert v9["other_1_chroms"] == list(range(1, 30))
 
 
@@ -107,6 +108,10 @@ def test_v10_rna_and_chip_id_links(checks: dict) -> None:
         assert nearest[locus]["distance"] == 0
     assert nearest["MTRF1"]["distance"] <= 150
     assert nearest["MUS81"]["distance"] <= 150
+    ld = v10["mus81_proxy_ld"]
+    assert ld["n"] == 350
+    assert ld["distance_bp"] == 103
+    assert 0 <= ld["r2"] <= 1
 
 
 def test_v11_source_data_inventory(checks: dict) -> None:

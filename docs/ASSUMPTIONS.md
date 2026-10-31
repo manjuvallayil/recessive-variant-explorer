@@ -1,7 +1,7 @@
 # Assumptions and Deviations (Phase 0)
 
-Status: **Phase 0 complete; awaiting Stop Gate A go-ahead.** Every assumption below is either
-verified in `work/phase0_summary.json` or explicitly marked as an open question.
+Status: **Phase 0 complete; Gate A approved; Phase 1 in progress.** Every assumption below is
+either verified in `work/phase0_summary.json` or explicitly marked as an open question.
 
 ## Data and assembly
 
@@ -17,9 +17,15 @@ verified in `work/phase0_summary.json` or explicitly marked as an open question.
    `g.30114250_30114327delins…`; the available PLINK variant is the left-flank SNP
    `30114249 C/CCCACCTGGG`, which the paper says was used for imputation. Report it as a proxy,
    not the exact frameshift.
-5. **`gen_3` row order.** `gen_3.*` rows are identical to `gen_1.*` at all nine loci, but the
-   `.fam` IID order is scrambled. Use row `i` of `gen_3` with row `i` of `gen_1.<locus>.fam`.
-   Joining `gen_3` by its own `.fam` IID would silently misassign genotypes.
+5. **Phenotype-specific `.fam` mapping for `gen_1`/`gen_3`.** `gen_3.*` genotype rows are
+   identical to `gen_1.*` at all nine lead loci (identity = 1.0), but the `.fam` IID labels are
+   permuted between the two sets. `phen_1.*` IDs align with `gen_1.*.fam`; `phen_4.*` IDs align
+   with `gen_3.*.fam`. Join `phen_1` to `gen_1` by IID and `phen_4` to `gen_3` by IID. Do not use
+   one `.fam` file for both phenotype families: doing so attenuates or reverses effects. Evidence:
+   PLCD4 bodyweight raw effect is about −80.6 kg with `gen_1` mapping (B-adjusted −110.9 kg) but
+   −7.9 kg with `gen_3` mapping; PLCD4 milk effect is about −2.42 with `gen_3` mapping (validation
+   −2.85) but −0.25 with `gen_1` mapping. The earlier “always use the `gen_1` row mapping” note
+   was wrong for `phen_4`.
 6. **Separate ID spaces.** Discovery (1–80,027), validation (1–31,580), depletion (1–49,115),
    carrier crosses (1–4,276), RNA (1–350), farm cohorts (1–12, 1–34), chip (1–98,002), and
    simulation (130,201–210,200) are separate. Never join across populations by numeric ID.
@@ -36,8 +42,8 @@ verified in `work/phase0_summary.json` or explicitly marked as an open question.
 9. **`rinverse` weighting.** The brief asked to test unweighted, `rinverse`, and `1/rinverse`.
    Mean absolute error versus Table 1 is 1.357, 1.376, and 1.348 kg respectively — effectively
    tied. **Primary choice: unweighted**, because it makes no assumption about the unknown
-   semantics of `rinverse` and matches the paper's mixed-model philosophy. `1/rinverse` is the
-   sensitivity analysis. This is a documented deviation from “choose the closest” by 0.009 kg.
+   semantics of `rinverse` and matches the paper's mixed-model philosophy. `weights = rinverse`
+   is kept as a labelled sensitivity run (Gate A decision 1).
 10. **`other_7` F is a fraction, not a percent.** F ranges 0–3.1 and 179 values exceed 1. Slope
     is −79.24 kg per unit F = −0.792 kg per 1% (paper −0.77). Values >1 are flagged, not clipped.
 11. **`other_5` column order is offspring, sire, dam.** Chosen by Mendelian consistency: the two
@@ -66,11 +72,12 @@ verified in `work/phase0_summary.json` or explicitly marked as an open question.
 
 ## RNA and candidate variants
 
-18. **“4 RNA candidate variants” is unresolved.** The paper's RNA analyses focus on FGD4
-    (splice donor), GALNT2 (splice acceptor), and MUS81 (premature stop); DPF2 is a missense
-    candidate with expression data in `phen_7.2`. The brief's “4” may refer to FGD4, GALNT2,
-    MUS81, and DPF2, or to a different set. Phase 3 should use FGD4/GALNT2/MUS81 for splicing
-    and FGD4/GALNT2/MUS81 for expression, and state the ambiguity.
+18. **RNA targets are FGD4, GALNT2, and MUS81** (user decision, Gate A). Use `phen_7.1` splice
+    junctions for FGD4 and GALNT2, and `phen_7.2` expression for FGD4, GALNT2, and MUS81. DPF2
+    has no RNA phenotype. For MUS81, whose exact variant is absent from `gen_6.1`, use the exact
+    DPF2 variant (`chr29:44213160`) as a clearly labelled proxy. The paper reports candidate
+    DPF2↔MUS81 R² ≈ 0.98; in the 350 RNA animals the nearest MUS81 variant (`rs41652267`,
+    103 bp away) has r² = 0.018 with DPF2, so the proxy is a caveat, not a validated tag.
 19. **Exact variant matching in `gen_6.1`.** Exact positions are present for PLCD4, FGD4, ARSI,
     DPF2, GALNT2, MYH1, Chr2:22, and the chr14 comparators. MTRF1 is absent; the nearest variant
     (`rs378062563`, chr12:11,464,059) is 78 bp away. MUS81 is absent; the nearest variant
@@ -107,20 +114,25 @@ verified in `work/phase0_summary.json` or explicitly marked as an open question.
 ## Deviations from the brief
 
 1. **V11 replaced** by the addendum's source-data inventory (10 CSVs + 16 images), as instructed.
-2. **V4 weighting choice** is unweighted primary, `1/rinverse` sensitivity (see item 9).
-3. **V10 exact-match caveat** for MTRF1 and MUS81 (see item 19); the “4 RNA candidates” phrase
-   is documented as ambiguous rather than guessed.
+2. **V4 weighting choice** is unweighted primary, `weights = rinverse` labelled sensitivity (see item 9).
+3. **V10 exact-match caveat** for MTRF1 and MUS81 (see item 19); MUS81 RNA analysis uses DPF2
+   as a labelled proxy with a low-LD caveat (see item 18).
 4. **Table 1 values** in the brief are rounded; the paper's parsed values are used in
    `docs/DATA_INVENTORY.md`. No substantive mismatch.
 5. **`other_5` row count** corrected to 2,197 trios (4,276 union individuals); the brief's
    “~2,197 rows” was right, but the V3 summary reports the union.
-6. **`gen_3` mapping** is by row to `gen_1.fam`, not by its own IID (see item 5).
-7. **`ExtFig2c`** is treated as unjoinable at row level (see item 21).
+6. **`other_15` coverage direction** clarified: 100% of `other_15` rows are in `other_1.1`;
+   0.284% is the reverse (chip rows as a fraction of sequence rows).
+7. **MUS81 RNA proxy** is DPF2 with an explicit low-LD caveat (r² = 0.018 in 350 animals).
+8. **Phenotype-specific genotype mapping** follows item 5: `phen_1` → `gen_1.fam`; `phen_4` → `gen_3.fam`.
+9. **`ExtFig2c`** is treated as unjoinable at row level (see item 21).
 
 ## Open questions for the user
 
-1. Confirm the intended “4 RNA candidate variants” set for Phase 3 (FGD4/GALNT2/MUS81/DPF2?).
-2. Confirm unweighted as the primary phenotype estimator, with `1/rinverse` as sensitivity.
+1. ~~Confirm the intended “4 RNA candidate variants” set~~ — resolved at Gate A: FGD4, GALNT2,
+   MUS81; DPF2 is the MUS81 proxy.
+2. ~~Confirm unweighted as the primary phenotype estimator~~ — resolved at Gate A: unweighted
+   primary, `rinverse` labelled sensitivity.
 3. Confirm that Table 1 parsed values are the authority where the brief's rounded values differ.
 4. Confirm the Dryad licence terms for any reuse of source-data images (currently not
    redistributed).
@@ -134,4 +146,4 @@ verified in `work/phase0_summary.json` or explicitly marked as an open question.
 - [x] `uv run pytest` passes.
 - [x] `git ls-files` / `git status --ignored` show no PDF, no `dryad/` files, no source-data
       images.
-- [ ] User go-ahead to start Phase 1.
+- [x] User go-ahead to start Phase 1.

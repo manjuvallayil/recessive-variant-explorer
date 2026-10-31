@@ -44,6 +44,7 @@ node_modules/
 *.swp
 
 # Personal application documents (not part of the public repo)
+BRIEF.md
 CoverLetter_LIC AI & Machine Learning Application.pdf
 Dairy Scientist AI & ML Job Application.pdf
 LIC_Chad Harland_LinkedIn.pdf
