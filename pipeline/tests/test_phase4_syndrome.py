@@ -48,7 +48,20 @@ def test_body_weight_flag_beats_chance() -> None:
     assert b0["auc_ci"][0] > 0.55
 
 
-def test_per_group_evaluation_threshold() -> None:
+def test_per_locus_report_fields() -> None:
     per_group = _payload()["per_group"]
+    assert set(per_group) == {"PLCD4", "FGD4", "GALNT2", "DPF2/MUS81"}
     for group, entry in per_group.items():
-        assert entry["evaluated"] == (entry["n_positive"] >= 30), group
+        # bodyweight-available homozygotes are never fewer than complete-case ones
+        assert entry["n_homozygous_with_bodyweight"] >= entry["n_homozygous_complete_case"], group
+        assert 0.0 <= entry["auc_negated_bw_single_locus"] <= 1.0, group
+        assert entry["observed_over_expected"] is not None, group
+
+
+def test_single_locus_auc_matches_effect_size_expectation() -> None:
+    # Equal-variance shift model: observed AUROC should sit near the expected value (n-dependent).
+    per_group = _payload()["per_group"]
+    for group in ("PLCD4", "GALNT2"):
+        e = per_group[group]
+        gap = abs(e["auc_negated_bw_single_locus"] - e["auc_expected_from_effect_size"])
+        assert gap < 0.08, group

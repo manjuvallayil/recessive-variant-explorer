@@ -17,6 +17,7 @@ from __future__ import annotations
 import json
 import subprocess
 from datetime import UTC, datetime
+from math import erf, sqrt
 from pathlib import Path
 
 import numpy as np
@@ -69,6 +70,19 @@ def variant_homozygous(stem: str, chrom: int, bp: int) -> pd.Series:
     iids = pd.read_csv(GENS / f"{stem}.fam", sep=r"\s+", header=None)[1].astype(int).to_numpy()
     keep = g >= 0
     return pd.Series((g[keep] == 2).astype(int), index=iids[keep])
+
+
+def variant_counts(stem: str, chrom: int, bp: int) -> dict[str, int]:
+    """Genotype counts (0/1/2, missing) for one variant in the gen_1 window."""
+    bim = pd.read_csv(GENS / f"{stem}.bim", sep=r"\s+", header=None)
+    hit = bim.index[(bim[0] == chrom) & (bim[3] == bp)]
+    g = open_bed(GENS / f"{stem}.bed").read((slice(None), [int(hit[0])]), dtype="int8")[:, 0]
+    return {
+        "n0": int((g == 0).sum()),
+        "n1": int((g == 1).sum()),
+        "n2": int((g == 2).sum()),
+        "missing": int((g < 0).sum()),
+    }
 
 
 def _discovery() -> tuple[pd.DataFrame, dict[str, np.ndarray], dict[str, int]]:
@@ -171,14 +185,63 @@ def compute_syndrome() -> dict:
         for name, s in scores.items()
     }
 
+    # Per-locus statistics use every genotyped record with body weight (no stature/BCS needed),
+    # so that records lost to missing traits do not dilute the homozygote counts.
+    bw_all = pd.read_csv(PHENS / "phen_1.1.txt", sep=r"\s+")[["ID", "yd_trait"]]
+    bw_all = bw_all.rename(columns={"yd_trait": "bw"}).dropna().reset_index(drop=True)
+    bw_vals = bw_all["bw"].to_numpy(dtype=float)
     per_group = {}
+    any_hom_all = np.zeros(len(bw_all), dtype=bool)
     for group in GROUPS:
-        lab = labels[group]
-        n_pos = int(lab.sum())
-        entry: dict = {"n_positive": n_pos, "evaluated": n_pos >= N_PER_LOCUS_MIN}
-        if entry["evaluated"]:
-            entry["B0_body_weight_flag"] = _boot_ci(lab, scores["B0_body_weight_flag"])
+        members = [v for v in VARIANTS if v[4] == group]
+        hom_all = np.zeros(len(bw_all), dtype=bool)
+        hwe_expected = 0.0
+        counts_out = {}
+        for name, stem, chrom, bp, _grp in members:
+            hom_map = variant_homozygous(stem, chrom, bp)
+            hom_all |= bw_all["ID"].map(hom_map).fillna(0).astype(bool).to_numpy()
+            c = variant_counts(stem, chrom, bp)
+            n_tot = c["n0"] + c["n1"] + c["n2"]
+            q = (c["n1"] + 2 * c["n2"]) / (2 * n_tot)
+            hwe_expected += q * q * n_tot
+            counts_out[name] = {**c, "alt_freq": round(q, 5)}
+        any_hom_all |= hom_all
+        n_hom = int(hom_all.sum())
+        d_hom = float(bw_vals[hom_all].mean()) if n_hom else float("nan")
+        d_ref = float(bw_vals[~hom_all].mean())
+        sd_ref = float(bw_vals[~hom_all].std(ddof=1))
+        auc_single = float(roc_auc_score(hom_all.astype(int), -bw_vals))
+        rng = np.random.default_rng(CV_SEED)
+        boot = []
+        yb = hom_all.astype(int)
+        for _ in range(BOOTSTRAP_B):
+            idx = rng.integers(0, len(yb), len(yb))
+            if yb[idx].min() == yb[idx].max():
+                continue
+            boot.append(float(roc_auc_score(yb[idx], -bw_vals[idx])))
+        auc_ci = [float(np.percentile(boot, 2.5)), float(np.percentile(boot, 97.5))]
+        shift = (d_ref - d_hom) / (sd_ref * sqrt(2.0))
+        auc_expected = 0.5 * (1.0 + erf(shift / sqrt(2.0)))
+        complete_case_pos = int(labels[group].sum())
+        entry = {
+            "n_homozygous_with_bodyweight": n_hom,
+            "n_homozygous_complete_case": complete_case_pos,
+            "n_expected_hwe_homozygous": round(hwe_expected, 1),
+            "observed_over_expected": round(n_hom / hwe_expected, 3) if hwe_expected else None,
+            "mean_bw_homozygous": round(d_hom, 2),
+            "mean_bw_reference": round(d_ref, 2),
+            "auc_negated_bw_single_locus": round(auc_single, 4),
+            "auc_negated_bw_single_locus_ci": [round(auc_ci[0], 4), round(auc_ci[1], 4)],
+            "auc_expected_from_effect_size": round(auc_expected, 4),
+            "variants": counts_out,
+            "evaluated_in_pooled_multivariate": complete_case_pos >= N_PER_LOCUS_MIN,
+        }
         per_group[group] = entry
+    per_group_meta = {
+        "pooled_any_homozygous_with_bodyweight": int(any_hom_all.sum()),
+        "pooled_any_homozygous_complete_case": counts["any"],
+        "n_bodyweight_records": int(len(bw_all)),
+    }
 
     return {
         "schema_version": "1.0.0",
@@ -201,10 +264,13 @@ def compute_syndrome() -> dict:
             "top_precision": top,
         },
         "per_group": per_group,
+        "per_group_meta": per_group_meta,
         "notes": [
             "Labels: homozygous-mutant status, gen_1 key (matches phen_1 IIDs).",
             "DPF2 and MUS81 are one locus (homozygous for either).",
-            "Per-group metrics only for groups with >= N_PER_LOCUS_MIN positives.",
+            "Per-locus statistics use all genotyped records with body weight (no stature/BCS).",
+            "Pooled and multivariate metrics use complete cases (bw, stature, BCS).",
+            "Expected AUROC from effect size assumes equal-variance normal classes (shift model).",
             "Logistic model: 5-fold stratified out-of-fold predictions. Sire grouping not "
             "possible (pedigree parents are outside the discovery ID space): leakage risk "
             "from related animals across folds.",

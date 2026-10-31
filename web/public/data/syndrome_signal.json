@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-31T05:18:12.134797+00:00",
-  "code_version": "b420f9b",
+  "generated_at": "2026-10-31T05:45:54.683181+00:00",
+  "code_version": "273c74b",
   "source_files": {
     "phen_1_1": "dryad/phens/phen_1.1.txt",
     "phen_1_2": "dryad/phens/phen_1.2.txt",
@@ -10,7 +10,7 @@
   },
   "syndrome_signal": {
     "baseline": "body_weight_alone",
-    "baseline_direction": "lower body weight flagged (pre-specified from Phase 1 effect signs)",
+    "baseline_direction": "lower body weight flagged (from Phase 1 effect signs)",
     "n_records": 74890,
     "n_positive_labels": 170,
     "base_rate": 0.002269995994124716,
@@ -100,38 +100,120 @@
   },
   "per_group": {
     "PLCD4": {
-      "n_positive": 20,
-      "evaluated": false
+      "n_homozygous_with_bodyweight": 21,
+      "n_homozygous_complete_case": 20,
+      "n_expected_hwe_homozygous": 46.7,
+      "observed_over_expected": 0.45,
+      "mean_bw_homozygous": -108.65,
+      "mean_bw_reference": -26.88,
+      "auc_negated_bw_single_locus": 0.7887,
+      "auc_negated_bw_single_locus_ci": [
+        0.6845,
+        0.8832
+      ],
+      "auc_expected_from_effect_size": 0.8218,
+      "variants": {
+        "PLCD4": {
+          "n0": 76181,
+          "n1": 3825,
+          "n2": 21,
+          "missing": 0,
+          "alt_freq": 0.02416
+        }
+      },
+      "evaluated_in_pooled_multivariate": false
     },
     "FGD4": {
-      "n_positive": 27,
-      "evaluated": false
+      "n_homozygous_with_bodyweight": 28,
+      "n_homozygous_complete_case": 27,
+      "n_expected_hwe_homozygous": 46.3,
+      "observed_over_expected": 0.605,
+      "mean_bw_homozygous": -53.05,
+      "mean_bw_reference": -26.89,
+      "auc_negated_bw_single_locus": 0.6302,
+      "auc_negated_bw_single_locus_ci": [
+        0.5445,
+        0.7016
+      ],
+      "auc_expected_from_effect_size": 0.616,
+      "variants": {
+        "FGD4": {
+          "n0": 76205,
+          "n1": 3794,
+          "n2": 28,
+          "missing": 0,
+          "alt_freq": 0.02405
+        }
+      },
+      "evaluated_in_pooled_multivariate": false
     },
     "GALNT2": {
-      "n_positive": 25,
-      "evaluated": false
+      "n_homozygous_with_bodyweight": 29,
+      "n_homozygous_complete_case": 25,
+      "n_expected_hwe_homozygous": 88.0,
+      "observed_over_expected": 0.329,
+      "mean_bw_homozygous": -117.38,
+      "mean_bw_reference": -26.87,
+      "auc_negated_bw_single_locus": 0.8636,
+      "auc_negated_bw_single_locus_ci": [
+        0.8005,
+        0.9205
+      ],
+      "auc_expected_from_effect_size": 0.8464,
+      "variants": {
+        "GALNT2": {
+          "n0": 74747,
+          "n1": 5251,
+          "n2": 29,
+          "missing": 0,
+          "alt_freq": 0.03317
+        }
+      },
+      "evaluated_in_pooled_multivariate": false
     },
     "DPF2/MUS81": {
-      "n_positive": 99,
-      "evaluated": true,
-      "B0_body_weight_flag": {
-        "auc": 0.6224185133278475,
-        "auc_ci": [
-          0.5752672559370436,
-          0.6694835472258301
-        ],
-        "auprc": 0.0022306274878523356,
-        "auprc_ci": [
-          0.0016143553822712904,
-          0.004194442581172355
-        ]
-      }
+      "n_homozygous_with_bodyweight": 110,
+      "n_homozygous_complete_case": 99,
+      "n_expected_hwe_homozygous": 248.1,
+      "observed_over_expected": 0.443,
+      "mean_bw_homozygous": -55.65,
+      "mean_bw_reference": -26.86,
+      "auc_negated_bw_single_locus": 0.6285,
+      "auc_negated_bw_single_locus_ci": [
+        0.5792,
+        0.6785
+      ],
+      "auc_expected_from_effect_size": 0.6273,
+      "variants": {
+        "DPF2": {
+          "n0": 73865,
+          "n1": 6056,
+          "n2": 106,
+          "missing": 0,
+          "alt_freq": 0.03916
+        },
+        "MUS81": {
+          "n0": 73802,
+          "n1": 6116,
+          "n2": 109,
+          "missing": 0,
+          "alt_freq": 0.03957
+        }
+      },
+      "evaluated_in_pooled_multivariate": true
     }
+  },
+  "per_group_meta": {
+    "pooled_any_homozygous_with_bodyweight": 187,
+    "pooled_any_homozygous_complete_case": 170,
+    "n_bodyweight_records": 79945
   },
   "notes": [
     "Labels: homozygous-mutant status, gen_1 key (matches phen_1 IIDs).",
     "DPF2 and MUS81 are one locus (homozygous for either).",
-    "Per-group metrics only for groups with >= N_PER_LOCUS_MIN positives.",
+    "Per-locus statistics use all genotyped records with body weight (no stature/BCS).",
+    "Pooled and multivariate metrics use complete cases (bw, stature, BCS).",
+    "Expected AUROC from effect size assumes equal-variance normal classes (shift model).",
     "Logistic model: 5-fold stratified out-of-fold predictions. Sire grouping not possible (pedigree parents are outside the discovery ID space): leakage risk from related animals across folds.",
     "Mahalanobis is unsupervised (no labels used).",
     "Not yet done: unsupervised isolation forest / PCA / autoencoder, LightGBM, nested CV."

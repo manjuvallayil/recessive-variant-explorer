@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-31T05:20:38.887780+00:00",
-  "code_version": "3b32ad9",
+  "generated_at": "2026-10-31T05:47:12.656652+00:00",
+  "code_version": "273c74b",
   "source_files": {
     "ext_fig9b": "dryad/source_data/source_data.ExtFig9b.csv",
     "gen_11_1": "dryad/gens/gen_11.1.bed/.bim/.fam (30 QTL columns only)",
@@ -617,6 +617,8 @@
         "detected_dominance": true
       }
     ],
+    "threshold_p": 5e-08,
+    "threshold_definition": "two-sided p < 5e-8 on ExtFig9b P_S (additive) or P_D (dominance)",
     "by_maf_bin": [
       {
         "bin": "<2%",
@@ -663,6 +665,10 @@
         "n_detected_additive": 0
       }
     ],
+    "min_p_additive_truth": 5.91065086281625e-08,
+    "min_p_dominance_truth": 1.19492451049481e-56,
+    "n_detected_additive_truth": 0,
+    "n_detected_dominance_truth": 19,
     "trait_sd": 1.1376,
     "n_individuals": 80000
   },

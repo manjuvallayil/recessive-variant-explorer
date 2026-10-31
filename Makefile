@@ -1,9 +1,19 @@
 .PHONY: data verify test lint web
 
+PY := uv run python
+
+# Phases 0-4 in order. Phases 3 and 4 were previously run by hand.
 data:
-	uv run python pipeline/phase0_verify.py
-	uv run python pipeline/phase1.py
-	uv run python pipeline/phase2.py
+	$(PY) pipeline/phase0_verify.py
+	$(PY) pipeline/phase1.py
+	$(PY) pipeline/phase2.py
+	$(PY) pipeline/phase3_rna.py
+	$(PY) pipeline/phase3_farm.py
+	$(PY) pipeline/phase3_inbreeding.py
+	$(PY) pipeline/phase4_detection.py
+	$(PY) pipeline/phase4_power.py
+	$(PY) pipeline/phase4_syndrome.py
+	HF_HUB_OFFLINE=1 $(PY) pipeline/phase4_plm.py
 
 verify: data
 

@@ -133,8 +133,14 @@ def qtl_truth_table() -> tuple[list[dict], dict]:
         return out
 
     summary = {
+        "threshold_p": GWS_P,
+        "threshold_definition": "two-sided p < 5e-8 on ExtFig9b P_S (additive) or P_D (dominance)",
         "by_maf_bin": summarise("maf_bin", MAF_LABELS),
         "by_effect_bin": summarise("effect_bin", EFFECT_LABELS),
+        "min_p_additive_truth": min(r["p_additive"] for r in rows),
+        "min_p_dominance_truth": min(r["p_dominance"] for r in rows),
+        "n_detected_additive_truth": sum(r["detected_additive"] for r in rows),
+        "n_detected_dominance_truth": sum(r["detected_dominance"] for r in rows),
         "trait_sd": round(sd, 4),
         "n_individuals": int(ok.sum()),
     }
