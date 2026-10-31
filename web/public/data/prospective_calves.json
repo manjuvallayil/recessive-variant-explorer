@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-31T01:34:49.879685+00:00",
+  "code_version": "231380e",
+  "source_files": [
+    "dryad/phens/phen_3.1.txt"
+  ],
+  "n_calves": 568,
+  "n_herds": 51,
+  "control_n": 526,
+  "control_mean_weight": 198.42300380228136,
+  "effects": {
+    "DPF2/MUS81": {
+      "n": 11,
+      "mean_weight_unadjusted": 199.45454545454547,
+      "effect_vs_control": 3.332054898978484,
+      "se": 5.7730417053669365,
+      "ci_low": -8.009762260617082,
+      "ci_high": 14.67387205857405,
+      "p": 0.5640754862447213
+    },
+    "FGD4": {
+      "n": 22,
+      "mean_weight_unadjusted": 183.11363636363637,
+      "effect_vs_control": -10.392759837964899,
+      "se": 4.126634720960851,
+      "ci_low": -18.500017481031207,
+      "ci_high": -2.2855021948985925,
+      "p": 0.012091271958267135
+    },
+    "PLCD4": {
+      "n": 9,
+      "mean_weight_unadjusted": 147.11111111111111,
+      "effect_vs_control": -55.009455609996834,
+      "se": 6.364880639562825,
+      "ci_low": -67.51400973255932,
+      "ci_high": -42.50490148743435,
+      "p": 7.087234459270111e-17
+    }
+  },
+  "model": "weight ~ VARIANT + age + HERD + breed_hf + breed_j; CONTROL reference",
+  "note": "Small groups (PLCD4 n=9, FGD4 n=22, DPF2/MUS81 n=11); CIs are wide."
+}

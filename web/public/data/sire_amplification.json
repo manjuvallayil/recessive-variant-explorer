@@ -1,0 +1,426 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-31T01:34:49.858716+00:00",
+  "code_version": "231380e",
+  "source_files": [
+    "dryad/gens/gen_10.1.txt",
+    "dryad/other/other_11.txt"
+  ],
+  "per_mutation": {
+    "PLCD4": {
+      "n_carrier_sires": 294,
+      "total_progeny": 203536,
+      "carrier_share_of_all_progeny": 0.07271682752046965,
+      "carrier_share_by_birth_year": {
+        "2010": 0.052547739767274705,
+        "2011": 0.07338017174082748,
+        "2012": 0.06439595923687641,
+        "2013": 0.08713270437637671,
+        "2014": 0.05287733978586862,
+        "2015": 0.10710276719723533,
+        "2016": 0.09069090002323592,
+        "2017": 0.09328572324102248,
+        "2018": 0.08599920288263667,
+        "2019": 0.017292050314912297
+      },
+      "top_carrier_sires_ranked": [
+        {
+          "rank": 1,
+          "n_progeny": 68755,
+          "genotype": 1
+        },
+        {
+          "rank": 2,
+          "n_progeny": 17544,
+          "genotype": 1
+        },
+        {
+          "rank": 3,
+          "n_progeny": 16058,
+          "genotype": 1
+        },
+        {
+          "rank": 4,
+          "n_progeny": 13862,
+          "genotype": 1
+        },
+        {
+          "rank": 5,
+          "n_progeny": 12769,
+          "genotype": 1
+        },
+        {
+          "rank": 6,
+          "n_progeny": 9740,
+          "genotype": 1
+        },
+        {
+          "rank": 7,
+          "n_progeny": 9033,
+          "genotype": 1
+        },
+        {
+          "rank": 8,
+          "n_progeny": 7886,
+          "genotype": 1
+        },
+        {
+          "rank": 9,
+          "n_progeny": 5998,
+          "genotype": 1
+        },
+        {
+          "rank": 10,
+          "n_progeny": 3844,
+          "genotype": 1
+        }
+      ]
+    },
+    "FGD4": {
+      "n_carrier_sires": 284,
+      "total_progeny": 350145,
+      "carrier_share_of_all_progeny": 0.125095479778294,
+      "carrier_share_by_birth_year": {
+        "2010": 0.08512539580783651,
+        "2011": 0.08349503735920598,
+        "2012": 0.14146373977959473,
+        "2013": 0.116542329911475,
+        "2014": 0.05934740913983281,
+        "2015": 0.05328178997553162,
+        "2016": 0.09760216717388963,
+        "2017": 0.18549853167389177,
+        "2018": 0.16313860894886248,
+        "2019": 0.14520703682431033
+      },
+      "top_carrier_sires_ranked": [
+        {
+          "rank": 1,
+          "n_progeny": 64092,
+          "genotype": 1
+        },
+        {
+          "rank": 2,
+          "n_progeny": 53955,
+          "genotype": 1
+        },
+        {
+          "rank": 3,
+          "n_progeny": 35401,
+          "genotype": 1
+        },
+        {
+          "rank": 4,
+          "n_progeny": 21877,
+          "genotype": 1
+        },
+        {
+          "rank": 5,
+          "n_progeny": 19118,
+          "genotype": 1
+        },
+        {
+          "rank": 6,
+          "n_progeny": 17544,
+          "genotype": 1
+        },
+        {
+          "rank": 7,
+          "n_progeny": 16058,
+          "genotype": 1
+        },
+        {
+          "rank": 8,
+          "n_progeny": 15821,
+          "genotype": 1
+        },
+        {
+          "rank": 9,
+          "n_progeny": 8903,
+          "genotype": 1
+        },
+        {
+          "rank": 10,
+          "n_progeny": 8808,
+          "genotype": 1
+        }
+      ]
+    },
+    "MTRF1": {
+      "n_carrier_sires": 573,
+      "total_progeny": 322028,
+      "carrier_share_of_all_progeny": 0.11505018538618132,
+      "carrier_share_by_birth_year": {
+        "2010": 0.09355634555238261,
+        "2011": 0.11453105832496933,
+        "2012": 0.12394092902002607,
+        "2013": 0.0975645235027638,
+        "2014": 0.09555794738162485,
+        "2015": 0.08914562470045154,
+        "2016": 0.10665283846506962,
+        "2017": 0.12843151910270567,
+        "2018": 0.12223347404894952,
+        "2019": 0.13524550527090748
+      },
+      "top_carrier_sires_ranked": [
+        {
+          "rank": 1,
+          "n_progeny": 64092,
+          "genotype": 1
+        },
+        {
+          "rank": 2,
+          "n_progeny": 24495,
+          "genotype": 1
+        },
+        {
+          "rank": 3,
+          "n_progeny": 21766,
+          "genotype": 1
+        },
+        {
+          "rank": 4,
+          "n_progeny": 19330,
+          "genotype": 1
+        },
+        {
+          "rank": 5,
+          "n_progeny": 17633,
+          "genotype": 1
+        },
+        {
+          "rank": 6,
+          "n_progeny": 16058,
+          "genotype": 1
+        },
+        {
+          "rank": 7,
+          "n_progeny": 11813,
+          "genotype": 1
+        },
+        {
+          "rank": 8,
+          "n_progeny": 10342,
+          "genotype": 1
+        },
+        {
+          "rank": 9,
+          "n_progeny": 9486,
+          "genotype": 1
+        },
+        {
+          "rank": 10,
+          "n_progeny": 9448,
+          "genotype": 1
+        }
+      ]
+    },
+    "MYH1": {
+      "n_carrier_sires": 558,
+      "total_progeny": 233749,
+      "carrier_share_of_all_progeny": 0.08351095489781787,
+      "carrier_share_by_birth_year": {
+        "2010": 0.06791382559201196,
+        "2011": 0.043860823017731684,
+        "2012": 0.07492001421969427,
+        "2013": 0.05493329454303645,
+        "2014": 0.10239623206467642,
+        "2015": 0.07218172186766894,
+        "2016": 0.07009594731681883,
+        "2017": 0.07051340781853514,
+        "2018": 0.08540746524812311,
+        "2019": 0.12128317632127962
+      },
+      "top_carrier_sires_ranked": [
+        {
+          "rank": 1,
+          "n_progeny": 25007,
+          "genotype": 1
+        },
+        {
+          "rank": 2,
+          "n_progeny": 24495,
+          "genotype": 1
+        },
+        {
+          "rank": 3,
+          "n_progeny": 17633,
+          "genotype": 1
+        },
+        {
+          "rank": 4,
+          "n_progeny": 14760,
+          "genotype": 1
+        },
+        {
+          "rank": 5,
+          "n_progeny": 11092,
+          "genotype": 1
+        },
+        {
+          "rank": 6,
+          "n_progeny": 9486,
+          "genotype": 1
+        },
+        {
+          "rank": 7,
+          "n_progeny": 8495,
+          "genotype": 1
+        },
+        {
+          "rank": 8,
+          "n_progeny": 6909,
+          "genotype": 1
+        },
+        {
+          "rank": 9,
+          "n_progeny": 6758,
+          "genotype": 1
+        },
+        {
+          "rank": 10,
+          "n_progeny": 6270,
+          "genotype": 1
+        }
+      ]
+    },
+    "GALNT2": {
+      "n_carrier_sires": 306,
+      "total_progeny": 167339,
+      "carrier_share_of_all_progeny": 0.05978481055168555,
+      "carrier_share_by_birth_year": {
+        "2010": 0.11605182897216232,
+        "2011": 0.10637894502063121,
+        "2012": 0.14870689655172414,
+        "2013": 0.17736170566476872,
+        "2014": 0.09985109533944597,
+        "2015": 0.08644338218601014,
+        "2016": 0.05507761361511128,
+        "2017": 0.024264751975850977,
+        "2018": 0.014960184801086683,
+        "2019": 0.017086779999565774
+      },
+      "top_carrier_sires_ranked": [
+        {
+          "rank": 1,
+          "n_progeny": 63610,
+          "genotype": 1
+        },
+        {
+          "rank": 2,
+          "n_progeny": 21312,
+          "genotype": 1
+        },
+        {
+          "rank": 3,
+          "n_progeny": 12769,
+          "genotype": 1
+        },
+        {
+          "rank": 4,
+          "n_progeny": 10696,
+          "genotype": 1
+        },
+        {
+          "rank": 5,
+          "n_progeny": 5998,
+          "genotype": 1
+        },
+        {
+          "rank": 6,
+          "n_progeny": 5349,
+          "genotype": 1
+        },
+        {
+          "rank": 7,
+          "n_progeny": 4372,
+          "genotype": 1
+        },
+        {
+          "rank": 8,
+          "n_progeny": 4038,
+          "genotype": 1
+        },
+        {
+          "rank": 9,
+          "n_progeny": 3207,
+          "genotype": 1
+        },
+        {
+          "rank": 10,
+          "n_progeny": 3163,
+          "genotype": 1
+        }
+      ]
+    },
+    "DPF2": {
+      "n_carrier_sires": 411,
+      "total_progeny": 216294,
+      "carrier_share_of_all_progeny": 0.07727484814338723,
+      "carrier_share_by_birth_year": {
+        "2010": 0.20630572877207295,
+        "2011": 0.1411285825805732,
+        "2012": 0.0924650432515701,
+        "2013": 0.06056481442999044,
+        "2014": 0.07648763039273604,
+        "2015": 0.09290732285649421,
+        "2016": 0.07595593110835303,
+        "2017": 0.09982206491496246,
+        "2018": 0.0360349918254801,
+        "2019": 0.06825237985271855
+      },
+      "top_carrier_sires_ranked": [
+        {
+          "rank": 1,
+          "n_progeny": 22675,
+          "genotype": 1
+        },
+        {
+          "rank": 2,
+          "n_progeny": 19118,
+          "genotype": 1
+        },
+        {
+          "rank": 3,
+          "n_progeny": 10696,
+          "genotype": 1
+        },
+        {
+          "rank": 4,
+          "n_progeny": 10517,
+          "genotype": 1
+        },
+        {
+          "rank": 5,
+          "n_progeny": 8987,
+          "genotype": 1
+        },
+        {
+          "rank": 6,
+          "n_progeny": 8290,
+          "genotype": 1
+        },
+        {
+          "rank": 7,
+          "n_progeny": 7570,
+          "genotype": 1
+        },
+        {
+          "rank": 8,
+          "n_progeny": 6772,
+          "genotype": 1
+        },
+        {
+          "rank": 9,
+          "n_progeny": 5876,
+          "genotype": 1
+        },
+        {
+          "rank": 10,
+          "n_progeny": 5752,
+          "genotype": 1
+        }
+      ]
+    }
+  },
+  "note": "Ranks only; no sire IDs exported. Progeny counts from other_11 by SIRE_ID."
+}

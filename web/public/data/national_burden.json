@@ -1,0 +1,580 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-31T01:34:49.588818+00:00",
+  "code_version": "231380e",
+  "source_files": [
+    "dryad/gens/gen_10.1.txt",
+    "dryad/other/other_11.txt",
+    "dryad/gens/gen_4.*"
+  ],
+  "n_animals": 2799022,
+  "mutations": {
+    "PLCD4": {
+      "freq_HF": 0.04255819421584764,
+      "freq_J": 0.0005686517783291977,
+      "freq_all": 0.026020563982490075,
+      "expected_total": 3079.2913286595926,
+      "rate_per_animal": 0.001100131163191855,
+      "scaled_per_year": 1034.2333065166629,
+      "by_birth_year": [
+        {
+          "birth_year": 2010,
+          "expected_homozygotes": 42.82457523023669,
+          "rate": 0.0008319166857088931,
+          "n_animals": 51477
+        },
+        {
+          "birth_year": 2011,
+          "expected_homozygotes": 124.68965319001997,
+          "rate": 0.0013905392348613802,
+          "n_animals": 89670
+        },
+        {
+          "birth_year": 2012,
+          "expected_homozygotes": 137.62067271790676,
+          "rate": 0.0010192311938463292,
+          "n_animals": 135024
+        },
+        {
+          "birth_year": 2013,
+          "expected_homozygotes": 254.32993323996897,
+          "rate": 0.0013212768236979394,
+          "n_animals": 192488
+        },
+        {
+          "birth_year": 2014,
+          "expected_homozygotes": 212.5464785268308,
+          "rate": 0.0008600315553530044,
+          "n_animals": 247138
+        },
+        {
+          "birth_year": 2015,
+          "expected_homozygotes": 525.5209355485395,
+          "rate": 0.0016570420236502643,
+          "n_animals": 317144
+        },
+        {
+          "birth_year": 2016,
+          "expected_homozygotes": 513.5866872728018,
+          "rate": 0.0014553238215504638,
+          "n_animals": 352902
+        },
+        {
+          "birth_year": 2017,
+          "expected_homozygotes": 559.9835376319579,
+          "rate": 0.0013501452356119905,
+          "n_animals": 414758
+        },
+        {
+          "birth_year": 2018,
+          "expected_homozygotes": 592.823473922107,
+          "rate": 0.001205484399116068,
+          "n_animals": 491772
+        },
+        {
+          "birth_year": 2019,
+          "expected_homozygotes": 115.36538137922308,
+          "rate": 0.00022770277130562398,
+          "n_animals": 506649
+        }
+      ]
+    },
+    "FGD4": {
+      "freq_HF": 0.0404588357797857,
+      "freq_J": 0.0006203473945409429,
+      "freq_all": 0.024768400692252876,
+      "expected_total": 5373.899578797175,
+      "rate_per_animal": 0.0019199204503562942,
+      "scaled_per_year": 1804.9172153799523,
+      "by_birth_year": [
+        {
+          "birth_year": 2010,
+          "expected_homozygotes": 44.786963963866775,
+          "rate": 0.0008700383465211021,
+          "n_animals": 51477
+        },
+        {
+          "birth_year": 2011,
+          "expected_homozygotes": 86.57823067621705,
+          "rate": 0.0009655205829844658,
+          "n_animals": 89670
+        },
+        {
+          "birth_year": 2012,
+          "expected_homozygotes": 218.94045927115496,
+          "rate": 0.0016214929143793322,
+          "n_animals": 135024
+        },
+        {
+          "birth_year": 2013,
+          "expected_homozygotes": 263.1697067926759,
+          "rate": 0.0013672005880505586,
+          "n_animals": 192488
+        },
+        {
+          "birth_year": 2014,
+          "expected_homozygotes": 177.68923794751097,
+          "rate": 0.0007189879255618763,
+          "n_animals": 247138
+        },
+        {
+          "birth_year": 2015,
+          "expected_homozygotes": 242.56989539361388,
+          "rate": 0.0007648572742779743,
+          "n_animals": 317144
+        },
+        {
+          "birth_year": 2016,
+          "expected_homozygotes": 542.0760269276719,
+          "rate": 0.001536052578131243,
+          "n_animals": 352902
+        },
+        {
+          "birth_year": 2017,
+          "expected_homozygotes": 1219.9596669188575,
+          "rate": 0.002941377060644659,
+          "n_animals": 414758
+        },
+        {
+          "birth_year": 2018,
+          "expected_homozygotes": 1252.6141279209971,
+          "rate": 0.002547144058468146,
+          "n_animals": 491772
+        },
+        {
+          "birth_year": 2019,
+          "expected_homozygotes": 1325.5152629846095,
+          "rate": 0.002616239769514219,
+          "n_animals": 506649
+        }
+      ]
+    },
+    "MTRF1": {
+      "freq_HF": 0.0017970508212690201,
+      "freq_J": 0.11732320099255583,
+      "freq_all": 0.047297159727170926,
+      "expected_total": 10906.674010560451,
+      "rate_per_animal": 0.0038966017453812263,
+      "scaled_per_year": 3663.195300832891,
+      "by_birth_year": [
+        {
+          "birth_year": 2010,
+          "expected_homozygotes": 155.57114141572313,
+          "rate": 0.0030221485598563073,
+          "n_animals": 51477
+        },
+        {
+          "birth_year": 2011,
+          "expected_homozygotes": 298.8127487899537,
+          "rate": 0.0033323603076832126,
+          "n_animals": 89670
+        },
+        {
+          "birth_year": 2012,
+          "expected_homozygotes": 445.77305241272586,
+          "rate": 0.003301435688564447,
+          "n_animals": 135024
+        },
+        {
+          "birth_year": 2013,
+          "expected_homozygotes": 572.9474206434193,
+          "rate": 0.002976535787391522,
+          "n_animals": 192488
+        },
+        {
+          "birth_year": 2014,
+          "expected_homozygotes": 873.1293661223076,
+          "rate": 0.003532962822885625,
+          "n_animals": 247138
+        },
+        {
+          "birth_year": 2015,
+          "expected_homozygotes": 1003.4026643417725,
+          "rate": 0.003163870873615053,
+          "n_animals": 317144
+        },
+        {
+          "birth_year": 2016,
+          "expected_homozygotes": 1314.4591919603213,
+          "rate": 0.003724714487195656,
+          "n_animals": 352902
+        },
+        {
+          "birth_year": 2017,
+          "expected_homozygotes": 1884.2501393243144,
+          "rate": 0.004543010958979247,
+          "n_animals": 414758
+        },
+        {
+          "birth_year": 2018,
+          "expected_homozygotes": 2026.482260530513,
+          "rate": 0.004120776011099682,
+          "n_animals": 491772
+        },
+        {
+          "birth_year": 2019,
+          "expected_homozygotes": 2331.8460250194016,
+          "rate": 0.004602488162454483,
+          "n_animals": 506649
+        }
+      ]
+    },
+    "MYH1": {
+      "freq_HF": 0.003997178462261932,
+      "freq_J": 0.11892576509511993,
+      "freq_all": 0.04926193627201466,
+      "expected_total": 8568.74155448362,
+      "rate_per_animal": 0.0030613341211621846,
+      "scaled_per_year": 2877.96020730457,
+      "by_birth_year": [
+        {
+          "birth_year": 2010,
+          "expected_homozygotes": 106.28957948517694,
+          "rate": 0.002064797472369737,
+          "n_animals": 51477
+        },
+        {
+          "birth_year": 2011,
+          "expected_homozygotes": 132.98547643815618,
+          "rate": 0.0014830542705270011,
+          "n_animals": 89670
+        },
+        {
+          "birth_year": 2012,
+          "expected_homozygotes": 364.7687362693604,
+          "rate": 0.002701510370521984,
+          "n_animals": 135024
+        },
+        {
+          "birth_year": 2013,
+          "expected_homozygotes": 358.3041219580528,
+          "rate": 0.0018614361516460913,
+          "n_animals": 192488
+        },
+        {
+          "birth_year": 2014,
+          "expected_homozygotes": 782.0225637302076,
+          "rate": 0.0031643153368976344,
+          "n_animals": 247138
+        },
+        {
+          "birth_year": 2015,
+          "expected_homozygotes": 832.6459656311445,
+          "rate": 0.002625450790906164,
+          "n_animals": 317144
+        },
+        {
+          "birth_year": 2016,
+          "expected_homozygotes": 1051.3832910051392,
+          "rate": 0.0029792500212669215,
+          "n_animals": 352902
+        },
+        {
+          "birth_year": 2017,
+          "expected_homozygotes": 1334.0524498887125,
+          "rate": 0.0032164598389632327,
+          "n_animals": 414758
+        },
+        {
+          "birth_year": 2018,
+          "expected_homozygotes": 1543.4156267243775,
+          "rate": 0.0031384780482101005,
+          "n_animals": 491772
+        },
+        {
+          "birth_year": 2019,
+          "expected_homozygotes": 2062.873743353292,
+          "rate": 0.004071603305944139,
+          "n_animals": 506649
+        }
+      ]
+    },
+    "GALNT2": {
+      "freq_HF": 0.05562460112189715,
+      "freq_J": 0.0008788254755996692,
+      "freq_all": 0.03406291357019241,
+      "expected_total": 2508.671057549839,
+      "rate_per_animal": 0.0008962670023850613,
+      "scaled_per_year": 842.5806089421961,
+      "by_birth_year": [
+        {
+          "birth_year": 2010,
+          "expected_homozygotes": 118.67589062764331,
+          "rate": 0.002305415828965233,
+          "n_animals": 51477
+        },
+        {
+          "birth_year": 2011,
+          "expected_homozygotes": 161.8570447462904,
+          "rate": 0.0018050300518154389,
+          "n_animals": 89670
+        },
+        {
+          "birth_year": 2012,
+          "expected_homozygotes": 345.8628093364001,
+          "rate": 0.0025614913595834823,
+          "n_animals": 135024
+        },
+        {
+          "birth_year": 2013,
+          "expected_homozygotes": 614.7293727218923,
+          "rate": 0.0031935984202749903,
+          "n_animals": 192488
+        },
+        {
+          "birth_year": 2014,
+          "expected_homozygotes": 303.1615062192951,
+          "rate": 0.0012266891624084322,
+          "n_animals": 247138
+        },
+        {
+          "birth_year": 2015,
+          "expected_homozygotes": 350.20528295283356,
+          "rate": 0.0011042469129254647,
+          "n_animals": 317144
+        },
+        {
+          "birth_year": 2016,
+          "expected_homozygotes": 268.0100777784626,
+          "rate": 0.000759446185565575,
+          "n_animals": 352902
+        },
+        {
+          "birth_year": 2017,
+          "expected_homozygotes": 141.40407090051713,
+          "rate": 0.00034093150921867,
+          "n_animals": 414758
+        },
+        {
+          "birth_year": 2018,
+          "expected_homozygotes": 97.71745077645117,
+          "rate": 0.0001987047875366047,
+          "n_animals": 491772
+        },
+        {
+          "birth_year": 2019,
+          "expected_homozygotes": 107.04755149005322,
+          "rate": 0.00021128542934073337,
+          "n_animals": 506649
+        }
+      ]
+    },
+    "DPF2": {
+      "freq_HF": 0.06546639347015552,
+      "freq_J": 0.0004394127377998346,
+      "freq_all": 0.03985544131120839,
+      "expected_total": 6653.754924457313,
+      "rate_per_animal": 0.0023771713564442556,
+      "scaled_per_year": 2234.7787921932445,
+      "by_birth_year": [
+        {
+          "birth_year": 2010,
+          "expected_homozygotes": 259.5577067570705,
+          "rate": 0.005042207330595615,
+          "n_animals": 51477
+        },
+        {
+          "birth_year": 2011,
+          "expected_homozygotes": 328.02045615838165,
+          "rate": 0.0036580847123718263,
+          "n_animals": 89670
+        },
+        {
+          "birth_year": 2012,
+          "expected_homozygotes": 430.56649087367964,
+          "rate": 0.003188814513521149,
+          "n_animals": 135024
+        },
+        {
+          "birth_year": 2013,
+          "expected_homozygotes": 428.0001756548953,
+          "rate": 0.0022235161446682145,
+          "n_animals": 192488
+        },
+        {
+          "birth_year": 2014,
+          "expected_homozygotes": 643.7344467519159,
+          "rate": 0.0026047570456664533,
+          "n_animals": 247138
+        },
+        {
+          "birth_year": 2015,
+          "expected_homozygotes": 963.6425920675982,
+          "rate": 0.003038501728134848,
+          "n_animals": 317144
+        },
+        {
+          "birth_year": 2016,
+          "expected_homozygotes": 819.191643262006,
+          "rate": 0.0023213006536149015,
+          "n_animals": 352902
+        },
+        {
+          "birth_year": 2017,
+          "expected_homozygotes": 1320.3804451422614,
+          "rate": 0.0031834960269416417,
+          "n_animals": 414758
+        },
+        {
+          "birth_year": 2018,
+          "expected_homozygotes": 525.22460861348,
+          "rate": 0.0010680246305472454,
+          "n_animals": 491772
+        },
+        {
+          "birth_year": 2019,
+          "expected_homozygotes": 935.4363591760249,
+          "rate": 0.0018463203503333173,
+          "n_animals": 506649
+        }
+      ]
+    }
+  },
+  "any_mutation": {
+    "expected_total": 36820.65566741012,
+    "rate_per_animal": 0.013154828960762054,
+    "scaled_per_year": 12366.854706012407,
+    "by_birth_year": [
+      {
+        "birth_year": 2010,
+        "expected_homozygotes": 724.3159389847385,
+        "rate": 0.014070671153811188,
+        "n_animals": 51477
+      },
+      {
+        "birth_year": 2011,
+        "expected_homozygotes": 1125.317751124248,
+        "rate": 0.012549545568464904,
+        "n_animals": 89670
+      },
+      {
+        "birth_year": 2012,
+        "expected_homozygotes": 1931.852569553906,
+        "rate": 0.014307475482535742,
+        "n_animals": 135024
+      },
+      {
+        "birth_year": 2013,
+        "expected_homozygotes": 2474.104697434004,
+        "rate": 0.012853293178972216,
+        "n_animals": 192488
+      },
+      {
+        "birth_year": 2014,
+        "expected_homozygotes": 2975.215624178228,
+        "rate": 0.01203868132046965,
+        "n_animals": 247138
+      },
+      {
+        "birth_year": 2015,
+        "expected_homozygotes": 3896.865462044549,
+        "rate": 0.012287369340250955,
+        "n_animals": 317144
+      },
+      {
+        "birth_year": 2016,
+        "expected_homozygotes": 4469.9359926203815,
+        "rate": 0.01266622459668798,
+        "n_animals": 352902
+      },
+      {
+        "birth_year": 2017,
+        "expected_homozygotes": 6410.767883133682,
+        "rate": 0.015456646726847177,
+        "n_animals": 414758
+      },
+      {
+        "birth_year": 2018,
+        "expected_homozygotes": 5992.430771085881,
+        "rate": 0.012185384224978,
+        "n_animals": 491772
+      },
+      {
+        "birth_year": 2019,
+        "expected_homozygotes": 6819.848977250509,
+        "rate": 0.013460697597844877,
+        "n_animals": 506649
+      }
+    ]
+  },
+  "any_bw_significant_mutation": {
+    "mutations_included": [
+      "DPF2",
+      "FGD4",
+      "GALNT2",
+      "MTRF1",
+      "PLCD4"
+    ],
+    "expected_total": 28428.19280956826,
+    "rate_per_animal": 0.01015647351452338,
+    "scaled_per_year": 9548.100751003429,
+    "by_birth_year": [
+      {
+        "birth_year": 2010,
+        "expected_homozygotes": 618.6044234657267,
+        "rate": 0.012017103239616269,
+        "n_animals": 51477
+      },
+      {
+        "birth_year": 2011,
+        "expected_homozygotes": 993.708955328937,
+        "rate": 0.011081844042923353,
+        "n_animals": 89670
+      },
+      {
+        "birth_year": 2012,
+        "expected_homozygotes": 1568.1181995085892,
+        "rate": 0.011613625722157463,
+        "n_animals": 135024
+      },
+      {
+        "birth_year": 2013,
+        "expected_homozygotes": 2121.0458563538455,
+        "rate": 0.011019106938374577,
+        "n_animals": 192488
+      },
+      {
+        "birth_year": 2014,
+        "expected_homozygotes": 2206.161148509533,
+        "rate": 0.008926839047453379,
+        "n_animals": 247138
+      },
+      {
+        "birth_year": 2015,
+        "expected_homozygotes": 3076.146162235964,
+        "rate": 0.009699525017770994,
+        "n_animals": 317144
+      },
+      {
+        "birth_year": 2016,
+        "expected_homozygotes": 3448.1368626870035,
+        "rate": 0.009770805670375922,
+        "n_animals": 352902
+      },
+      {
+        "birth_year": 2017,
+        "expected_homozygotes": 5107.544639635992,
+        "rate": 0.012314517476784033,
+        "n_animals": 414758
+      },
+      {
+        "birth_year": 2018,
+        "expected_homozygotes": 4478.82702371165,
+        "rate": 0.009107527520297313,
+        "n_animals": 491772
+      },
+      {
+        "birth_year": 2019,
+        "expected_homozygotes": 4809.899538131018,
+        "rate": 0.009493553797858118,
+        "n_animals": 506649
+      }
+    ]
+  },
+  "paper_homozygous_rate": 0.01,
+  "paper_scaled_homozygotes": 9700,
+  "females_born_per_year": 940100,
+  "mendelian_derivation": "P(calf AA) = P(sire transmits A) * P(dam transmits A), where P(sire transmits A) = g_sire / 2 for sire genotype g_sire in {0,1,2}, and P(dam transmits A) = 0.5 * (g_MGS / 2) + 0.5 * q_MGD because the dam inherits one allele from the genotyped maternal grandsire (MGS) and one allele from the ungenotyped maternal granddam (MGD) with breed-weighted allele frequency q_MGD.",
+  "q_mgd_method": "q_MGD = (mgd_HF_16/16)*f_HF + (mgd_J_16/16)*f_J + remainder*f_all; DPF2 column represents DPF2/MUS81.",
+  "note": "Independence across mutations assumed for the any-mutation rate; DPF2/MUS81 treated as one locus. Excluding MYH1 (which is not genome-wide significant for body weight and is introduced later in the paper) gives rate=1.015% (~9,543 females/year), matching the paper's ~1% (~9,700) figure; including MYH1 across all 6 gen_10 columns gives 1.315% (~12,367 females/year)."
+}

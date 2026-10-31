@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-31T01:34:48.240082+00:00",
+  "code_version": "231380e",
+  "source_files": [
+    "dryad/gens/gen_5.*",
+    "dryad/other/other_5.txt"
+  ],
+  "rows": [
+    {
+      "locus": "PLCD4",
+      "gene": "PLCD4",
+      "n_trios_both_het": 140,
+      "offspring_counts": {
+        "0": 34,
+        "1": 80,
+        "2": 26
+      },
+      "expected_1_2_1": [
+        35.0,
+        70.0,
+        35.0
+      ],
+      "chi2": 3.7714285714285714,
+      "p": 0.15172064882394942
+    },
+    {
+      "locus": "FGD4",
+      "gene": "FGD4",
+      "n_trios_both_het": 160,
+      "offspring_counts": {
+        "0": 37,
+        "1": 98,
+        "2": 25
+      },
+      "expected_1_2_1": [
+        40.0,
+        80.0,
+        40.0
+      ],
+      "chi2": 9.899999999999999,
+      "p": 0.007083408929052122
+    },
+    {
+      "locus": "MTRF1",
+      "gene": "MTRF1",
+      "n_trios_both_het": 711,
+      "offspring_counts": {
+        "0": 201,
+        "1": 356,
+        "2": 154
+      },
+      "expected_1_2_1": [
+        177.75,
+        355.5,
+        177.75
+      ],
+      "chi2": 6.215189873417721,
+      "p": 0.04470835255749713
+    },
+    {
+      "locus": "MYH1",
+      "gene": "MYH1",
+      "n_trios_both_het": 662,
+      "offspring_counts": {
+        "0": 173,
+        "1": 345,
+        "2": 144
+      },
+      "expected_1_2_1": [
+        165.5,
+        331.0,
+        165.5
+      ],
+      "chi2": 3.725075528700906,
+      "p": 0.15527807077769445
+    },
+    {
+      "locus": "GALNT2",
+      "gene": "GALNT2",
+      "n_trios_both_het": 224,
+      "offspring_counts": {
+        "0": 68,
+        "1": 120,
+        "2": 36
+      },
+      "expected_1_2_1": [
+        56.0,
+        112.0,
+        56.0
+      ],
+      "chi2": 10.285714285714286,
+      "p": 0.0058409773431952455
+    },
+    {
+      "locus": "DPF2",
+      "gene": "DPF2",
+      "n_trios_both_het": 374,
+      "offspring_counts": {
+        "0": 88,
+        "1": 195,
+        "2": 91
+      },
+      "expected_1_2_1": [
+        93.5,
+        187.0,
+        93.5
+      ],
+      "chi2": 0.732620320855615,
+      "p": 0.6932877374381066
+    },
+    {
+      "locus": "MUS81",
+      "gene": "MUS81",
+      "n_trios_both_het": 376,
+      "offspring_counts": {
+        "0": 89,
+        "1": 197,
+        "2": 90
+      },
+      "expected_1_2_1": [
+        94.0,
+        188.0,
+        94.0
+      ],
+      "chi2": 0.8670212765957447,
+      "p": 0.648229396521534
+    }
+  ],
+  "selection": "Trios with sire genotype=1 and dam genotype=1 for the same variant; offspring genotype non-missing.",
+  "note": "Small n; chi-square approximate. Counts are aggregated only."
+}

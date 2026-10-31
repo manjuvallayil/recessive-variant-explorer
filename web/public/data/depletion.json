@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-31T01:34:48.213805+00:00",
+  "code_version": "231380e",
+  "source_files": [
+    "dryad/gens/gen_4.*",
+    "dryad/other/other_6.txt"
+  ],
+  "rows": [
+    {
+      "locus": "PLCD4",
+      "gene": "PLCD4",
+      "breed": "HF",
+      "n": 29771,
+      "alt_freq": 0.04255819421584764,
+      "observed_hom_alt": 26,
+      "expected_hom_alt": 53.92123207147896,
+      "observed_over_expected": 0.48218482777867405,
+      "binom_p_one_sided": 1.8608458700655552e-05,
+      "lrt_stat": 17.938445369440984,
+      "lrt_p_one_sided": 1.1408266561078423e-05
+    },
+    {
+      "locus": "FGD4",
+      "gene": "FGD4",
+      "breed": "HF",
+      "n": 29771,
+      "alt_freq": 0.0404588357797857,
+      "observed_hom_alt": 22,
+      "expected_hom_alt": 48.73266769675188,
+      "observed_over_expected": 0.45144255465141175,
+      "binom_p_one_sided": 1.4475097088855496e-05,
+      "lrt_stat": 18.49585752029131,
+      "lrt_p_one_sided": 8.513699350135504e-06
+    },
+    {
+      "locus": "MTRF1",
+      "gene": "MTRF1",
+      "breed": "J",
+      "n": 19344,
+      "alt_freq": 0.11732320099255583,
+      "observed_hom_alt": 192,
+      "expected_hom_alt": 266.26500465260546,
+      "observed_over_expected": 0.7210861233923751,
+      "binom_p_one_sided": 8.888301983599492e-07,
+      "lrt_stat": 23.251998213018226,
+      "lrt_p_one_sided": 7.105136369696818e-07
+    },
+    {
+      "locus": "MYH1",
+      "gene": "MYH1",
+      "breed": "J",
+      "n": 19344,
+      "alt_freq": 0.11892576509511993,
+      "observed_hom_alt": 245,
+      "expected_hom_alt": 273.5887226013234,
+      "observed_over_expected": 0.8955047476756445,
+      "binom_p_one_sided": 0.04177714613265792,
+      "lrt_stat": 3.140081221903131,
+      "lrt_p_one_sided": 0.03819500179705293
+    },
+    {
+      "locus": "GALNT2",
+      "gene": "GALNT2",
+      "breed": "HF",
+      "n": 29771,
+      "alt_freq": 0.05562460112189715,
+      "observed_hom_alt": 61,
+      "expected_hom_alt": 92.11433945786167,
+      "observed_over_expected": 0.6622204573035544,
+      "binom_p_one_sided": 0.00035866161359290655,
+      "lrt_stat": 11.978161851584218,
+      "lrt_p_one_sided": 0.00026913827314766994
+    },
+    {
+      "locus": "DPF2",
+      "gene": "DPF2",
+      "breed": "HF",
+      "n": 29771,
+      "alt_freq": 0.06546639347015552,
+      "observed_hom_alt": 112,
+      "expected_hom_alt": 127.59400087333313,
+      "observed_over_expected": 0.8777842158205085,
+      "binom_p_one_sided": 0.08821620363165887,
+      "lrt_stat": 1.996799294514659,
+      "lrt_p_one_sided": 0.07881588266524543
+    },
+    {
+      "locus": "MUS81",
+      "gene": "MUS81",
+      "breed": "HF",
+      "n": 29771,
+      "alt_freq": 0.06580229081992543,
+      "observed_hom_alt": 114,
+      "expected_hom_alt": 128.90668771623393,
+      "observed_over_expected": 0.8843606334137725,
+      "binom_p_one_sided": 0.10000527814360925,
+      "lrt_stat": 1.8018723416560931,
+      "lrt_p_one_sided": 0.0897431513113845
+    }
+  ],
+  "note": "One-sided tests for mutant-homozygote depletion vs HWE expectation."
+}

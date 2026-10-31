@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-31T01:34:49.880070+00:00",
+  "code_version": "231380e",
+  "files": [
+    {
+      "file": "loci.json",
+      "bytes": 7746,
+      "source_files": [
+        "dryad/gens/*.bim",
+        "dryad/gens/*.fam"
+      ]
+    },
+    {
+      "file": "genotype_class_stats.json",
+      "bytes": 121645,
+      "source_files": [
+        "dryad/phens/phen_1.*.txt",
+        "dryad/other/other_2.*.tsv",
+        "dryad/gens/gen_1.*",
+        "dryad/source_data/source_data.ExtFig2c.csv"
+      ]
+    },
+    {
+      "file": "effects.json",
+      "bytes": 99717,
+      "source_files": [
+        "dryad/other/other_1.*.txt",
+        "dryad/phens/phen_1.*.txt",
+        "dryad/gens/gen_1.*",
+        "dryad/source_data/source_data.ExtFig2c.csv"
+      ]
+    },
+    {
+      "file": "pleiotropy.json",
+      "bytes": 128481,
+      "source_files": [
+        "dryad/phens/phen_1.*.txt",
+        "dryad/phens/phen_4.*.txt",
+        "dryad/gens/gen_3.*"
+      ]
+    },
+    {
+      "file": "validation_milk.json",
+      "bytes": 43521,
+      "source_files": [
+        "dryad/phens/phen_2.*.txt",
+        "dryad/phens/phen_4.1-3.txt",
+        "dryad/gens/gen_2.*"
+      ]
+    },
+    {
+      "file": "frequencies.json",
+      "bytes": 9702,
+      "source_files": [
+        "dryad/gens/gen_4.*",
+        "dryad/other/other_6.txt"
+      ]
+    },
+    {
+      "file": "depletion.json",
+      "bytes": 3084,
+      "source_files": [
+        "dryad/gens/gen_4.*",
+        "dryad/other/other_6.txt"
+      ]
+    },
+    {
+      "file": "carrier_cross.json",
+      "bytes": 2649,
+      "source_files": [
+        "dryad/gens/gen_5.*",
+        "dryad/other/other_5.txt"
+      ]
+    },
+    {
+      "file": "national_burden.json",
+      "bytes": 17322,
+      "source_files": [
+        "dryad/gens/gen_10.1.txt",
+        "dryad/other/other_11.txt",
+        "dryad/gens/gen_4.*"
+      ]
+    },
+    {
+      "file": "sire_amplification.json",
+      "bytes": 9662,
+      "source_files": [
+        "dryad/gens/gen_10.1.txt",
+        "dryad/other/other_11.txt"
+      ]
+    },
+    {
+      "file": "prospective_calves.json",
+      "bytes": 1277,
+      "source_files": [
+        "dryad/phens/phen_3.1.txt"
+      ]
+    }
+  ],
+  "total_bytes": 444806
+}

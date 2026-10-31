@@ -1,0 +1,377 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-31T01:34:02.576886+00:00",
+  "code_version": "231380e",
+  "source_files": [
+    "dryad/gens/*.bim",
+    "dryad/gens/*.fam"
+  ],
+  "loci": [
+    {
+      "locus": "Chr2:22",
+      "gene": null,
+      "chr": 2,
+      "bp": 22836659,
+      "candidate": "rs211074296",
+      "consequence": "QTL (no candidate)",
+      "gen1": "gen_1.1",
+      "gen2": "gen_2.1",
+      "gen3": "gen_3.1",
+      "window": 1,
+      "window_sensitivity": 2,
+      "breed": null,
+      "genotype_counts_all": {
+        "0": 68697,
+        "1": 10877,
+        "2": 453
+      },
+      "a1_freq_all": 0.07361890362002824,
+      "gen3_matches_gen1": true
+    },
+    {
+      "locus": "PLCD4",
+      "gene": "PLCD4",
+      "chr": 2,
+      "bp": 107313998,
+      "candidate": "g.107313998G>A",
+      "consequence": "p.Ala326Thr",
+      "gen1": "gen_1.2",
+      "gen2": "gen_2.2",
+      "gen3": "gen_3.2",
+      "window": 3,
+      "window_sensitivity": 4,
+      "breed": "HF",
+      "genotype_counts_all": {
+        "0": 76181,
+        "1": 3825,
+        "2": 21
+      },
+      "a1_freq_all": 0.024160595798917866,
+      "gen3_matches_gen1": true
+    },
+    {
+      "locus": "FGD4",
+      "gene": "FGD4",
+      "chr": 5,
+      "bp": 77632752,
+      "candidate": "g.77632752C>T",
+      "consequence": "splice donor",
+      "gen1": "gen_1.3",
+      "gen2": "gen_2.3",
+      "gen3": "gen_3.3",
+      "window": 5,
+      "window_sensitivity": 6,
+      "breed": "HF",
+      "genotype_counts_all": {
+        "0": 76205,
+        "1": 3794,
+        "2": 28
+      },
+      "a1_freq_all": 0.02405438164619441,
+      "gen3_matches_gen1": true
+    },
+    {
+      "locus": "ARSI",
+      "gene": "ARSI",
+      "chr": 7,
+      "bp": 63649071,
+      "candidate": "g.63649071C>T",
+      "consequence": "p.Gly301Ser",
+      "gen1": "gen_1.4",
+      "gen2": "gen_2.4",
+      "gen3": "gen_3.4",
+      "window": 7,
+      "window_sensitivity": 8,
+      "breed": null,
+      "genotype_counts_all": {
+        "0": 69005,
+        "1": 10566,
+        "2": 456
+      },
+      "a1_freq_all": 0.07171329676234271,
+      "gen3_matches_gen1": true
+    },
+    {
+      "locus": "MTRF1",
+      "gene": "MTRF1",
+      "chr": 12,
+      "bp": 11463981,
+      "candidate": "g.11463981G>A",
+      "consequence": "p.Arg341Trp",
+      "gen1": "gen_1.5",
+      "gen2": "gen_2.5",
+      "gen3": "gen_3.5",
+      "window": 9,
+      "window_sensitivity": null,
+      "breed": "J",
+      "genotype_counts_all": {
+        "0": 72994,
+        "1": 6876,
+        "2": 157
+      },
+      "a1_freq_all": 0.04492233871068514,
+      "gen3_matches_gen1": true
+    },
+    {
+      "locus": "MYH1",
+      "gene": "MYH1",
+      "chr": 19,
+      "bp": 30114249,
+      "candidate": "g.30114250_30114327delins (left-flank proxy)",
+      "consequence": "frameshift",
+      "gen1": "gen_1.7",
+      "gen2": "gen_2.9",
+      "gen3": "gen_3.9",
+      "window": 11,
+      "window_sensitivity": null,
+      "breed": "J",
+      "genotype_counts_all": {
+        "0": 73450,
+        "1": 6399,
+        "2": 178
+      },
+      "a1_freq_all": 0.04220450597923201,
+      "gen3_matches_gen1": true
+    },
+    {
+      "locus": "GALNT2",
+      "gene": "GALNT2",
+      "chr": 28,
+      "bp": 1312334,
+      "candidate": "g.1312334G>A",
+      "consequence": "splice acceptor",
+      "gen1": "gen_1.8",
+      "gen2": "gen_2.10",
+      "gen3": "gen_3.10",
+      "window": 12,
+      "window_sensitivity": null,
+      "breed": "HF",
+      "genotype_counts_all": {
+        "0": 74747,
+        "1": 5251,
+        "2": 29
+      },
+      "a1_freq_all": 0.03317005510640159,
+      "gen3_matches_gen1": true
+    },
+    {
+      "locus": "DPF2",
+      "gene": "DPF2",
+      "chr": 29,
+      "bp": 44213160,
+      "candidate": "g.44213160A>G",
+      "consequence": "p.Lys216Arg",
+      "gen1": "gen_1.9",
+      "gen2": "gen_2.11",
+      "gen3": "gen_3.11",
+      "window": 13,
+      "window_sensitivity": null,
+      "breed": "HF",
+      "genotype_counts_all": {
+        "0": 73865,
+        "1": 6056,
+        "2": 106
+      },
+      "a1_freq_all": 0.03916178289827183,
+      "gen3_matches_gen1": true
+    },
+    {
+      "locus": "MUS81",
+      "gene": "MUS81",
+      "chr": 29,
+      "bp": 44645469,
+      "candidate": "g.44645469G>T",
+      "consequence": "p.Gly70*",
+      "gen1": "gen_1.9",
+      "gen2": "gen_2.12",
+      "gen3": "gen_3.12",
+      "window": 13,
+      "window_sensitivity": null,
+      "breed": "HF",
+      "genotype_counts_all": {
+        "0": 73802,
+        "1": 6116,
+        "2": 109
+      },
+      "a1_freq_all": 0.03957414372649231,
+      "gen3_matches_gen1": true
+    },
+    {
+      "locus": "chr14:1802265",
+      "gene": "DGAT1",
+      "chr": 14,
+      "bp": 1802265,
+      "candidate": "rs109234250",
+      "consequence": "DGAT1 p.Lys232Ala additive comparator",
+      "gen1": null,
+      "gen2": "gen_2.6",
+      "gen3": "gen_3.6",
+      "window": null,
+      "window_sensitivity": null,
+      "breed": null,
+      "genotype_counts_all": {
+        "0": 27484,
+        "1": 38113,
+        "2": 14430
+      },
+      "a1_freq_all": 0.41844002649105927
+    },
+    {
+      "locus": "chr14:25015640",
+      "gene": "PLAG1",
+      "chr": 14,
+      "bp": 25015640,
+      "candidate": "rs109815800",
+      "consequence": "PLAG1 causal regulatory comparator",
+      "gen1": null,
+      "gen2": "gen_2.7",
+      "gen3": "gen_3.7",
+      "window": 10,
+      "window_sensitivity": null,
+      "breed": null,
+      "genotype_counts_all": {
+        "0": 25557,
+        "1": 33612,
+        "2": 20858
+      },
+      "a1_freq_all": 0.4706411586089695
+    },
+    {
+      "locus": "chr14:26064929",
+      "gene": "PLAG1",
+      "chr": 14,
+      "bp": 26064929,
+      "candidate": "rs109686357",
+      "consequence": "PLAG1 dominance-GWAS lead comparator",
+      "gen1": "gen_1.6",
+      "gen2": "gen_2.8",
+      "gen3": "gen_3.8",
+      "window": 10,
+      "window_sensitivity": null,
+      "breed": null,
+      "genotype_counts_all": {
+        "0": 41880,
+        "1": 33588,
+        "2": 4559
+      },
+      "a1_freq_all": 0.2668224474239944,
+      "gen3_matches_gen1": true
+    }
+  ],
+  "table1_targets": {
+    "bodyweight": {
+      "Chr2:22": [
+        -0.007,
+        -11.8
+      ],
+      "PLCD4": [
+        -0.354,
+        -108.965
+      ],
+      "FGD4": [
+        0.834,
+        -48.079
+      ],
+      "ARSI": [
+        0.564,
+        -11.981
+      ],
+      "MTRF1": [
+        1.078,
+        -19.464
+      ],
+      "GALNT2": [
+        -0.837,
+        -112.008
+      ],
+      "DPF2": [
+        4.059,
+        -53.092
+      ],
+      "MUS81": [
+        4.126,
+        -51.911
+      ],
+      "MYH1": [
+        0.798,
+        -4.643
+      ]
+    },
+    "stature": {
+      "Chr2:22": [
+        0.025,
+        -0.428
+      ],
+      "PLCD4": [
+        -0.025,
+        -5.421
+      ],
+      "FGD4": [
+        0.058,
+        -3.041
+      ],
+      "ARSI": [
+        0.055,
+        -1.152
+      ],
+      "MTRF1": [
+        0.025,
+        -1.208
+      ],
+      "GALNT2": [
+        -0.134,
+        -8.568
+      ],
+      "DPF2": [
+        0.132,
+        -2.565
+      ],
+      "MUS81": [
+        0.136,
+        -2.487
+      ],
+      "MYH1": [
+        0.086,
+        0.285
+      ]
+    },
+    "bcs": {
+      "Chr2:22": [
+        0.003,
+        -0.044
+      ],
+      "PLCD4": [
+        0.005,
+        -0.284
+      ],
+      "FGD4": [
+        0.012,
+        -0.238
+      ],
+      "ARSI": [
+        -0.001,
+        -0.028
+      ],
+      "MTRF1": [
+        0.009,
+        -0.093
+      ],
+      "GALNT2": [
+        0.012,
+        -0.079
+      ],
+      "DPF2": [
+        0.02,
+        -0.05
+      ],
+      "MUS81": [
+        0.02,
+        -0.054
+      ],
+      "MYH1": [
+        -0.01,
+        -0.133
+      ]
+    }
+  }
+}

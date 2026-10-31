@@ -1,0 +1,348 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-31T01:34:48.210063+00:00",
+  "code_version": "231380e",
+  "source_files": [
+    "dryad/gens/gen_4.*",
+    "dryad/other/other_6.txt"
+  ],
+  "loci": {
+    "PLCD4": {
+      "gene": "PLCD4",
+      "breeds": {
+        "HF": {
+          "n": 29771,
+          "genotype_counts": {
+            "0": 27263,
+            "1": 2482,
+            "2": 26
+          },
+          "alt_freq": 0.04255819421584764,
+          "carrier_freq": 0.08424305532229351,
+          "expected_hwe": {
+            "hom_ref": 27290.921232071483,
+            "het": 2426.157535857042,
+            "hom_alt": 53.92123207147896
+          },
+          "hwe_chi2": 15.771920395891328,
+          "hwe_p": 7.145517744425899e-05,
+          "paper_hf": 0.039,
+          "paper_j": null
+        },
+        "J": {
+          "n": 19344,
+          "genotype_counts": {
+            "0": 19322,
+            "1": 22,
+            "2": 0
+          },
+          "alt_freq": 0.0005686517783291977,
+          "carrier_freq": 0.0011373035566583955,
+          "expected_hwe": {
+            "hom_ref": 19322.006255169563,
+            "het": 21.98748966087676,
+            "hom_alt": 0.0062551695616211754
+          },
+          "hwe_chi2": 0.006262289660921037,
+          "hwe_p": 0.9369255391369568,
+          "paper_hf": null,
+          "paper_j": 0.001
+        }
+      }
+    },
+    "FGD4": {
+      "gene": "FGD4",
+      "breeds": {
+        "HF": {
+          "n": 29771,
+          "genotype_counts": {
+            "0": 27384,
+            "1": 2365,
+            "2": 22
+          },
+          "alt_freq": 0.0404588357797857,
+          "carrier_freq": 0.08017869739007759,
+          "expected_hwe": {
+            "hom_ref": 27410.732667696753,
+            "het": 2311.5346646064963,
+            "hom_alt": 48.73266769675188
+          },
+          "hwe_chi2": 15.927117810830932,
+          "hwe_p": 6.582877013606005e-05,
+          "paper_hf": 0.039,
+          "paper_j": null
+        },
+        "J": {
+          "n": 19344,
+          "genotype_counts": {
+            "0": 19320,
+            "1": 24,
+            "2": 0
+          },
+          "alt_freq": 0.0006203473945409429,
+          "carrier_freq": 0.0012406947890818859,
+          "expected_hwe": {
+            "hom_ref": 19320.007444168732,
+            "het": 23.98511166253102,
+            "hom_alt": 0.007444168734491315
+          },
+          "hwe_chi2": 0.0074534132772015455,
+          "hwe_p": 0.9312015847061036,
+          "paper_hf": null,
+          "paper_j": 0.001
+        }
+      }
+    },
+    "MTRF1": {
+      "gene": "MTRF1",
+      "breeds": {
+        "HF": {
+          "n": 29771,
+          "genotype_counts": {
+            "0": 29664,
+            "1": 107,
+            "2": 0
+          },
+          "alt_freq": 0.0017970508212690201,
+          "carrier_freq": 0.0035941016425380403,
+          "expected_hwe": {
+            "hom_ref": 29664.096142218936,
+            "het": 106.80771556212422,
+            "hom_alt": 0.09614221893789257
+          },
+          "hwe_chi2": 0.09648869752435671,
+          "hwe_p": 0.7560847319770422,
+          "paper_hf": 0.002,
+          "paper_j": null
+        },
+        "J": {
+          "n": 19344,
+          "genotype_counts": {
+            "0": 14997,
+            "1": 4155,
+            "2": 192
+          },
+          "alt_freq": 0.11732320099255583,
+          "carrier_freq": 0.22472084367245657,
+          "expected_hwe": {
+            "hom_ref": 15071.265004652607,
+            "het": 4006.4699906947894,
+            "hom_alt": 266.26500465260546
+          },
+          "hwe_chi2": 26.58587214075994,
+          "hwe_p": 2.520803829216331e-07,
+          "paper_hf": null,
+          "paper_j": 0.114
+        }
+      }
+    },
+    "MYH1": {
+      "gene": "MYH1",
+      "breeds": {
+        "HF": {
+          "n": 29771,
+          "genotype_counts": {
+            "0": 29533,
+            "1": 238,
+            "2": 0
+          },
+          "alt_freq": 0.003997178462261932,
+          "carrier_freq": 0.007994356924523865,
+          "expected_hwe": {
+            "hom_ref": 29533.475664237012,
+            "het": 237.04867152598163,
+            "hom_alt": 0.4756642370091699
+          },
+          "hwe_chi2": 0.47948978850288165,
+          "hwe_p": 0.4886535123837086,
+          "paper_hf": 0.006,
+          "paper_j": null
+        },
+        "J": {
+          "n": 19344,
+          "genotype_counts": {
+            "0": 14988,
+            "1": 4111,
+            "2": 245
+          },
+          "alt_freq": 0.11892576509511993,
+          "carrier_freq": 0.22518610421836227,
+          "expected_hwe": {
+            "hom_ref": 15016.588722601326,
+            "het": 4053.8225547973534,
+            "hom_alt": 273.5887226013234
+          },
+          "hwe_chi2": 3.848276837818171,
+          "hwe_p": 0.04979712647871834,
+          "paper_hf": null,
+          "paper_j": 0.109
+        }
+      }
+    },
+    "GALNT2": {
+      "gene": "GALNT2",
+      "breeds": {
+        "HF": {
+          "n": 29771,
+          "genotype_counts": {
+            "0": 26520,
+            "1": 3190,
+            "2": 61
+          },
+          "alt_freq": 0.05562460112189715,
+          "carrier_freq": 0.10920022841019784,
+          "expected_hwe": {
+            "hom_ref": 26551.11433945786,
+            "het": 3127.7713210842767,
+            "hom_alt": 92.11433945786167
+          },
+          "hwe_chi2": 11.78432194209065,
+          "hwe_p": 0.0005973164495953152,
+          "paper_hf": 0.055,
+          "paper_j": null
+        },
+        "J": {
+          "n": 19344,
+          "genotype_counts": {
+            "0": 19310,
+            "1": 34,
+            "2": 0
+          },
+          "alt_freq": 0.0008788254755996692,
+          "carrier_freq": 0.0017576509511993384,
+          "expected_hwe": {
+            "hom_ref": 19310.014940033085,
+            "het": 33.97011993382961,
+            "hom_alt": 0.014940033085194378
+          },
+          "hwe_chi2": 0.014966327105260385,
+          "hwe_p": 0.9026321771105511,
+          "paper_hf": null,
+          "paper_j": 0.001
+        }
+      }
+    },
+    "DPF2": {
+      "gene": "DPF2",
+      "breeds": {
+        "HF": {
+          "n": 29771,
+          "genotype_counts": {
+            "0": 25985,
+            "1": 3674,
+            "2": 112
+          },
+          "alt_freq": 0.06546639347015552,
+          "carrier_freq": 0.12717073662288805,
+          "expected_hwe": {
+            "hom_ref": 26000.594000873334,
+            "het": 3642.811998253334,
+            "hom_alt": 127.59400087333313
+          },
+          "hwe_chi2": 2.1822022830570313,
+          "hwe_p": 0.139614556064408,
+          "paper_hf": 0.066,
+          "paper_j": null
+        },
+        "J": {
+          "n": 19344,
+          "genotype_counts": {
+            "0": 19327,
+            "1": 17,
+            "2": 0
+          },
+          "alt_freq": 0.0004394127377998346,
+          "carrier_freq": 0.0008788254755996692,
+          "expected_hwe": {
+            "hom_ref": 19327.00373500827,
+            "het": 16.992529983457402,
+            "hom_alt": 0.0037350082712985944
+          },
+          "hwe_chi2": 0.0037382928564932624,
+          "hwe_p": 0.9512464546873147,
+          "paper_hf": null,
+          "paper_j": 0.001
+        }
+      }
+    },
+    "MUS81": {
+      "gene": "MUS81",
+      "breeds": {
+        "HF": {
+          "n": 29771,
+          "genotype_counts": {
+            "0": 25967,
+            "1": 3690,
+            "2": 114
+          },
+          "alt_freq": 0.06580229081992543,
+          "carrier_freq": 0.12777535185247388,
+          "expected_hwe": {
+            "hom_ref": 25981.906687716237,
+            "het": 3660.1866245675324,
+            "hom_alt": 128.90668771623393
+          },
+          "hwe_chi2": 1.9751917438555422,
+          "hwe_p": 0.1598978642919853,
+          "paper_hf": 0.066,
+          "paper_j": null
+        },
+        "J": {
+          "n": 19344,
+          "genotype_counts": {
+            "0": 19322,
+            "1": 22,
+            "2": 0
+          },
+          "alt_freq": 0.0005686517783291977,
+          "carrier_freq": 0.0011373035566583955,
+          "expected_hwe": {
+            "hom_ref": 19322.006255169563,
+            "het": 21.98748966087676,
+            "hom_alt": 0.0062551695616211754
+          },
+          "hwe_chi2": 0.006262289660921037,
+          "hwe_p": 0.9369255391369568,
+          "paper_hf": null,
+          "paper_j": 0.001
+        }
+      }
+    }
+  },
+  "cumulative": {
+    "HF": {
+      "n": 29771,
+      "any_carrier_fraction": 0.3460750394679386,
+      "any_carrier_fraction_6_unique_loci": 0.34479862953881296,
+      "sum_of_carrier_frequencies_6_unique_loci": 0.4123811763125189,
+      "expected_any_carrier_8_table1_loci": 0.6141742386757498,
+      "loci": [
+        "PLCD4",
+        "FGD4",
+        "MTRF1",
+        "MYH1",
+        "GALNT2",
+        "DPF2",
+        "MUS81"
+      ],
+      "note": "gen_4 includes the 7 candidate mutations (DPF2 and MUS81 are in strong LD). Including Chr2:22 and ARSI at Table 1 AAFs yields >40% cumulative carrier rate in both HF and Jersey."
+    },
+    "J": {
+      "n": 19344,
+      "any_carrier_fraction": 0.3964019851116625,
+      "any_carrier_fraction_6_unique_loci": 0.3961435070306038,
+      "sum_of_carrier_frequencies_6_unique_loci": 0.4549214226633581,
+      "expected_any_carrier_8_table1_loci": 0.4009598857322738,
+      "loci": [
+        "PLCD4",
+        "FGD4",
+        "MTRF1",
+        "MYH1",
+        "GALNT2",
+        "DPF2",
+        "MUS81"
+      ],
+      "note": "gen_4 includes the 7 candidate mutations (DPF2 and MUS81 are in strong LD). Including Chr2:22 and ARSI at Table 1 AAFs yields >40% cumulative carrier rate in both HF and Jersey."
+    }
+  }
+}
