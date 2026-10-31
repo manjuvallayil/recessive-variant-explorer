@@ -91,18 +91,28 @@ def _discovery() -> tuple[np.ndarray, pd.DataFrame]:
     return frame[["ID", "bw", "stature", "bcs", "label"]].to_numpy(dtype=float), frame, per_locus
 
 
-def _boot_auc(y: np.ndarray, pred: np.ndarray, b: int = BOOTSTRAP_B) -> tuple[float, float]:
+def _boot_auc(
+    y: np.ndarray, pred: np.ndarray, b: int = BOOTSTRAP_B
+) -> tuple[float, float, float, float]:
     rng = np.random.default_rng(0)
-    vals = []
+    aucs: list[float] = []
+    auprcs: list[float] = []
     for _ in range(b):
         idx = rng.integers(0, len(y), len(y))
         if len(np.unique(y[idx])) < 2:
-            vals.append(float("nan"))
             continue
-        vals.append(float(roc_auc_score(y[idx], pred[idx])))
-    vals = np.array(vals)
-    vals = vals[~np.isnan(vals)]
-    return float(np.percentile(vals, 2.5)), float(np.percentile(vals, 97.5))
+        y_i = y[idx]
+        p_i = pred[idx]
+        aucs.append(float(roc_auc_score(y_i, p_i)))
+        auprcs.append(float(average_precision_score(y_i, p_i)))
+    aucs_arr = np.array(aucs)
+    auprcs_arr = np.array(auprcs)
+    return (
+        float(np.percentile(aucs_arr, 2.5)),
+        float(np.percentile(aucs_arr, 97.5)),
+        float(np.percentile(auprcs_arr, 2.5)),
+        float(np.percentile(auprcs_arr, 97.5)),
+    )
 
 
 def compute_syndrome() -> dict:
@@ -121,10 +131,12 @@ def compute_syndrome() -> dict:
     full_auc = float(roc_auc_score(y, full_pred))
     full_auprc = float(average_precision_score(y, full_pred))
 
-    lo, hi = _boot_auc(y, bw)
-    base_auc_ci = [float(lo), float(hi)]
-    lo2, hi2 = _boot_auc(y, full_pred)
-    full_auc_ci = [float(lo2), float(hi2)]
+    ba, bh, baup, bauphi = _boot_auc(y, bw)
+    base_auc_ci = [float(ba), float(bh)]
+    base_auprc_ci = [float(baup), float(bauphi)]
+    fa, fh, faup, fauphi = _boot_auc(y, full_pred)
+    full_auc_ci = [float(fa), float(fh)]
+    full_auprc_ci = [float(faup), float(fauphi)]
 
     order = np.argsort(-full_pred)
     n = len(y)
@@ -163,12 +175,12 @@ def compute_syndrome() -> dict:
             "baseline": "body_weight_alone",
             "baseline_auc": base_auc,
             "baseline_auprc": base_auprc,
+            "baseline_auprc_ci": base_auprc_ci,
             "baseline_auc_ci": base_auc_ci,
-            "baseline_auprc_ci": None,
             "full_auc": full_auc,
             "full_auprc": full_auprc,
+            "full_auprc_ci": full_auprc_ci,
             "full_auc_ci": full_auc_ci,
-            "full_auprc_ci": None,
             "base_rate": base_rate,
             "top1_precision": float(prec1),
             "top5_precision": float(prec5),

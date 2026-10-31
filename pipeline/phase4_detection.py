@@ -65,7 +65,8 @@ def compute_detection() -> dict:
             "n_not_detected": int(len(df) - n_detected),
             "n_detected_additive": int(n_detected_add),
             "n_detected_dominance": int(n_detected_dom),
-            "rows": rows,
+            "n_rows_exported": int(len(rows)),
+            "rows": rows[:200],
         },
         "notes": [
             "Phase 4c trimmed: primary source = source_data.ExtFig9b.csv.",

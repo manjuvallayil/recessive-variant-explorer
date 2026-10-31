@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-31T04:17:05.182024+00:00",
-  "code_version": "3b572c2",
+  "generated_at": "2026-10-31T04:27:52.410593+00:00",
+  "code_version": "73c9962",
   "source_files": {
     "phen_1_1": "dryad/phens/phen_1.1.txt",
     "phen_1_2": "dryad/phens/phen_1.2.txt",
@@ -12,18 +12,24 @@
     "baseline": "body_weight_alone",
     "baseline_auc": 0.48302690248433583,
     "baseline_auprc": 0.0013128440534498687,
+    "baseline_auprc_ci": [
+      0.001028636223849036,
+      0.0017590695896236364
+    ],
     "baseline_auc_ci": [
       0.4226833366284739,
       0.5435053664384758
     ],
-    "baseline_auprc_ci": null,
     "full_auc": 0.5294583878155429,
     "full_auprc": 0.0016092217720026399,
+    "full_auprc_ci": [
+      0.0012241034142921098,
+      0.002691410709849166
+    ],
     "full_auc_ci": [
       0.4753084397413915,
       0.5811761608116329
     ],
-    "full_auprc_ci": null,
     "base_rate": 0.0013486446788623313,
     "top1_precision": 0.0026702269692923898,
     "top5_precision": 0.0016021361815754338,
