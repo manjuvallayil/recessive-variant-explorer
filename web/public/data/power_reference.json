@@ -1,46 +1,56 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-31T04:19:16.620995+00:00",
-  "code_version": "8085809",
+  "generated_at": "2026-10-31T04:36:24.015059+00:00",
+  "code_version": "b900fea",
   "source_files": {
     "ext_fig1": "dryad/source_data/source_data.ExtFig1.csv"
   },
   "power": {
     "test": "recessive_class",
-    "effect_size_sd": 2.2645540682891916,
+    "variance_explained": 0.001,
     "sample_size": 50000,
-    "noncentrality": 256410.25641025644,
+    "lambda": 50.050050050050054,
     "gws_alpha": 5e-08,
-    "power": 1.0
+    "critical_chi2_df1": 29.716785488631203,
+    "power": 0.9477368810833096
   },
   "paper_claim": {
     "maf": 0.025,
-    "variance_explained": 0.1,
+    "variance_explained": 0.001,
     "heritability": 0.25,
     "n_animals": 50000,
     "power_recessive_class": 0.9
   },
   "validation": {
     "source_ext_fig1": {
-      "n": 50000.0,
+      "variance_explained": 0.001,
+      "n": 50000,
       "cow_recessive_power": 0.947,
       "cow_genotype_class_power": 0.911,
-      "analytic_recessive_power": 1.0,
-      "analytic_genotype_class_power": 1.0
+      "analytic_recessive_power": 0.9477368810833096,
+      "analytic_genotype_class_power": 0.8165645971645715
+    },
+    "max_abs_diff_vs_source": 0.9999924075698887,
+    "worst_row": {
+      "model": "Cow - Additive",
+      "n": 95500,
+      "analytic": 0.9999924075698887,
+      "source": 0.0,
+      "diff": 0.9999924075698887
     },
     "paper_claim": {
       "maf": 0.025,
-      "variance_explained": 0.1,
+      "variance_explained": 0.001,
       "heritability": 0.25,
       "n_animals": 50000,
       "power_recessive_class": 0.9
     },
     "notes": [
-      "Phase 4d trimmed: analytic power vs source_data.ExtFig1.csv and paper claim."
+      "Phase 4d trimmed: analytic power via Z-transformation of noncentral chi-square."
     ]
   },
   "notes": [
-    "Phase 4d trimmed: analytic noncentral chi-square power for recessive/class test.",
+    "Phase 4d trimmed: analytic power via Z-transformation of noncentral chi-square.",
     "Paper claim: MAF 2.5%, variance 0.1%, h2=0.25, n=50,000 -> ~90% power."
   ]
 }

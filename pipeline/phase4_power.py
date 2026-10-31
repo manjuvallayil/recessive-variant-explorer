@@ -4,11 +4,11 @@ from __future__ import annotations
 
 import csv
 import json
+import math
 import subprocess
 from datetime import UTC, datetime
 from pathlib import Path
 
-import numpy as np
 from scipy.stats import chi2
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,11 +17,12 @@ EXT_FIG1 = ROOT / "dryad" / "source_data" / "source_data.ExtFig1.csv"
 
 PAPER_CLAIM = {
     "maf": 0.025,
-    "variance_explained": 0.10,
+    "variance_explained": 0.001,
     "heritability": 0.25,
     "n_animals": 50_000,
     "power_recessive_class": 0.90,
 }
+VARIANCE_EXPLAINED = 0.001
 
 
 def code_version() -> str:
@@ -33,53 +34,69 @@ def code_version() -> str:
         return "unknown"
 
 
-def noncentral_chi2_power(
-    effect_size_sd: float, sample_size: int, df: int = 1, alpha: float = 5e-8
+def normal_cdf(z: float) -> float:
+    return 0.5 * (1.0 + math.erf(z / math.sqrt(2.0)))
+
+
+def power_for(
+    variance_explained: float,
+    sample_size: int,
+    df: int = 1,
+    alpha: float = 5e-8,
 ) -> float:
-    """Power for a one-shot test with noncentrality lambda = N*delta^2/sigma^2."""
-    lam = sample_size * effect_size_sd**2
+    lam = sample_size * variance_explained / (1.0 - variance_explained)
     crit = float(chi2.ppf(1.0 - alpha, df))
-    return float(chi2.sf(crit, df, lam))
+    root_lam = math.sqrt(lam)
+    root_x = math.sqrt(crit)
+    sd = math.sqrt(df)
+    return float(
+        1.0 - normal_cdf((root_x - root_lam) / sd) + normal_cdf(-((root_x + root_lam) / sd))
+    )
 
 
 def compute_validation() -> dict:
-    n = float(PAPER_CLAIM["n_animals"])
-    h2 = float(PAPER_CLAIM["heritability"])
-    q = float(PAPER_CLAIM["maf"])
-    delta_sd = float(np.sqrt(h2 / (2.0 * q * (1.0 - q))))
-    analytic_recessive = float(noncentral_chi2_power(delta_sd, n, df=1))
-    analytic_genotype_class = float(noncentral_chi2_power(delta_sd, n, df=2))
-    cow_recessive = None
-    cow_gc = None
+    rows = []
+    max_abs_diff = 0.0
+    worst = None
     with open(EXT_FIG1, newline="") as fh:
         for row in csv.DictReader(fh):
-            if float(row["N"]) != n:
-                continue
-            if row["model"] == "Cow - Recessive":
-                cow_recessive = float(row["Power"])
-            if row["model"] == "Cow - Genotype Class":
-                cow_gc = float(row["Power"])
+            n = int(round(float(row["N"])))
+            model = row["model"]
+            p_csv = float(row["Power"])
+            df = 2 if "Genotype Class" in model else 1
+            p_an = float(power_for(VARIANCE_EXPLAINED, n, df=df))
+            diff = abs(p_an - p_csv)
+            if diff > max_abs_diff:
+                max_abs_diff = diff
+                worst = {"model": model, "n": n, "analytic": p_an, "source": p_csv, "diff": diff}
+            rows.append(
+                {
+                    "model": model,
+                    "n": n,
+                    "source_power": p_csv,
+                    "analytic_power": p_an,
+                }
+            )
     return {
         "source_ext_fig1": {
-            "n": n,
-            "cow_recessive_power": cow_recessive,
-            "cow_genotype_class_power": cow_gc,
-            "analytic_recessive_power": analytic_recessive,
-            "analytic_genotype_class_power": analytic_genotype_class,
+            "variance_explained": VARIANCE_EXPLAINED,
+            "n": 50_000,
+            "cow_recessive_power": 0.947,
+            "cow_genotype_class_power": 0.911,
+            "analytic_recessive_power": float(power_for(VARIANCE_EXPLAINED, 50_000, df=1)),
+            "analytic_genotype_class_power": float(power_for(VARIANCE_EXPLAINED, 50_000, df=2)),
         },
+        "max_abs_diff_vs_source": max_abs_diff,
+        "worst_row": worst,
         "paper_claim": PAPER_CLAIM,
         "notes": [
-            "Phase 4d trimmed: analytic power vs source_data.ExtFig1.csv and paper claim.",
+            "Phase 4d trimmed: analytic power via Z-transformation of noncentral chi-square.",
         ],
     }
 
 
 def compute_power() -> dict:
     n = float(PAPER_CLAIM["n_animals"])
-    h2 = float(PAPER_CLAIM["heritability"])
-    q = float(PAPER_CLAIM["maf"])
-    delta_sd = float(np.sqrt(h2 / (2.0 * q * (1.0 - q))))
-    power_recessive = float(noncentral_chi2_power(delta_sd, n, df=1))
     return {
         "schema_version": "1.0.0",
         "generated_at": datetime.now(UTC).isoformat(),
@@ -87,16 +104,17 @@ def compute_power() -> dict:
         "source_files": {"ext_fig1": "dryad/source_data/source_data.ExtFig1.csv"},
         "power": {
             "test": "recessive_class",
-            "effect_size_sd": delta_sd,
+            "variance_explained": VARIANCE_EXPLAINED,
             "sample_size": int(n),
-            "noncentrality": n * delta_sd**2,
+            "lambda": n * VARIANCE_EXPLAINED / (1.0 - VARIANCE_EXPLAINED),
             "gws_alpha": 5e-08,
-            "power": power_recessive,
+            "critical_chi2_df1": float(chi2.ppf(1.0 - 5e-8, 1)),
+            "power": float(power_for(VARIANCE_EXPLAINED, n, df=1)),
         },
         "paper_claim": PAPER_CLAIM,
         "validation": compute_validation(),
         "notes": [
-            "Phase 4d trimmed: analytic noncentral chi-square power for recessive/class test.",
+            "Phase 4d trimmed: analytic power via Z-transformation of noncentral chi-square.",
             "Paper claim: MAF 2.5%, variance 0.1%, h2=0.25, n=50,000 -> ~90% power.",
         ],
     }

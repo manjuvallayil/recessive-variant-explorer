@@ -1,9 +1,16 @@
 export function erf(z: number): number {
   const t = 1 / (1 + 0.3275911 * Math.abs(z));
-  const y =
-    1 -
-    (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t +
-      0.254829592) * Math.pow(t, -0.5);
+  const t2 = t * t;
+  const t3 = t * t2;
+  const t4 = t * t3;
+  const t5 = t * t4;
+  const poly =
+    0.254829592 * t +
+    (-0.284496736) * t2 +
+    1.421413741 * t3 +
+    (-1.453152027) * t4 +
+    1.061405429 * t5;
+  const y = 1 - poly * Math.exp(-(z * z));
   return z >= 0 ? y : -y;
 }
 
@@ -28,7 +35,7 @@ export function normalQuantile(p: number): number {
 export function chi2Cdf(x: number, df: number): number {
   if (df === 1) {
     const root = Math.sqrt(x);
-    return 2 * (1 - normalCdf(root));
+    return 2 * normalCdf(root) - 1;
   }
   if (df === 2) {
     return 1 - Math.exp(-x / 2);
@@ -50,22 +57,18 @@ export function chi2Quantile(df: number, p: number): number {
   return (lo + hi) / 2;
 }
 
-export function noncentralChi2Survival(x: number, df: number, lam: number): number {
-  const rootLam = Math.sqrt(lam);
-  const rootX = Math.sqrt(x);
-  const sd = Math.sqrt(df);
-  const a = (rootX - rootLam) / sd;
-  const b = (-rootX - rootLam) / sd;
-  return 1 - normalCdf(a) + normalCdf(b);
-}
-
 export function powerFor(
-  effectSizeSd: number,
+  varianceExplained: number,
   sampleSize: number,
   df = 1,
   alpha = 5e-8,
 ): number {
-  const lam = sampleSize * effectSizeSd * effectSizeSd;
+  const lam = (sampleSize * varianceExplained) / (1 - varianceExplained);
   const crit = chi2Quantile(df, 1 - alpha);
-  return noncentralChi2Survival(crit, df, lam);
+  const rootLam = Math.sqrt(lam);
+  const rootX = Math.sqrt(crit);
+  const sd = Math.sqrt(df);
+  const a = (rootX - rootLam) / sd;
+  const b = -((rootX + rootLam) / sd);
+  return 1 - normalCdf(a) + normalCdf(b);
 }
