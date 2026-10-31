@@ -137,6 +137,17 @@ explicitly marked as an open question.
       (raw and gzipped), chip_vs_sequence result, national_burden result vs paper (~1% and ~9,700),
       depletion and carrier-cross tests, and list of anything that disagrees with the paper.
 
+## Known differences
+
+- **Chr5 `-log10 P`:** the variant giving **-log10 P = 131.30** is the indel `chr5:106,266,836`
+  (`Z_A = 24.45`, file P = 5.05e-132); the paper-matching lead is the SNP `chr5:106,250,171` A/G
+  (file P = 3.58619e-127 -> rounds to `3.59e-127`, -log10 = 126.44). Different lead variants in the
+  same CCND2 peak; file P is used where it does not underflow.
+- **Chr14 `-log10 P`:** Manhattan y-axis follows the paper's definition (re-introduced GGPv3 sites
+  excluded); exact value **-log10 P = 441.3** at BovineSNP50 SNP `chr14:25,307,116` (two-sided P =
+  5.03e-442 ~ 4.97e-442); re-introduced GGPv3 causal SNP `chr14:25,015,640` gives **-log10 P = 480.2`;
+  the 480.2 vs 441.3 difference is the GGPv3 re-introduction / lead change.
+
 ## Deviations from the brief
 
 1. **V11 replaced** by the addendum's source-data inventory (10 CSVs + 16 images), as instructed.

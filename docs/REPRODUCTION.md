@@ -176,6 +176,13 @@ Selected trios where `sire == 1` and `dam == 1` at the locus (`offspring` column
 
 **Explanation of the ~9,700 vs 9,543 / 12,367 gap:** In the paper, the `~1%` / `~9,700` headline appears in the section on the five genome-wide significant body-weight recessive syndromes (`PLCD4, FGD4, MTRF1, GALNT2, DPF2/MUS81`), *before* `MYH1` (a suggestive BCS locus, P = 7.6 × 10⁻⁸) is introduced in the following paragraph. Restricting to those 5 loci yields **1.015% (9,543 females/year)** — within 1.6% of the paper's ~9,700 figure. Including `MYH1` adds 0.306% to reach 1.315% (12,367/year).
 
+**Gate B condition - report BOTH national-burden definitions; headline = six `gen_10.1` columns.**
+
+- **Headline (primary):** all six `gen_10.1` columns (`PLCD4`, `FGD4`, `MTRF1`, `MYH1`, `GALNT2`, `DPF2`) -> expected **36,820.7** homozygous calves; rate **1.315%**; scaled **12,367 females/year**.
+- **Secondary:** five genome-wide significant body-weight loci excluding `MYH1` (`PLCD4`, `FGD4`, `MTRF1`, `GALNT2`, `DPF2`/`MUS81`) -> expected **28,415.7**; rate **1.015%**; scaled **9,543 females/year**.
+
+**MYH1 gap investigation (six-loci 12,367 vs paper ~9,700):** `MYH1` is a BCS-suggestive recessive (BCS dominance -log10 P = 7.12, P = 7.6e-8), not a body-weight GWS locus; the paper's ~9,700 headline came from the five-locus BW-significant set. Including all six `gen_10.1` columns adds `MYH1`'s contribution (~0.306%, ~8,405 expected homozygotes; `MYH1` alone ~8,568.7 expected / 0.306% / 2,878 scaled) to reach **1.315% (12,367/year)**. Which allele is mutant in `gen_10` coding: the `MYH1` mutant/alt (A1) allele; the Jersey frequency used in the burden: `f_J(MYH1) = 0.1189` (mine) / 0.109 (paper); transmission handled consistently via the Mendelian derivation (`P(calf homo) = P(sire transmits) * P(dam transmits)`, `P(dam transmits) = 0.5*(g_MGS/2) + 0.5*q_MGD`).
+
 ---
 
 ## 8. Prospective Calves (`phen_3.1`, N = 568 across 51 Herds)
@@ -261,3 +268,8 @@ Full Gate B package:
 - **Disagreements with the paper**: `-log10 P` reconciliation in Section 9.4; PLAG1 standard-additive
   candidate `-log10 P = 311.06` vs window best 323.10; PLCD4 gene merged into CNOT9 (ARS-UCD1.2);
   PLAG1 gene approx 263 kb outside genotyped window (no LD colouring).
+
+## 11. Known differences (Gate B fix-ups)
+
+- **Chr5 `-log10 P`:** the variant giving **-log10 P = 131.30** is the indel `chr5:106,266,836` (`Z_A = 24.45`, file P = 5.05e-132). The paper-matching lead is the SNP `chr5:106,250,171` A/G (`Z_A = -23.989`, file P = 3.58619e-127, which rounds to the paper value `3.59e-127`). The two differ because they are different lead variants within the same CCND2 peak; the file P is used where it does not underflow.
+- **Chr14 `-log10 P`:** the Manhattan y-axis follows the paper's definition (re-introduced GGPv3 sites excluded). Exact value: **-log10 P = 441.3** at BovineSNP50 SNP `chr14:25,307,116` (two-sided P = 5.03e-442, ~4.97e-442 in the Fig. 1 legend). The re-introduced GGPv3 causal SNP `chr14:25,015,640` gives **-log10 P = 480.2** (Z = 46.94); the 480.2 vs 441.3 difference comes from the GGPv3 re-introduction / lead-variant change. The exact value and the 480.2 vs 441.3 difference are recorded in the Manhattan tooltip and here.

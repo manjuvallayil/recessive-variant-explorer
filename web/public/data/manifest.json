@@ -1,55 +1,15 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-31T02:41:54.186171+00:00",
-  "code_version": "54822e0",
+  "generated_at": "2026-10-31T03:35:15.737704+00:00",
+  "code_version": "506ab92",
   "files": [
     {
-      "file": "carrier_cross.json",
-      "bytes": 2649,
+      "file": "loci.json",
+      "bytes": 7746,
       "source_files": [
-        "dryad/gens/gen_5.*",
-        "dryad/other/other_5.txt"
-      ],
-      "gzip_bytes": 779
-    },
-    {
-      "file": "chip_vs_sequence.json",
-      "bytes": 1198207,
-      "gzip_bytes": 443053,
-      "source_files": [
-        "dryad/other/other_15.txt",
-        "dryad/other/other_1.1.txt",
-        "dryad/other/other_10.txt"
+        "dryad/gens/*.bim",
+        "dryad/gens/*.fam"
       ]
-    },
-    {
-      "file": "depletion.json",
-      "bytes": 3084,
-      "source_files": [
-        "dryad/gens/gen_4.*",
-        "dryad/other/other_6.txt"
-      ],
-      "gzip_bytes": 967
-    },
-    {
-      "file": "effects.json",
-      "bytes": 99717,
-      "source_files": [
-        "dryad/other/other_1.*.txt",
-        "dryad/phens/phen_1.*.txt",
-        "dryad/gens/gen_1.*",
-        "dryad/source_data/source_data.ExtFig2c.csv"
-      ],
-      "gzip_bytes": 17456
-    },
-    {
-      "file": "frequencies.json",
-      "bytes": 9702,
-      "source_files": [
-        "dryad/gens/gen_4.*",
-        "dryad/other/other_6.txt"
-      ],
-      "gzip_bytes": 2078
     },
     {
       "file": "genotype_class_stats.json",
@@ -59,56 +19,17 @@
         "dryad/other/other_2.*.tsv",
         "dryad/gens/gen_1.*",
         "dryad/source_data/source_data.ExtFig2c.csv"
-      ],
-      "gzip_bytes": 18922
-    },
-    {
-      "file": "imputation_by_maf.json",
-      "bytes": 8606,
-      "gzip_bytes": 1977,
-      "source_files": [
-        "dryad/other/other_9.txt",
-        "dryad/other/other_1.1.txt"
       ]
     },
     {
-      "file": "loci.json",
-      "bytes": 7746,
+      "file": "effects.json",
+      "bytes": 99717,
       "source_files": [
-        "dryad/gens/*.bim",
-        "dryad/gens/*.fam"
-      ],
-      "gzip_bytes": 1629
-    },
-    {
-      "file": "manhattan_add.json",
-      "bytes": 1325845,
-      "gzip_bytes": 465332,
-      "source_files": [
-        "dryad/other/other_8.1.txt",
-        "dryad/other/other_8.2.txt",
-        "dryad/other/other_10.txt"
+        "dryad/other/other_1.*.txt",
+        "dryad/phens/phen_1.*.txt",
+        "dryad/gens/gen_1.*",
+        "dryad/source_data/source_data.ExtFig2c.csv"
       ]
-    },
-    {
-      "file": "manhattan_dom.json",
-      "bytes": 1300962,
-      "gzip_bytes": 481414,
-      "source_files": [
-        "dryad/other/other_1.1.txt",
-        "dryad/other/other_1.2.txt",
-        "dryad/other/other_10.txt"
-      ]
-    },
-    {
-      "file": "national_burden.json",
-      "bytes": 17322,
-      "source_files": [
-        "dryad/gens/gen_10.1.txt",
-        "dryad/other/other_11.txt",
-        "dryad/gens/gen_4.*"
-      ],
-      "gzip_bytes": 3794
     },
     {
       "file": "pleiotropy.json",
@@ -117,145 +38,7 @@
         "dryad/phens/phen_1.*.txt",
         "dryad/phens/phen_4.*.txt",
         "dryad/gens/gen_3.*"
-      ],
-      "gzip_bytes": 24362
-    },
-    {
-      "file": "prospective_calves.json",
-      "bytes": 1277,
-      "source_files": [
-        "dryad/phens/phen_3.1.txt"
-      ],
-      "gzip_bytes": 635
-    },
-    {
-      "file": "qtl_contrast.json",
-      "bytes": 17840,
-      "gzip_bytes": 3987,
-      "source_files": [
-        "dryad/other/other_1.1.txt",
-        "dryad/other/other_8.1.txt",
-        "dryad/other/other_1.2.txt",
-        "dryad/other/other_8.2.txt",
-        "dryad/source_data/source_data.ExtFig2a.csv"
       ]
-    },
-    {
-      "file": "regional/arsi.json",
-      "bytes": 226595,
-      "gzip_bytes": 78960,
-      "source_files": [
-        "dryad/gens/gen_1.4.*",
-        "dryad/other/other_1.1.txt",
-        "dryad/other/other_8.1.txt"
-      ]
-    },
-    {
-      "file": "regional/chr2_22.json",
-      "bytes": 199196,
-      "gzip_bytes": 70094,
-      "source_files": [
-        "dryad/gens/gen_1.1.*",
-        "dryad/other/other_1.1.txt",
-        "dryad/other/other_8.1.txt"
-      ]
-    },
-    {
-      "file": "regional/dpf2.json",
-      "bytes": 217261,
-      "gzip_bytes": 75397,
-      "source_files": [
-        "dryad/gens/gen_1.9.*",
-        "dryad/other/other_1.1.txt",
-        "dryad/other/other_8.1.txt"
-      ]
-    },
-    {
-      "file": "regional/fgd4.json",
-      "bytes": 305334,
-      "gzip_bytes": 102816,
-      "source_files": [
-        "dryad/gens/gen_1.3.*",
-        "dryad/other/other_1.1.txt",
-        "dryad/other/other_8.1.txt"
-      ]
-    },
-    {
-      "file": "regional/galnt2.json",
-      "bytes": 322275,
-      "gzip_bytes": 117950,
-      "source_files": [
-        "dryad/gens/gen_1.8.*",
-        "dryad/other/other_1.1.txt",
-        "dryad/other/other_8.1.txt"
-      ]
-    },
-    {
-      "file": "regional/index.json",
-      "bytes": 2428,
-      "gzip_bytes": 640,
-      "source_files": [
-        "dryad/gens/gen_1.*"
-      ]
-    },
-    {
-      "file": "regional/mtrf1.json",
-      "bytes": 321830,
-      "gzip_bytes": 109915,
-      "source_files": [
-        "dryad/gens/gen_1.5.*",
-        "dryad/other/other_1.1.txt",
-        "dryad/other/other_8.1.txt"
-      ]
-    },
-    {
-      "file": "regional/mus81.json",
-      "bytes": 217236,
-      "gzip_bytes": 75387,
-      "source_files": [
-        "dryad/gens/gen_1.9.*",
-        "dryad/other/other_1.1.txt",
-        "dryad/other/other_8.1.txt"
-      ]
-    },
-    {
-      "file": "regional/myh1.json",
-      "bytes": 295758,
-      "gzip_bytes": 104575,
-      "source_files": [
-        "dryad/gens/gen_1.7.*",
-        "dryad/other/other_1.1.txt",
-        "dryad/other/other_8.1.txt"
-      ]
-    },
-    {
-      "file": "regional/plag1.json",
-      "bytes": 333633,
-      "gzip_bytes": 125371,
-      "source_files": [
-        "dryad/gens/gen_1.6.*",
-        "dryad/other/other_1.1.txt",
-        "dryad/other/other_8.1.txt"
-      ]
-    },
-    {
-      "file": "regional/plcd4.json",
-      "bytes": 190898,
-      "gzip_bytes": 64180,
-      "source_files": [
-        "dryad/gens/gen_1.2.*",
-        "dryad/other/other_1.1.txt",
-        "dryad/other/other_8.1.txt"
-      ]
-    },
-    {
-      "file": "sire_amplification.json",
-      "bytes": 9662,
-      "source_files": [
-        "dryad/gens/gen_10.1.txt",
-        "dryad/other/other_11.txt"
-      ],
-      "gzip_bytes": 1726
     },
     {
       "file": "validation_milk.json",
@@ -264,10 +47,56 @@
         "dryad/phens/phen_2.*.txt",
         "dryad/phens/phen_4.1-3.txt",
         "dryad/gens/gen_2.*"
-      ],
-      "gzip_bytes": 9606
+      ]
+    },
+    {
+      "file": "frequencies.json",
+      "bytes": 9702,
+      "source_files": [
+        "dryad/gens/gen_4.*",
+        "dryad/other/other_6.txt"
+      ]
+    },
+    {
+      "file": "depletion.json",
+      "bytes": 3084,
+      "source_files": [
+        "dryad/gens/gen_4.*",
+        "dryad/other/other_6.txt"
+      ]
+    },
+    {
+      "file": "carrier_cross.json",
+      "bytes": 2649,
+      "source_files": [
+        "dryad/gens/gen_5.*",
+        "dryad/other/other_5.txt"
+      ]
+    },
+    {
+      "file": "national_burden.json",
+      "bytes": 17542,
+      "source_files": [
+        "dryad/gens/gen_10.1.txt",
+        "dryad/other/other_11.txt",
+        "dryad/gens/gen_4.*"
+      ]
+    },
+    {
+      "file": "sire_amplification.json",
+      "bytes": 9662,
+      "source_files": [
+        "dryad/gens/gen_10.1.txt",
+        "dryad/other/other_11.txt"
+      ]
+    },
+    {
+      "file": "prospective_calves.json",
+      "bytes": 1277,
+      "source_files": [
+        "dryad/phens/phen_3.1.txt"
+      ]
     }
   ],
-  "total_bytes": 6928710,
-  "total_gzip_bytes": 2403002
+  "total_bytes": 445026
 }

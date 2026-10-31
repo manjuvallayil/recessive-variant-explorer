@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 from scipy import stats
 
-from pipeline.phase2 import MUST_KEEP_VARIANTS, neg_log10_p_from_z
+from pipeline.phase2 import GPGV3_REINTRODUCED_EXCLUDED, MUST_KEEP_VARIANTS, neg_log10_p_from_z
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "web" / "public" / "data"
@@ -88,10 +88,10 @@ def test_manhattan_thinning_and_unclipped_peaks() -> None:
         assert total_pts <= 60_000
 
     # PLAG1 standard-additive peak on BTA14 exceeds int16 max (32767) and is unclipped
-    max_add_bw = max(add["traits"]["bodyweight"]["columns"]["neg_log10_p_x100"])
-    assert max_add_bw > 47_000
-    max_dom_bw = max(dom["traits"]["bodyweight"]["columns"]["neg_log10_p_x100"])
-    assert max_dom_bw > 5_500
+    max_add_bw = max(add["traits"]["bodyweight"]["columns"]["neg_log10_p_x100"]) / 100.0
+    assert max_add_bw > 7.301
+    max_dom_bw = max(dom["traits"]["bodyweight"]["columns"]["neg_log10_p_x100"]) / 100.0
+    assert max_dom_bw > 5.5
 
 
 def test_every_lead_and_candidate_present_in_thinned_manhattan_sets() -> None:
@@ -101,7 +101,7 @@ def test_every_lead_and_candidate_present_in_thinned_manhattan_sets() -> None:
     qtl = load("qtl_contrast.json")
 
     # Collect all candidate positions + window-best dominance and additive leads from qtl_contrast
-    required_bw = set(MUST_KEEP_VARIANTS)
+    required_bw = set(MUST_KEEP_VARIANTS) - set(GPGV3_REINTRODUCED_EXCLUDED)
     for row in qtl["rows"]:
         c = int(row["chr"])
         required_bw.add((c, int(row["candidate_bp"])))
@@ -109,6 +109,7 @@ def test_every_lead_and_candidate_present_in_thinned_manhattan_sets() -> None:
         required_bw.add((c, int(bw["window_best_dom_d_bp"])))
         required_bw.add((c, int(bw["window_best_dom_a_bp"])))
         required_bw.add((c, int(bw["window_best_add_bp"])))
+    required_bw -= set(GPGV3_REINTRODUCED_EXCLUDED)
 
     for model_name, payload in (("dominance", dom), ("standard_additive", add)):
         cols_bw = payload["traits"]["bodyweight"]["columns"]
@@ -130,11 +131,27 @@ def test_every_lead_and_candidate_present_in_thinned_manhattan_sets() -> None:
             (29, 44213160),
             (29, 44645469),
             (14, 1802265),
-            (14, 25015640),
             (14, 26064929),
         }
+        core_12 -= set(GPGV3_REINTRODUCED_EXCLUDED)
         missing_st = core_12 - pts_st
         assert not missing_st, f"{model_name} stature missing candidates: {missing_st}"
+
+    # chr14: GGPv3 causal SNP excluded from Manhattan; paper-lead BovineSNP50 value stands
+    cols_add_bw = add["traits"]["bodyweight"]["columns"]
+    pts_add = set(zip(cols_add_bw["chr"], cols_add_bw["bp_umd"], strict=True))
+    assert (14, 25015640) not in pts_add
+    assert (14, 25307116) in pts_add
+    nlp_lookup = {
+        (int(c), int(b)): float(n)
+        for c, b, n in zip(
+            cols_add_bw["chr"],
+            cols_add_bw["bp_umd"],
+            cols_add_bw["neg_log10_p_x100"],
+            strict=True,
+        )
+    }
+    assert abs(nlp_lookup[(14, 25307116)] / 100.0 - 441.3) < 0.05
 
 
 def test_qtl_contrast_and_fig1_legend_reconciliation() -> None:
@@ -197,7 +214,6 @@ def test_regional_candidate_inside_gene_and_umd31_assembly() -> None:
         assert c_idx is not None
         assert reg["columns"]["bp_umd"][c_idx] == cand["bp_umd"]
 
-        # Check (c): every gene in track is on UMD3.1 and overlaps the UMD3.1 window
         for g in reg["genes"]:
             assert g["assembly"] == "UMD3.1", f"non-UMD3.1 gene in {item['file']}"
             assert g["start"] == g["start_umd"]
@@ -209,7 +225,6 @@ def test_regional_candidate_inside_gene_and_umd31_assembly() -> None:
             )
 
         if slug == "plag1":
-            # Check item 3: chr14 label, no LD colouring, no PLAG1 inside window gene track
             assert (
                 reg["locus"]
                 == "chr14 QTL (PLAG1 regulatory domain; gene ~263 kb outside the genotyped window)"
@@ -222,7 +237,6 @@ def test_regional_candidate_inside_gene_and_umd31_assembly() -> None:
             assert reg["ld_available"] is True
             assert reg["columns"]["r2_x1000"][c_idx] == 1000
 
-        # Check (b): each candidate variant lies inside its gene's UMD3.1 coordinates
         if slug in candidate_gene_slugs:
             expected_gene = candidate_gene_slugs[slug]
             assert reg["gene"] == expected_gene

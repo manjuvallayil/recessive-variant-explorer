@@ -1250,11 +1250,14 @@ def compute_national_burden(freq: dict) -> dict:
             "DPF2 column represents DPF2/MUS81."
         ),
         "note": (
-            "Independence across mutations assumed for the any-mutation rate; "
-            "DPF2/MUS81 treated as one locus. Excluding MYH1 (which is not genome-wide "
-            "significant for body weight and is introduced later in the paper) gives "
-            "rate=1.015% (~9,543 females/year), matching the paper's ~1% (~9,700) figure; "
-            "including MYH1 across all 6 gen_10 columns gives 1.315% (~12,367 females/year)."
+            "Gate B condition: report BOTH national-burden definitions; headline = six "
+            "gen_10.1 columns (PLCD4, FGD4, MTRF1, MYH1, GALNT2, DPF2) -> rate=1.315% "
+            "(~12,367 females/year); secondary = five BW-significant loci excluding MYH1 "
+            "(PLCD4, FGD4, MTRF1, GALNT2, DPF2/MUS81) -> rate=1.015% (~9,543). MYH1 is BCS-"
+            "suggestive, not BW-GWS; which allele is mutant in gen_10 coding: MYH1 mutant/alt "
+            "(A1) allele; Jersey frequency used: f_J(MYH1)=0.1189 (mine)/0.109 (paper); "
+            "transmission via Mendelian derivation (P(calf homo)=P(sire transmits)*P(dam "
+            "transmits), P(dam transmits)=0.5*(g_MGS/2)+0.5*q_MGD)."
         ),
     }
 

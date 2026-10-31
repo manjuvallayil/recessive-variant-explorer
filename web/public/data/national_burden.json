@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-31T01:34:49.588818+00:00",
-  "code_version": "231380e",
+  "generated_at": "2026-10-31T03:35:15.485987+00:00",
+  "code_version": "506ab92",
   "source_files": [
     "dryad/gens/gen_10.1.txt",
     "dryad/other/other_11.txt",
@@ -576,5 +576,5 @@
   "females_born_per_year": 940100,
   "mendelian_derivation": "P(calf AA) = P(sire transmits A) * P(dam transmits A), where P(sire transmits A) = g_sire / 2 for sire genotype g_sire in {0,1,2}, and P(dam transmits A) = 0.5 * (g_MGS / 2) + 0.5 * q_MGD because the dam inherits one allele from the genotyped maternal grandsire (MGS) and one allele from the ungenotyped maternal granddam (MGD) with breed-weighted allele frequency q_MGD.",
   "q_mgd_method": "q_MGD = (mgd_HF_16/16)*f_HF + (mgd_J_16/16)*f_J + remainder*f_all; DPF2 column represents DPF2/MUS81.",
-  "note": "Independence across mutations assumed for the any-mutation rate; DPF2/MUS81 treated as one locus. Excluding MYH1 (which is not genome-wide significant for body weight and is introduced later in the paper) gives rate=1.015% (~9,543 females/year), matching the paper's ~1% (~9,700) figure; including MYH1 across all 6 gen_10 columns gives 1.315% (~12,367 females/year)."
+  "note": "Gate B condition: report BOTH national-burden definitions; headline = six gen_10.1 columns (PLCD4, FGD4, MTRF1, MYH1, GALNT2, DPF2) -> rate=1.315% (~12,367 females/year); secondary = five BW-significant loci excluding MYH1 (PLCD4, FGD4, MTRF1, GALNT2, DPF2/MUS81) -> rate=1.015% (~9,543). MYH1 is BCS-suggestive, not BW-GWS; which allele is mutant in gen_10 coding: MYH1 mutant/alt (A1) allele; Jersey frequency used: f_J(MYH1)=0.1189 (mine)/0.109 (paper); transmission via Mendelian derivation (P(calf homo)=P(sire transmits)*P(dam transmits), P(dam transmits)=0.5*(g_MGS/2)+0.5*q_MGD)."
 }

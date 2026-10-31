@@ -310,6 +310,12 @@ MUST_KEEP_VARIANTS = [
     (29, 45056385),
 ]
 
+# Re-introduced GGPv3 sites excluded from the Manhattan y-axis: after the custom GGPv3 site
+# reintroduction, the top bodyweight additive hit moved from the BovineSNP50 lead
+# (chr14:25,307,116, -log10 P=441.3) to the GGPv3 causal SNP (chr14:25,015,640, -log10 P=480.2);
+# the paper's Manhattan excludes the re-introduced sites, so we do too.
+GPGV3_REINTRODUCED_EXCLUDED = {(14, 25015640)}
+
 
 def now_iso() -> str:
     return datetime.now(UTC).isoformat()
@@ -471,6 +477,12 @@ def thin_manhattan_df(df: pd.DataFrame, max_points: int = 24_000) -> tuple[pd.Da
     z = df["Z"].to_numpy(dtype=np.float64)
     nlp = neg_log10_p_from_z(z)
     df = df.assign(nlp=nlp, abs_z=np.abs(z))
+    chr_arr = df["CHR"].to_numpy()
+    bp_arr = df["BP"].to_numpy()
+    excl_mask = np.zeros(len(df), dtype=bool)
+    for c, b in GPGV3_REINTRODUCED_EXCLUDED:
+        excl_mask |= (chr_arr == c) & (bp_arr == b)
+    df = df.loc[~excl_mask].copy()
 
     must_keep_set = set(MUST_KEEP_VARIANTS)
     df["must_keep"] = [
@@ -681,11 +693,18 @@ def compute_manhattan_exports(con: duckdb.DuckDBPyConnection) -> tuple[dict, dic
         "integers because PLAG1 reaches -log10(P)=441.3 -> 44130 > int16 max 32767). "
         "bp_ars=0 indicates unmapped in other_10."
     )
+    tooltip = (
+        "Manhattan -log10(P) uses the paper's definition (re-introduced GGPv3 sites excluded). "
+        "Body weight chr14 exact value: -log10(P)=441.3 at BovineSNP50 SNP chr14:25,307,116 "
+        "(two-sided P=5.03e-442, ~4.97e-442 in the Fig. 1 legend); re-introduced GGPv3 causal SNP "
+        "chr14:25,015,640 would give -log10(P)=480.2 (480.2 vs 441.3 difference)."
+    )
     dom_payload = {
         "model": "dominance",
         "gws_threshold_neg_log10_p": GWS_NEG_LOG10_P,
         "quantisation": "int_x100_unclipped",
         "note": common_note,
+        "tooltip": tooltip,
         "traits": dom_traits,
     }
     add_payload = {
@@ -693,6 +712,7 @@ def compute_manhattan_exports(con: duckdb.DuckDBPyConnection) -> tuple[dict, dic
         "gws_threshold_neg_log10_p": GWS_NEG_LOG10_P,
         "quantisation": "int_x100_unclipped",
         "note": common_note,
+        "tooltip": tooltip,
         "traits": add_traits,
     }
     return dom_payload, add_payload
