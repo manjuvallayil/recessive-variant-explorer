@@ -1,0 +1,56 @@
+# Raw data — never commit (Dryad licence / individual-level data)
+dryad/
+paper/
+
+# Heavy local working data
+work/
+*.bed
+*.bim
+*.fam
+*.parquet
+*.zst
+*.zstd
+*.pkl
+*.npz
+*.npy
+*.pt
+*.pth
+*.bin
+*.safetensors
+
+# Model weights / caches
+models/
+weights/
+.cache/
+.huggingface/
+**/__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Web build artefacts
+web/node_modules/
+web/.next/
+web/out/
+web/.vercel/
+.next/
+node_modules/
+
+# OS / editor
+.DS_Store
+**/.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Personal application documents (not part of the public repo)
+CoverLetter_LIC AI & Machine Learning Application.pdf
+Dairy Scientist AI & ML Job Application.pdf
+LIC_Chad Harland_LinkedIn.pdf
+lic_dairy_scientist_cv.pdf
+header_dump.txt
+
+# Local env
+.env
+.env.*
+.venv/
