@@ -186,3 +186,35 @@ OLS model: `weight ~ VARIANT + age + HERD + breed_hf + breed_j` (`CONTROL` n = 5
 | PLCD4 | 9 | 147.11 | **−55.01 ± 6.36** | [−67.51, −42.50] | 7.09 × 10⁻¹⁷ |
 | FGD4 | 22 | 183.11 | **−10.39 ± 4.13** | [−18.50, −2.29] | 0.0121 |
 | DPF2/MUS81 | 11 | 199.45 | **+3.33 ± 5.77** | [−8.01, +14.67] | 0.5641 |
+
+---
+
+## 9. Phase 2: Genome-Wide Dominance vs Additive Contrast, Chip Blind Spot, & Imputation
+
+### 9.1 QTL Contrast Table (`qtl_contrast.json`, `chip_vs_sequence.json`, `imputation_by_maf.json`)
+
+`-log10(P)` is computed directly from `Z` via `scipy.special.log_ndtr(-|Z|)` with zero clipping. Genome-wide significance threshold: `P < 5 × 10⁻⁸` (`−log10 P > 7.301`).
+
+| QTL | Candidate (UMD3.1) | Window Best Dom `−log10(P_D)` | Candidate Dom `−log10(P_D)` | Candidate Std-Add `−log10(P_A)` | Window Best Std-Add `−log10(P_A)` | In COJO Std-Add (`ExtFig2a`) | 50k Chip Best `−log10(P_D)` | Candidate `AR2` |
+|---|---|---:|---:|---:|---:|---|---:|---:|
+| Chr2:22 | `2:22,836,659` | **8.91** | **8.91** | 1.64 | 6.65 | No | **7.64** | 0.984 |
+| PLCD4 | `2:107,313,998` | **35.64** | **35.64** | 2.34 | 4.78 | No | 3.10 | 1.000 |
+| FGD4 | `5:77,632,752` | **9.96** | **9.96** | 0.25 | 2.65 | No | 3.95 | 1.000 |
+| ARSI | `7:63,649,071` | **13.22** | **8.53** | 0.77 | 3.26 | No | 2.91 | 0.988 |
+| MTRF1 | `12:11,463,981` | **10.98** | **10.98** | 0.16 | 4.64 | No | 5.42 | 0.983 |
+| PLAG1 | `14:26,064,929` | **28.43** | **28.43** | **311.06** | **323.10** | **Yes (7 hits)** | **17.33** | 1.000 (causal) / 0.455 (lead) |
+| GALNT2 | `28:1,312,334` | **50.34** | **44.46** | 2.31 | 5.06 | No | 3.61 | 1.000 |
+| DPF2/MUS81 | `29:44,213,160` / `44,645,469` | **60.15** | **50.86 / 52.20** | 0.11 / 0.13 | 10.09* | No | **14.76** | 0.979 / 0.986 |
+| MYH1 (BCS) | `19:30,114,249` | 5.63 (BCS: 7.12) | 1.29 | 0.01 | 8.02 | No | 3.70 | 0.783 |
+
+*\*Note on `DPF2/MUS81` window-best standard-additive `10.09`:* The candidate variants themselves are completely invisible to the standard-additive model (`−log10 P_A = 0.11` for `DPF2` and `0.13` for `MUS81`). An unlinked common SNP 843 kb away (`chr29:45,056,385`, `MAF = 0.087`) reaches `−log10 P_A = 10.09` in the raw `±1 Mb` window, but is eliminated by GCTA-COJO conditional analysis (`source_data.ExtFig2a.csv`, where the nearest standard-additive COJO QTL on BTA29 are at `37.76 Mb` and `47.10 Mb`). Thus **7 of 8 non-additive QTL are invisible to the standard-additive model (`PLAG1` is the exception)**.
+
+### 9.2 Chip Blind Spot (`chip_vs_sequence.json`)
+
+- **Coverage direction**: **100% (45,865 / 45,865)** of distinct BovineSNP50 positions in `other_15.txt` are present in `other_1.1.txt` (representing **0.284%** of the 16,128,339 distinct sequence positions).
+- **Resolution loss**: At 50k-chip density, only 3 of the 8 dominance QTL retain a genome-wide significant SNP (`Chr2:22`, `PLAG1`, and `DPF2/MUS81`), and **only `DPF2/MUS81` (`−log10 P_D = 14.76`) remains genome-wide significant among the major-effect recessive syndromes** — reproducing Extended Data Fig. 9a.
+
+### 9.3 Regional Plots (`regional/*.json`) & Imputation Accuracy (`imputation_by_maf.json`)
+
+- **Regional LD & `ExtFig3` cross-check**: For `MYH1` (`gen_1.7`, BTA19), all 7,862 rows of `source_data.ExtFig3.csv` match our regional variants with `R²` correlation `r = 0.9949` and identical peak BCS dominance significance (`−log10 P = 7.12`, `P = 7.6 × 10⁻⁸`).
+- **Imputation `AR2`**: Mean `AR2` increases monotonically from `0.931` (`MAF 0.01–0.02`, median `0.971`) to `0.974` (`MAF 0.40–0.50`, median `0.993`). All 8 body-weight recessive/dominance candidate variants in Table 1 exceed `AR2 > 0.95` (range `0.979–1.000`).

@@ -1,0 +1,345 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-31T02:15:18.675404+00:00",
+  "code_version": "b5bfefb",
+  "source_files": [
+    "dryad/other/other_9.txt",
+    "dryad/other/other_1.1.txt"
+  ],
+  "maf_bins": [
+    {
+      "maf_bin": "0.01-0.02",
+      "maf_min": 0.01,
+      "maf_max": 0.02,
+      "n_variants": 1145227,
+      "mean_ar2": 0.9311704597188032,
+      "sd_ar2": 0.12295660799958688,
+      "quantiles": {
+        "p05": 0.733,
+        "p10": 0.834,
+        "p25": 0.925,
+        "p50": 0.971,
+        "p75": 0.993,
+        "p90": 0.998,
+        "p95": 0.999
+      },
+      "fraction_ar2_ge_0_95": 0.646163599007009,
+      "fraction_ar2_ge_0_80": 0.9236719008545904
+    },
+    {
+      "maf_bin": "0.02-0.03",
+      "maf_min": 0.02,
+      "maf_max": 0.03,
+      "n_variants": 961911,
+      "mean_ar2": 0.9455740218757401,
+      "sd_ar2": 0.11151280734433681,
+      "quantiles": {
+        "p05": 0.797,
+        "p10": 0.882,
+        "p25": 0.946,
+        "p50": 0.978,
+        "p75": 0.994,
+        "p90": 0.998,
+        "p95": 0.999
+      },
+      "fraction_ar2_ge_0_95": 0.7336843013542833,
+      "fraction_ar2_ge_0_80": 0.94920735910079
+    },
+    {
+      "maf_bin": "0.03-0.04",
+      "maf_min": 0.03,
+      "maf_max": 0.04,
+      "n_variants": 825250,
+      "mean_ar2": 0.9520214274221221,
+      "sd_ar2": 0.1039080127650618,
+      "quantiles": {
+        "p05": 0.824,
+        "p10": 0.899,
+        "p25": 0.955,
+        "p50": 0.981,
+        "p75": 0.994,
+        "p90": 0.998,
+        "p95": 0.999
+      },
+      "fraction_ar2_ge_0_95": 0.7776322326567707,
+      "fraction_ar2_ge_0_80": 0.9577340199939413
+    },
+    {
+      "maf_bin": "0.04-0.05",
+      "maf_min": 0.04,
+      "maf_max": 0.05,
+      "n_variants": 724539,
+      "mean_ar2": 0.9567837814865995,
+      "sd_ar2": 0.10000028972677057,
+      "quantiles": {
+        "p05": 0.85,
+        "p10": 0.913,
+        "p25": 0.961,
+        "p50": 0.983,
+        "p75": 0.994,
+        "p90": 0.998,
+        "p95": 0.999
+      },
+      "fraction_ar2_ge_0_95": 0.8079813509003656,
+      "fraction_ar2_ge_0_80": 0.9644132337941781
+    },
+    {
+      "maf_bin": "0.05-0.10",
+      "maf_min": 0.05,
+      "maf_max": 0.1,
+      "n_variants": 2561207,
+      "mean_ar2": 0.9620806273625815,
+      "sd_ar2": 0.09609328881254424,
+      "quantiles": {
+        "p05": 0.874,
+        "p10": 0.93,
+        "p25": 0.968,
+        "p50": 0.986,
+        "p75": 0.994,
+        "p90": 0.998,
+        "p95": 0.999
+      },
+      "fraction_ar2_ge_0_95": 0.8495705345175146,
+      "fraction_ar2_ge_0_80": 0.969032178968744
+    },
+    {
+      "maf_bin": "0.10-0.20",
+      "maf_min": 0.1,
+      "maf_max": 0.2,
+      "n_variants": 3270716,
+      "mean_ar2": 0.9694964524325178,
+      "sd_ar2": 0.08927646899186649,
+      "quantiles": {
+        "p05": 0.904,
+        "p10": 0.947,
+        "p25": 0.977,
+        "p50": 0.99,
+        "p75": 0.996,
+        "p90": 0.998,
+        "p95": 0.999
+      },
+      "fraction_ar2_ge_0_95": 0.8949627543326905,
+      "fraction_ar2_ge_0_80": 0.9758731727242598
+    },
+    {
+      "maf_bin": "0.20-0.30",
+      "maf_min": 0.2,
+      "maf_max": 0.3,
+      "n_variants": 2395876,
+      "mean_ar2": 0.9723887252515901,
+      "sd_ar2": 0.09172414696818598,
+      "quantiles": {
+        "p05": 0.919,
+        "p10": 0.956,
+        "p25": 0.981,
+        "p50": 0.992,
+        "p75": 0.996,
+        "p90": 0.998,
+        "p95": 1.0
+      },
+      "fraction_ar2_ge_0_95": 0.9154146541807673,
+      "fraction_ar2_ge_0_80": 0.9781119724059175
+    },
+    {
+      "maf_bin": "0.30-0.40",
+      "maf_min": 0.3,
+      "maf_max": 0.4,
+      "n_variants": 2066257,
+      "mean_ar2": 0.9747634956189455,
+      "sd_ar2": 0.09057395818228152,
+      "quantiles": {
+        "p05": 0.929,
+        "p10": 0.962,
+        "p25": 0.984,
+        "p50": 0.993,
+        "p75": 0.997,
+        "p90": 0.999,
+        "p95": 1.0
+      },
+      "fraction_ar2_ge_0_95": 0.9274248072722803,
+      "fraction_ar2_ge_0_80": 0.9801428379915954
+    },
+    {
+      "maf_bin": "0.40-0.50",
+      "maf_min": 0.4,
+      "maf_max": 0.5,
+      "n_variants": 1955552,
+      "mean_ar2": 0.9739958258669341,
+      "sd_ar2": 0.09850652601193717,
+      "quantiles": {
+        "p05": 0.93,
+        "p10": 0.964,
+        "p25": 0.985,
+        "p50": 0.993,
+        "p75": 0.997,
+        "p90": 0.999,
+        "p95": 1.0
+      },
+      "fraction_ar2_ge_0_95": 0.9306272602313822,
+      "fraction_ar2_ge_0_80": 0.9786224043134624
+    }
+  ],
+  "candidate_variants": [
+    {
+      "locus": "Chr2:22",
+      "gene": null,
+      "chr": 2,
+      "bp": 22836659,
+      "is_bw_recessive_table1": true,
+      "ar2": 0.984,
+      "maf": 0.074,
+      "abs_b_d_kg": 5.855,
+      "hom_alt_derived_kg": -12.534,
+      "neg_log10_pd": 8.90662132185918,
+      "exceeds_0_95": true
+    },
+    {
+      "locus": "PLCD4",
+      "gene": "PLCD4",
+      "chr": 2,
+      "bp": 107313998,
+      "is_bw_recessive_table1": true,
+      "ar2": 1.0,
+      "maf": 0.024,
+      "abs_b_d_kg": 54.47,
+      "hom_alt_derived_kg": -111.35,
+      "neg_log10_pd": 35.636887678459374,
+      "exceeds_0_95": true
+    },
+    {
+      "locus": "FGD4",
+      "gene": "FGD4",
+      "chr": 5,
+      "bp": 77632752,
+      "is_bw_recessive_table1": true,
+      "ar2": 1.0,
+      "maf": 0.024,
+      "abs_b_d_kg": 24.752,
+      "hom_alt_derived_kg": -46.942,
+      "neg_log10_pd": 9.962829333373,
+      "exceeds_0_95": true
+    },
+    {
+      "locus": "ARSI",
+      "gene": "ARSI",
+      "chr": 7,
+      "bp": 63649071,
+      "is_bw_recessive_table1": true,
+      "ar2": 0.988,
+      "maf": 0.072,
+      "abs_b_d_kg": 6.417,
+      "hom_alt_derived_kg": -12.678,
+      "neg_log10_pd": 8.534528217867377,
+      "exceeds_0_95": true
+    },
+    {
+      "locus": "MTRF1",
+      "gene": "MTRF1",
+      "chr": 12,
+      "bp": 11463981,
+      "is_bw_recessive_table1": true,
+      "ar2": 0.983,
+      "maf": 0.045,
+      "abs_b_d_kg": 10.886,
+      "hom_alt_derived_kg": -19.414,
+      "neg_log10_pd": 10.98038880914486,
+      "exceeds_0_95": true
+    },
+    {
+      "locus": "GALNT2",
+      "gene": "GALNT2",
+      "chr": 28,
+      "bp": 1312334,
+      "is_bw_recessive_table1": true,
+      "ar2": 1.0,
+      "maf": 0.033,
+      "abs_b_d_kg": 55.219,
+      "hom_alt_derived_kg": -112.054,
+      "neg_log10_pd": 44.463568628081454,
+      "exceeds_0_95": true
+    },
+    {
+      "locus": "DPF2",
+      "gene": "DPF2",
+      "chr": 29,
+      "bp": 44213160,
+      "is_bw_recessive_table1": true,
+      "ar2": 0.979,
+      "maf": 0.039,
+      "abs_b_d_kg": 30.562,
+      "hom_alt_derived_kg": -56.552,
+      "neg_log10_pd": 50.863139699439884,
+      "exceeds_0_95": true
+    },
+    {
+      "locus": "MUS81",
+      "gene": "MUS81",
+      "chr": 29,
+      "bp": 44645469,
+      "is_bw_recessive_table1": true,
+      "ar2": 0.986,
+      "maf": 0.04,
+      "abs_b_d_kg": 30.097,
+      "hom_alt_derived_kg": -55.474,
+      "neg_log10_pd": 52.19669022044155,
+      "exceeds_0_95": true
+    },
+    {
+      "locus": "MYH1",
+      "gene": "MYH1",
+      "chr": 19,
+      "bp": 30114249,
+      "is_bw_recessive_table1": false,
+      "ar2": 0.783,
+      "maf": 0.042,
+      "abs_b_d_kg": 3.092,
+      "hom_alt_derived_kg": -5.424,
+      "neg_log10_pd": 1.2858800743756231,
+      "exceeds_0_95": false
+    },
+    {
+      "locus": "DGAT1",
+      "gene": "DGAT1",
+      "chr": 14,
+      "bp": 1802265,
+      "is_bw_recessive_table1": false,
+      "ar2": 1.0,
+      "maf": 0.418,
+      "abs_b_d_kg": 0.994,
+      "hom_alt_derived_kg": -0.972,
+      "neg_log10_pd": 3.337195471674922,
+      "exceeds_0_95": true
+    },
+    {
+      "locus": "PLAG1_causal",
+      "gene": "PLAG1",
+      "chr": 14,
+      "bp": 25015640,
+      "is_bw_recessive_table1": false,
+      "ar2": 1.0,
+      "maf": 0.471,
+      "abs_b_d_kg": 2.278,
+      "hom_alt_derived_kg": 37.784,
+      "neg_log10_pd": 15.035907001730378,
+      "exceeds_0_95": true
+    },
+    {
+      "locus": "PLAG1_dom_lead",
+      "gene": "PLAG1",
+      "chr": 14,
+      "bp": 26064929,
+      "is_bw_recessive_table1": false,
+      "ar2": 0.455,
+      "maf": 0.267,
+      "abs_b_d_kg": 4.26,
+      "hom_alt_derived_kg": 27.548,
+      "neg_log10_pd": 28.428855631984373,
+      "exceeds_0_95": false
+    }
+  ],
+  "summary": {
+    "min_ar2_bw_recessive_candidates": 0.979,
+    "all_bw_recessive_candidates_gt_0_95": true,
+    "note": "All 8 body-weight recessive/dominance candidate variants in Table 1 have AR2 > 0.95 (range 0.979 to 1.000; PLCD4, FGD4, GALNT2 have AR2=1.000 as custom-chip physically typed content). The MYH1 left-flank proxy SNP (chr19:30,114,249, suggestive for BCS) has AR2 = 0.783."
+  }
+}

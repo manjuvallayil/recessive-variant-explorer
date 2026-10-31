@@ -37,5 +37,6 @@ target-version = "py311"
 select = ["E", "F", "I", "W", "UP", "B"]
 
 [tool.pytest.ini_options]
+pythonpath = ["."]
 testpaths = ["pipeline/tests"]
 addopts = "-q"

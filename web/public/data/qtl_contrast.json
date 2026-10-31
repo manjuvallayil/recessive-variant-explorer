@@ -1,0 +1,376 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-31T02:13:55.666366+00:00",
+  "code_version": "b5bfefb",
+  "source_files": [
+    "dryad/other/other_1.1.txt",
+    "dryad/other/other_8.1.txt",
+    "dryad/other/other_1.2.txt",
+    "dryad/other/other_8.2.txt",
+    "dryad/source_data/source_data.ExtFig2a.csv"
+  ],
+  "gws_threshold_p": 5e-08,
+  "gws_threshold_neg_log10_p": 7.301029995663981,
+  "rows": [
+    {
+      "qtl": "Chr2:22",
+      "gene": null,
+      "chr": 2,
+      "candidate_bp": 22836659,
+      "window_start": 21836659,
+      "window_end": 23836659,
+      "is_primary_8": true,
+      "category": "modest_recessive_qtl",
+      "bodyweight": {
+        "window_best_dom_d_neg_log10_p": 8.90662132185918,
+        "window_best_dom_d_bp": 22836659,
+        "window_best_dom_d_z": 6.075,
+        "window_best_dom_a_neg_log10_p": 9.179381721315126,
+        "window_best_dom_a_bp": 21999730,
+        "window_best_add_neg_log10_p": 6.651542343446704,
+        "window_best_add_bp": 23118213,
+        "window_best_add_z": 5.179,
+        "window_best_add_maf": 0.325,
+        "window_best_add_r2_to_candidate": null,
+        "candidate_dom_d_neg_log10_p": 8.90662132185918,
+        "candidate_dom_a_neg_log10_p": 9.165642933128012,
+        "candidate_add_neg_log10_p": 1.6400520739900406,
+        "detected_by_dominance_gws": true,
+        "candidate_detected_by_additive_gws": false,
+        "detected_in_cojo_standard_additive": false,
+        "cojo_standard_hits_in_window": 0
+      },
+      "stature": {
+        "window_best_dom_d_neg_log10_p": 4.565957924794257,
+        "window_best_dom_a_neg_log10_p": 3.8693955408563117,
+        "window_best_add_neg_log10_p": 4.560210442424455
+      },
+      "bcs": {
+        "window_best_dom_d_neg_log10_p": 3.2690782460879046,
+        "window_best_dom_a_neg_log10_p": 5.747592672863792,
+        "window_best_add_neg_log10_p": 4.501038697588371
+      }
+    },
+    {
+      "qtl": "PLCD4",
+      "gene": "PLCD4",
+      "chr": 2,
+      "candidate_bp": 107313998,
+      "window_start": 106313998,
+      "window_end": 108313998,
+      "is_primary_8": true,
+      "category": "novel_recessive_syndrome",
+      "bodyweight": {
+        "window_best_dom_d_neg_log10_p": 35.636887678459374,
+        "window_best_dom_d_bp": 107313998,
+        "window_best_dom_d_z": 12.593,
+        "window_best_dom_a_neg_log10_p": 36.87482051679216,
+        "window_best_dom_a_bp": 107313998,
+        "window_best_add_neg_log10_p": 4.77732062597554,
+        "window_best_add_bp": 108131543,
+        "window_best_add_z": 4.305,
+        "window_best_add_maf": 0.155,
+        "window_best_add_r2_to_candidate": null,
+        "candidate_dom_d_neg_log10_p": 35.636887678459374,
+        "candidate_dom_a_neg_log10_p": 36.87482051679216,
+        "candidate_add_neg_log10_p": 2.3402506503605207,
+        "detected_by_dominance_gws": true,
+        "candidate_detected_by_additive_gws": false,
+        "detected_in_cojo_standard_additive": false,
+        "cojo_standard_hits_in_window": 0
+      },
+      "stature": {
+        "window_best_dom_d_neg_log10_p": 14.270274951092611,
+        "window_best_dom_a_neg_log10_p": 14.732800226682388,
+        "window_best_add_neg_log10_p": 5.978747603474096
+      },
+      "bcs": {
+        "window_best_dom_d_neg_log10_p": 6.370689057594238,
+        "window_best_dom_a_neg_log10_p": 4.816639427173909,
+        "window_best_add_neg_log10_p": 4.504844185618449
+      }
+    },
+    {
+      "qtl": "FGD4",
+      "gene": "FGD4",
+      "chr": 5,
+      "candidate_bp": 77632752,
+      "window_start": 76632752,
+      "window_end": 78632752,
+      "is_primary_8": true,
+      "category": "novel_recessive_syndrome",
+      "bodyweight": {
+        "window_best_dom_d_neg_log10_p": 9.962829333373,
+        "window_best_dom_d_bp": 77632752,
+        "window_best_dom_d_z": 6.454,
+        "window_best_dom_a_neg_log10_p": 8.99616326949045,
+        "window_best_dom_a_bp": 77632752,
+        "window_best_add_neg_log10_p": 2.6534961247144744,
+        "window_best_add_bp": 77241202,
+        "window_best_add_z": 3.059,
+        "window_best_add_maf": 0.435,
+        "window_best_add_r2_to_candidate": null,
+        "candidate_dom_d_neg_log10_p": 9.962829333373,
+        "candidate_dom_a_neg_log10_p": 8.99616326949045,
+        "candidate_add_neg_log10_p": 0.2477277007178443,
+        "detected_by_dominance_gws": true,
+        "candidate_detected_by_additive_gws": false,
+        "detected_in_cojo_standard_additive": false,
+        "cojo_standard_hits_in_window": 0
+      },
+      "stature": {
+        "window_best_dom_d_neg_log10_p": 6.9767801922154575,
+        "window_best_dom_a_neg_log10_p": 6.593480357750974,
+        "window_best_add_neg_log10_p": 4.185468949995743
+      },
+      "bcs": {
+        "window_best_dom_d_neg_log10_p": 6.277708972891827,
+        "window_best_dom_a_neg_log10_p": 5.031840015463712,
+        "window_best_add_neg_log10_p": 3.9135126183184186
+      }
+    },
+    {
+      "qtl": "ARSI",
+      "gene": "ARSI",
+      "chr": 7,
+      "candidate_bp": 63649071,
+      "window_start": 62649071,
+      "window_end": 64649071,
+      "is_primary_8": true,
+      "category": "known_stature_recessive_qtl",
+      "bodyweight": {
+        "window_best_dom_d_neg_log10_p": 13.218260938526955,
+        "window_best_dom_d_bp": 62891843,
+        "window_best_dom_d_z": 7.507,
+        "window_best_dom_a_neg_log10_p": 10.62467073322409,
+        "window_best_dom_a_bp": 62718020,
+        "window_best_add_neg_log10_p": 3.261017144637582,
+        "window_best_add_bp": 64626068,
+        "window_best_add_z": -3.456,
+        "window_best_add_maf": 0.158,
+        "window_best_add_r2_to_candidate": null,
+        "candidate_dom_d_neg_log10_p": 8.534528217867377,
+        "candidate_dom_a_neg_log10_p": 7.232050563900775,
+        "candidate_add_neg_log10_p": 0.7693890459569858,
+        "detected_by_dominance_gws": true,
+        "candidate_detected_by_additive_gws": false,
+        "detected_in_cojo_standard_additive": false,
+        "cojo_standard_hits_in_window": 0
+      },
+      "stature": {
+        "window_best_dom_d_neg_log10_p": 18.709781871371,
+        "window_best_dom_a_neg_log10_p": 13.444751176513872,
+        "window_best_add_neg_log10_p": 3.8202905074547844
+      },
+      "bcs": {
+        "window_best_dom_d_neg_log10_p": 2.6030052822399954,
+        "window_best_dom_a_neg_log10_p": 2.8589132403174555,
+        "window_best_add_neg_log10_p": 2.0533178500811693
+      }
+    },
+    {
+      "qtl": "MTRF1",
+      "gene": "MTRF1",
+      "chr": 12,
+      "candidate_bp": 11463981,
+      "window_start": 10463981,
+      "window_end": 12463981,
+      "is_primary_8": true,
+      "category": "novel_recessive_syndrome",
+      "bodyweight": {
+        "window_best_dom_d_neg_log10_p": 10.98038880914486,
+        "window_best_dom_d_bp": 11463981,
+        "window_best_dom_d_z": 6.8,
+        "window_best_dom_a_neg_log10_p": 8.782575839588038,
+        "window_best_dom_a_bp": 11415931,
+        "window_best_add_neg_log10_p": 4.637151045889776,
+        "window_best_add_bp": 11159910,
+        "window_best_add_z": 4.233,
+        "window_best_add_maf": 0.483,
+        "window_best_add_r2_to_candidate": null,
+        "candidate_dom_d_neg_log10_p": 10.98038880914486,
+        "candidate_dom_a_neg_log10_p": 8.736959991954393,
+        "candidate_add_neg_log10_p": 0.15844064903146896,
+        "detected_by_dominance_gws": true,
+        "candidate_detected_by_additive_gws": false,
+        "detected_in_cojo_standard_additive": false,
+        "cojo_standard_hits_in_window": 0
+      },
+      "stature": {
+        "window_best_dom_d_neg_log10_p": 6.064981057755488,
+        "window_best_dom_a_neg_log10_p": 5.3180444480723645,
+        "window_best_add_neg_log10_p": 2.3307417209800656
+      },
+      "bcs": {
+        "window_best_dom_d_neg_log10_p": 6.524153123195353,
+        "window_best_dom_a_neg_log10_p": 4.7167054788493,
+        "window_best_add_neg_log10_p": 4.05281649289799
+      }
+    },
+    {
+      "qtl": "PLAG1",
+      "gene": "PLAG1",
+      "chr": 14,
+      "candidate_bp": 26064929,
+      "window_start": 24015640,
+      "window_end": 27064929,
+      "is_primary_8": true,
+      "category": "partial_dominance_additive_locus",
+      "bodyweight": {
+        "window_best_dom_d_neg_log10_p": 28.428855631984373,
+        "window_best_dom_d_bp": 26064929,
+        "window_best_dom_d_z": 11.208,
+        "window_best_dom_a_neg_log10_p": 457.295671909186,
+        "window_best_dom_a_bp": 24974811,
+        "window_best_add_neg_log10_p": 323.0987159922197,
+        "window_best_add_bp": 25474773,
+        "window_best_add_z": 38.473,
+        "window_best_add_maf": 0.316,
+        "window_best_add_r2_to_candidate": null,
+        "candidate_dom_d_neg_log10_p": 28.428855631984373,
+        "candidate_dom_a_neg_log10_p": 217.787550161779,
+        "candidate_add_neg_log10_p": 311.05805022656597,
+        "detected_by_dominance_gws": true,
+        "candidate_detected_by_additive_gws": true,
+        "detected_in_cojo_standard_additive": true,
+        "cojo_standard_hits_in_window": 7
+      },
+      "stature": {
+        "window_best_dom_d_neg_log10_p": 18.808982287363545,
+        "window_best_dom_a_neg_log10_p": 303.73623474794647,
+        "window_best_add_neg_log10_p": 305.7007622983646
+      },
+      "bcs": {
+        "window_best_dom_d_neg_log10_p": 5.043938154742374,
+        "window_best_dom_a_neg_log10_p": 20.39954525367487,
+        "window_best_add_neg_log10_p": 20.13535271284605
+      }
+    },
+    {
+      "qtl": "GALNT2",
+      "gene": "GALNT2",
+      "chr": 28,
+      "candidate_bp": 1312334,
+      "window_start": 312334,
+      "window_end": 2312334,
+      "is_primary_8": true,
+      "category": "novel_recessive_syndrome",
+      "bodyweight": {
+        "window_best_dom_d_neg_log10_p": 50.34379080381095,
+        "window_best_dom_d_bp": 680910,
+        "window_best_dom_d_z": 15.032,
+        "window_best_dom_a_neg_log10_p": 52.893545648713214,
+        "window_best_dom_a_bp": 680910,
+        "window_best_add_neg_log10_p": 5.056051308419003,
+        "window_best_add_bp": 334652,
+        "window_best_add_z": 4.445,
+        "window_best_add_maf": 0.032,
+        "window_best_add_r2_to_candidate": null,
+        "candidate_dom_d_neg_log10_p": 44.463568628081454,
+        "candidate_dom_a_neg_log10_p": 46.28614404302045,
+        "candidate_add_neg_log10_p": 2.306380443165175,
+        "detected_by_dominance_gws": true,
+        "candidate_detected_by_additive_gws": false,
+        "detected_in_cojo_standard_additive": false,
+        "cojo_standard_hits_in_window": 0
+      },
+      "stature": {
+        "window_best_dom_d_neg_log10_p": 42.96200393502542,
+        "window_best_dom_a_neg_log10_p": 45.928674439648006,
+        "window_best_add_neg_log10_p": 4.749896526261067
+      },
+      "bcs": {
+        "window_best_dom_d_neg_log10_p": 3.5089779445343567,
+        "window_best_dom_a_neg_log10_p": 2.6001350438330633,
+        "window_best_add_neg_log10_p": 2.8019779448972955
+      }
+    },
+    {
+      "qtl": "DPF2/MUS81",
+      "gene": "DPF2/MUS81",
+      "chr": 29,
+      "candidate_bp": 44213160,
+      "window_start": 43213160,
+      "window_end": 45645469,
+      "is_primary_8": true,
+      "category": "novel_recessive_syndrome",
+      "bodyweight": {
+        "window_best_dom_d_neg_log10_p": 60.14812763444795,
+        "window_best_dom_d_bp": 44143856,
+        "window_best_dom_d_z": 16.46,
+        "window_best_dom_a_neg_log10_p": 53.54771368044924,
+        "window_best_dom_a_bp": 44143856,
+        "window_best_add_neg_log10_p": 10.086517491736947,
+        "window_best_add_bp": 45056385,
+        "window_best_add_z": 6.497,
+        "window_best_add_maf": 0.087,
+        "window_best_add_r2_to_candidate": null,
+        "candidate_dom_d_neg_log10_p": 50.863139699439884,
+        "candidate_dom_a_neg_log10_p": 44.62379868291356,
+        "candidate_add_neg_log10_p": 0.10990866670756859,
+        "detected_by_dominance_gws": true,
+        "candidate_detected_by_additive_gws": false,
+        "detected_in_cojo_standard_additive": false,
+        "cojo_standard_hits_in_window": 0
+      },
+      "stature": {
+        "window_best_dom_d_neg_log10_p": 18.75736458385659,
+        "window_best_dom_a_neg_log10_p": 17.5134742026006,
+        "window_best_add_neg_log10_p": 6.352491124567692
+      },
+      "bcs": {
+        "window_best_dom_d_neg_log10_p": 4.002520802714363,
+        "window_best_dom_a_neg_log10_p": 12.344856731980258,
+        "window_best_add_neg_log10_p": 11.81298397537858
+      }
+    },
+    {
+      "qtl": "MYH1",
+      "gene": "MYH1",
+      "chr": 19,
+      "candidate_bp": 30114249,
+      "window_start": 29114249,
+      "window_end": 31114249,
+      "is_primary_8": false,
+      "category": "bcs_suggestive_recessive_syndrome",
+      "bodyweight": {
+        "window_best_dom_d_neg_log10_p": 5.629509229002444,
+        "window_best_dom_d_bp": 30805217,
+        "window_best_dom_d_z": 4.721,
+        "window_best_dom_a_neg_log10_p": 5.3471150859614855,
+        "window_best_dom_a_bp": 30592432,
+        "window_best_add_neg_log10_p": 8.018629431351469,
+        "window_best_add_bp": 29149312,
+        "window_best_add_z": 5.738,
+        "window_best_add_maf": 0.276,
+        "window_best_add_r2_to_candidate": null,
+        "candidate_dom_d_neg_log10_p": 1.2858800743756231,
+        "candidate_dom_a_neg_log10_p": 1.022645182205381,
+        "candidate_add_neg_log10_p": 0.005228910133921104,
+        "detected_by_dominance_gws": false,
+        "candidate_detected_by_additive_gws": false,
+        "detected_in_cojo_standard_additive": false,
+        "cojo_standard_hits_in_window": 0
+      },
+      "stature": {
+        "window_best_dom_d_neg_log10_p": 4.939586282209459,
+        "window_best_dom_a_neg_log10_p": 6.860378711287984,
+        "window_best_add_neg_log10_p": 5.070202299349756
+      },
+      "bcs": {
+        "window_best_dom_d_neg_log10_p": 7.12069090646925,
+        "window_best_dom_a_neg_log10_p": 11.320692180521815,
+        "window_best_add_neg_log10_p": 6.568016405129926
+      }
+    }
+  ],
+  "summary": {
+    "n_primary_non_additive_qtl": 8,
+    "detected_by_dominance_gws": 8,
+    "candidate_detected_by_standard_additive_gws": 1,
+    "detected_in_paper_cojo_standard_additive": 1,
+    "invisible_to_standard_additive_at_candidate_and_cojo": 7,
+    "window_1mb_raw_additive_gws_count": 2,
+    "note": "7 of the 8 dominance QTL (all except PLAG1) are invisible to the standard-additive model at the candidate/lead variants (all candidate additive -log10(P) <= 2.34) and in the paper's GCTA-COJO standard-additive QTL set (ExtFig2a.csv). In the raw +-1 Mb window scan around DPF2/MUS81, an unlinked common SNP 843 kb away (chr29:45,056,385, MAF=0.087) reaches -log10(P_A)=10.09, whereas DPF2 (chr29:44,213,160) has standard-additive -log10(P_A)=0.11 and MUS81 (chr29:44,645,469) has -log10(P_A)=0.13."
+  }
+}

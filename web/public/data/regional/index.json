@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-31T02:15:16.972898+00:00",
+  "code_version": "b5bfefb",
+  "source_files": [
+    "dryad/gens/gen_1.*"
+  ],
+  "loci": [
+    {
+      "slug": "chr2_22",
+      "locus": "Chr2:22",
+      "gene": null,
+      "chr": 2,
+      "candidate_bp_umd": 22836659,
+      "file": "regional/chr2_22.json",
+      "n_variants": 6481,
+      "n_genes": 11
+    },
+    {
+      "slug": "plcd4",
+      "locus": "PLCD4",
+      "gene": "PLCD4",
+      "chr": 2,
+      "candidate_bp_umd": 107313998,
+      "file": "regional/plcd4.json",
+      "n_variants": 5581,
+      "n_genes": 45
+    },
+    {
+      "slug": "fgd4",
+      "locus": "FGD4",
+      "gene": "FGD4",
+      "chr": 5,
+      "candidate_bp_umd": 77632752,
+      "file": "regional/fgd4.json",
+      "n_variants": 9998,
+      "n_genes": 6
+    },
+    {
+      "slug": "arsi",
+      "locus": "ARSI",
+      "gene": "ARSI",
+      "chr": 7,
+      "candidate_bp_umd": 63649071,
+      "file": "regional/arsi.json",
+      "n_variants": 7363,
+      "n_genes": 24
+    },
+    {
+      "slug": "mtrf1",
+      "locus": "MTRF1",
+      "gene": "MTRF1",
+      "chr": 12,
+      "candidate_bp_umd": 11463981,
+      "file": "regional/mtrf1.json",
+      "n_variants": 10679,
+      "n_genes": 13
+    },
+    {
+      "slug": "plag1",
+      "locus": "PLAG1",
+      "gene": "PLAG1",
+      "chr": 14,
+      "candidate_bp_umd": 26064929,
+      "file": "regional/plag1.json",
+      "n_variants": 10473,
+      "n_genes": 9
+    },
+    {
+      "slug": "myh1",
+      "locus": "MYH1",
+      "gene": "MYH1",
+      "chr": 19,
+      "candidate_bp_umd": 30114249,
+      "file": "regional/myh1.json",
+      "n_variants": 8031,
+      "n_genes": 21
+    },
+    {
+      "slug": "galnt2",
+      "locus": "GALNT2",
+      "gene": "GALNT2",
+      "chr": 28,
+      "candidate_bp_umd": 1312334,
+      "file": "regional/galnt2.json",
+      "n_variants": 11690,
+      "n_genes": 9
+    },
+    {
+      "slug": "dpf2",
+      "locus": "DPF2",
+      "gene": "DPF2",
+      "chr": 29,
+      "candidate_bp_umd": 44213160,
+      "file": "regional/dpf2.json",
+      "n_variants": 6483,
+      "n_genes": 69
+    },
+    {
+      "slug": "mus81",
+      "locus": "MUS81",
+      "gene": "MUS81",
+      "chr": 29,
+      "candidate_bp_umd": 44645469,
+      "file": "regional/mus81.json",
+      "n_variants": 6483,
+      "n_genes": 69
+    }
+  ]
+}

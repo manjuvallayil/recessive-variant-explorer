@@ -3,6 +3,7 @@
 data:
 	uv run python pipeline/phase0_verify.py
 	uv run python pipeline/phase1.py
+	uv run python pipeline/phase2.py
 
 verify: data
 
