@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-31T03:48:46.503539+00:00",
-  "code_version": "3b572c2",
+  "generated_at": "2026-10-31T04:19:16.620995+00:00",
+  "code_version": "8085809",
   "source_files": {
     "ext_fig1": "dryad/source_data/source_data.ExtFig1.csv"
   },
@@ -19,6 +19,25 @@
     "heritability": 0.25,
     "n_animals": 50000,
     "power_recessive_class": 0.9
+  },
+  "validation": {
+    "source_ext_fig1": {
+      "n": 50000.0,
+      "cow_recessive_power": 0.947,
+      "cow_genotype_class_power": 0.911,
+      "analytic_recessive_power": 1.0,
+      "analytic_genotype_class_power": 1.0
+    },
+    "paper_claim": {
+      "maf": 0.025,
+      "variance_explained": 0.1,
+      "heritability": 0.25,
+      "n_animals": 50000,
+      "power_recessive_class": 0.9
+    },
+    "notes": [
+      "Phase 4d trimmed: analytic power vs source_data.ExtFig1.csv and paper claim."
+    ]
   },
   "notes": [
     "Phase 4d trimmed: analytic noncentral chi-square power for recessive/class test.",
