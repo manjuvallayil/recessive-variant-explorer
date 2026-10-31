@@ -1,0 +1,37 @@
+{
+  "name": "recessive-variant-explorer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Scrollytelling site for the recessive variant explorer (independent project; not affiliated with LIC).",
+  "scripts": {
+    "validate-data": "node scripts/validate-data.ts",
+    "dev": "npm run validate-data && next dev",
+    "build": "npm run validate-data && next build",
+    "start": "npx --yes serve out",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test src/lib/*.test.ts",
+    "check": "npm run validate-data && npm run typecheck && npm run lint && npm test"
+  },
+  "dependencies": {
+    "d3": "7.9.0",
+    "next": "16.4.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/d3": "7.4.3",
+    "@types/node": "24.19.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.3",
+    "lighthouse": "13.6.0",
+    "postcss": "8.5.32",
+    "tailwindcss": "4.3.3",
+    "typescript": "5.9.3"
+  }
+}

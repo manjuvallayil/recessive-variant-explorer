@@ -26,10 +26,10 @@ export function logGamma(z: number): number {
     return Math.log(Math.PI / Math.abs(Math.sin(Math.PI * z))) - logGamma(1 - z);
   }
   const x = z - 1;
-  let a = LANCZOS_COEF[0];
+  let a = LANCZOS_COEF[0] ?? 0;
   const t = x + LANCZOS_G + 0.5;
   for (let i = 1; i < LANCZOS_COEF.length; i += 1) {
-    a += LANCZOS_COEF[i] / (x + i);
+    a += (LANCZOS_COEF[i] ?? 0) / (x + i);
   }
   return 0.5 * Math.log(2 * Math.PI) + (x + 0.5) * Math.log(t) - t + Math.log(a);
 }

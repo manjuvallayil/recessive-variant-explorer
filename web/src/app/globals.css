@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+/* Palette: Okabe-Ito based, colour-blind safe. Light by default, dark via prefers-color-scheme or [data-theme]. */
+:root {
+  --bg: #fbfaf6;
+  --fg: #1d1d1b;
+  --muted: #5d5b54;
+  --rule: #d6d2c6;
+  --grid: #e7e4da;
+  --vermillion: #b84d00;
+  --surface: #f3f1ea;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15161a;
+    --fg: #ece9e1;
+    --muted: #a9a59b;
+    --rule: #3a3b41;
+    --grid: #2a2b31;
+    --vermillion: #e69f00;
+    --surface: #1d1e23;
+  }
+}
+
+[data-theme="dark"] {
+  --bg: #15161a;
+  --fg: #ece9e1;
+  --muted: #a9a59b;
+  --rule: #3a3b41;
+  --grid: #2a2b31;
+  --vermillion: #e69f00;
+  --surface: #1d1e23;
+}
+
+html {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.6;
+}
+
+.serif {
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+}
+
+a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid #0072b2;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

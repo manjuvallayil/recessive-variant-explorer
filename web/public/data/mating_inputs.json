@@ -1,0 +1,162 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-31T06:09:06.668293+00:00",
+  "code_version": "b1a053b",
+  "source_files": {
+    "frequencies": "web/public/data/frequencies.json",
+    "depletion": "web/public/data/depletion.json",
+    "effects": "web/public/data/effects.json",
+    "national_burden": "web/public/data/national_burden.json",
+    "other_11_aggregate": "dryad/other/other_11.txt (mean breed-weighted q only)"
+  },
+  "loci": [
+    {
+      "id": "PLCD4",
+      "label": "PLCD4",
+      "in_body_weight_set": true,
+      "q_HF": 0.04255819421584764,
+      "q_J": 0.0005686517783291977,
+      "depletion_ratio_HF": 0.48218482777867405,
+      "depletion_ratio_J": null,
+      "depletion_ratio_primary": 0.48218482777867405,
+      "depletion_primary_breed": "HF",
+      "effect": {
+        "hom_kg": -110.9279621325386,
+        "hom_se_kg": 7.680743179308046,
+        "het_kg": -1.085657980291579,
+        "het_se_kg": 0.5835931186093773,
+        "p_hom": 3.2130594122498335e-47
+      },
+      "national_mean_q": 0.02700730038291212
+    },
+    {
+      "id": "FGD4",
+      "label": "FGD4",
+      "in_body_weight_set": true,
+      "q_HF": 0.0404588357797857,
+      "q_J": 0.0006203473945409429,
+      "depletion_ratio_HF": 0.45144255465141175,
+      "depletion_ratio_J": null,
+      "depletion_ratio_primary": 0.45144255465141175,
+      "depletion_primary_breed": "HF",
+      "effect": {
+        "hom_kg": -48.298267034857375,
+        "hom_se_kg": 6.655926440949528,
+        "het_kg": 0.9016116514250605,
+        "het_se_kg": 0.5863490074109846,
+        "p_hom": 4.010295316238312e-13
+      },
+      "national_mean_q": 0.025704588236711266
+    },
+    {
+      "id": "MTRF1",
+      "label": "MTRF1",
+      "in_body_weight_set": true,
+      "q_HF": 0.0017970508212690201,
+      "q_J": 0.11732320099255583,
+      "depletion_ratio_HF": null,
+      "depletion_ratio_J": 0.7210861233923751,
+      "depletion_ratio_primary": 0.7210861233923751,
+      "depletion_primary_breed": "J",
+      "effect": {
+        "hom_kg": -19.269653792389615,
+        "hom_se_kg": 2.8225890228187773,
+        "het_kg": 1.1215669548422955,
+        "het_se_kg": 0.444592281077883,
+        "p_hom": 8.73595195163087e-12
+      },
+      "national_mean_q": 0.0445823443003475
+    },
+    {
+      "id": "GALNT2",
+      "label": "GALNT2",
+      "in_body_weight_set": true,
+      "q_HF": 0.05562460112189715,
+      "q_J": 0.0008788254755996692,
+      "depletion_ratio_HF": 0.6622204573035544,
+      "depletion_ratio_J": null,
+      "depletion_ratio_primary": 0.6622204573035544,
+      "depletion_primary_breed": "HF",
+      "effect": {
+        "hom_kg": -112.64426334742971,
+        "hom_se_kg": 6.531886377812333,
+        "het_kg": -0.8355805611425424,
+        "het_se_kg": 0.5021004629753573,
+        "p_hom": 1.602770984269821e-66
+      },
+      "national_mean_q": 0.03534941602922546
+    },
+    {
+      "id": "DPF2_MUS81",
+      "label": "DPF2/MUS81",
+      "in_body_weight_set": true,
+      "q_HF": 0.06546639347015552,
+      "q_J": 0.0004394127377998346,
+      "depletion_ratio_HF": 0.8777842158205085,
+      "depletion_ratio_J": null,
+      "depletion_ratio_primary": 0.8777842158205085,
+      "depletion_primary_breed": "HF",
+      "effect": {
+        "hom_kg": -56.44679952995328,
+        "hom_se_kg": 3.425030988240522,
+        "het_kg": 2.3254409820427746,
+        "het_se_kg": 0.4711659233810532,
+        "p_hom": 6.370831643297387e-61
+      },
+      "national_mean_q": 0.04138354771993234
+    },
+    {
+      "id": "MYH1",
+      "label": "MYH1",
+      "in_body_weight_set": false,
+      "q_HF": 0.003997178462261932,
+      "q_J": 0.11892576509511993,
+      "depletion_ratio_HF": null,
+      "depletion_ratio_J": 0.8955047476756445,
+      "depletion_ratio_primary": 0.8955047476756445,
+      "depletion_primary_breed": "J",
+      "effect": {
+        "hom_kg": -5.475194701673019,
+        "hom_se_kg": 2.645986365443629,
+        "het_kg": 0.2890748726855987,
+        "het_se_kg": 0.4597901223216757,
+        "p_hom": 0.03852628475844747
+      },
+      "national_mean_q": 0.04656116333436125
+    }
+  ],
+  "national": {
+    "females_born_per_year": 940100,
+    "n_animals_other_11": 2799022,
+    "mean_fraction_HF": 0.6296484093372614,
+    "mean_fraction_J": 0.37035159066273865,
+    "paper_homozygous_rate": 0.01,
+    "paper_scaled_homozygotes": 9700,
+    "export_bw_significant_rate": 0.01015647351452338,
+    "export_bw_significant_scaled": 9548.100751003429,
+    "export_bw_significant_mutations": [
+      "DPF2",
+      "FGD4",
+      "GALNT2",
+      "MTRF1",
+      "PLCD4"
+    ],
+    "export_six_locus_rate": 0.013154828960762054,
+    "export_six_locus_scaled": 12366.854706012407,
+    "export_per_mutation_scaled": {
+      "PLCD4": 1034.2333065166629,
+      "FGD4": 1804.9172153799523,
+      "MTRF1": 3663.195300832891,
+      "MYH1": 2877.96020730457,
+      "GALNT2": 842.5806089421961,
+      "DPF2": 2234.7787921932445
+    }
+  },
+  "notes": [
+    "Transmission: non-carrier 0, carrier 0.5, affected 1, unknown = breed-weighted q.",
+    "Depletion ratios (observed/expected homozygotes, purebreds) are applied to homozygous calf probabilities when the toggle is on.",
+    "Effects: LOSO-adjusted estimator B (paper-like). Het effect used only for DPF2/MUS81.",
+    "DPF2/MUS81 treated as one locus using DPF2 frequency, effect and depletion ratio. DPF2-MUS81 LD is weak (r2 = 0.018 in 350 animals), so independence is an approximation.",
+    "Calibration uses mean breed-weighted q over animals (dam breed composition as proxy); it ignores pedigree structure, which the national export uses."
+  ]
+}
