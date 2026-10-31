@@ -186,6 +186,59 @@ explicitly marked as an open question.
     LOSO adjustment is locus-specific and cannot be applied to a joint model without a decision;
     this is open.
 
+## Phases 4a to 6 decisions
+
+40. **4a protein model (one attempt).** ESM-2 150M masked-marginal LLR, one pass per position, for
+    PLCD4 A326T, MTRF1 R341W and DPF2 K216R. Wild-type residues were checked against RefSeq at each
+    position (all match). Percentiles: PLCD4 56, MTRF1 90, DPF2 66. Concordance with the observed
+    homozygote effects failed: the model ordering (MTRF1 > DPF2 > PLCD4) is the reverse of the
+    observed ordering (PLCD4 > DPF2 > MTRF1). With n = 3 this is not testable, so it is reported as
+    failed and not used as evidence. ARSI dropped (residue 301 is N). Not scorable: MUS81 p.Gly70*, splicing.
+41. **4b per-locus report.** Single-locus statistics use every genotyped animal with body weight
+    (no stature or BCS needed). Homozygote counts: PLCD4 21, FGD4 28, GALNT2 29, DPF2/MUS81 110.
+    The complete-case pooled "any" label is 170; with body weight only, 187.
+    - Why the pooled count was about 101: the earlier rule pooled only loci with at least 30
+      positives, which left only DPF2/MUS81 (99 complete-case). The rule now pools all four loci.
+    - Why PLCD4 AUROC is 0.79, not 0.9+: under equal-variance normal classes the AUROC is set by the
+      effect size. The shift from reference to homozygote is about 82 kg against a 63 kg SD, which
+      caps AUROC near 0.82 (observed 0.79, CI 0.68 to 0.88). Reaching 0.9 would need a shift of about 114 kg.
+    - Causes checked and ruled out as the main cause: genotype coding (A1 mutant, class means match
+      Phase 1 and ExtFig2c homozygote means); missing phenotypes (dropped 1 PLCD4 and 4 GALNT2
+      homozygotes at the complete-case step, now not used for per-locus statistics).
+    - Depletion: observed homozygotes are 0.33 to 0.61 of the Hardy-Weinberg expectation (pooled
+      q, sum 187 observed vs 429 expected). Population mixing would push observed above the pooled
+      expectation, so this shortfall is not explained by structure alone.
+42. **4c threshold and table.** Two-sided P < 5e-8 on ExtFig9b P_S (additive) or P_D (dominance).
+    Dominance detects 19 of 30 truth QTL (MAF < 2%: 2 of 9; 2-3%: 4 of 6; 3-4%: 5 of 7; >= 4%: 8 of
+    8). Additive detects 0 of 30; the closest additive P is 5.9e-8 (chr9). The MAF range is 0.96% to
+    5.06%; the top bin is labelled >= 4%.
+43. **Phase 2 determinism.** Manhattan thinning picked among tied |Z| values by DuckDB thread order.
+    Winners are now chosen by a window with explicit tie-breaks (|Z|, then position, then sign), and
+    the ARS mapping uses an explicit order. Imputation summaries differ only in the 15th significant
+    digit (parallel float sums).
+44. **QTL counts.** At candidate variants, 7 of 8 are below genome-wide significance in the additive
+    model (PLAG1 is the exception, as the paper says). Within ±1 Mb, 6 of 8: the DPF2/MUS81 window
+    holds an additive peak at 45.06 Mb, about 0.8 Mb from the candidate, which the candidate does not carry.
+45. **Carrier union (hook).** Holstein-Friesian carriers of at least one of the seven variants:
+    43.5% with DPF2 and MUS81 separate (as the paper counts them), 35.3% with them as one locus.
+    Independence is assumed. The paper reports more than 40%.
+46. **Phase 5 simulator.** Transmission 0, 0.5, 1 or the breed-weighted q for non-carrier, carrier,
+    affected or unknown parents. Calf homozygote = product of transmissions; independence across loci;
+    DPF2 proxy for DPF2/MUS81; purebred depletion ratios (primary breed) applied to homozygote
+    probabilities. Inputs from validated exports only, plus one aggregate from other_11 (mean
+    breed-weighted q, dam breed composition as proxy). ARSI excluded (no breed frequency).
+    Herd: "avoid carrier x carrier" removes the (1,1) mating and renormalises; checked against the
+    closed form in unit tests. The DPF2/MUS81 heterozygote effect is positive (+2.3 kg), so
+    the net kilogram change can be positive; homozygote and net changes are shown separately.
+47. **Calibration gap.** Random mating at national frequencies gives about 686 PLCD4 homozygous births
+    per year (331 with depletion), against 1,034 in the national export. The export uses observed
+    sire genotypes, and carrier sires are over-represented (sire amplification), so the export sits
+    above a random-mating calculation. This is reported as a gap, not forced to match.
+48. **Site scope (Phase 6).** Only validated exports are read; each is schema-checked at build time
+    (zod) and checked for individual-identifier keys. The site shows the 3c slope (-0.74 kg per 1%)
+    only, not the attenuation figure. Lazy loading per section; first-load JS and CSS about 256 KB gzipped.
+    The Dryad dataset licence was not stated on the record text checked; the footer says to verify it.
+
 ## Deviations from the brief
 
 1. **V11 replaced** by the addendum's source-data inventory (10 CSVs + 16 images), as instructed.

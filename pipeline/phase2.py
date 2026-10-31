@@ -494,7 +494,7 @@ def thin_manhattan_df(df: pd.DataFrame, max_points: int = 24_000) -> tuple[pd.Da
     strong = df[df["nlp"] >= 5.0].copy()
     strong["bin20k"] = strong["BP"] // 20_000
     strong_kept = (
-        strong.sort_values(["CHR", "bin20k", "abs_z"], ascending=[True, True, False])
+        strong.sort_values(["CHR", "bin20k", "abs_z", "BP"], ascending=[True, True, False, True])
         .groupby(["CHR", "bin20k"], as_index=False)
         .head(3)
         .drop(columns=["bin20k"])
@@ -503,7 +503,7 @@ def thin_manhattan_df(df: pd.DataFrame, max_points: int = 24_000) -> tuple[pd.Da
     bg = df[df["nlp"] < 5.0].copy()
     bg["bin25k"] = bg["BP"] // 25_000
     bg25 = (
-        bg.sort_values("abs_z", ascending=False)
+        bg.sort_values(["abs_z", "CHR", "BP"], ascending=[False, True, True])
         .drop_duplicates(subset=["CHR", "bin25k"], keep="first")
         .drop(columns=["bin25k"])
     )
@@ -511,18 +511,20 @@ def thin_manhattan_df(df: pd.DataFrame, max_points: int = 24_000) -> tuple[pd.Da
     bg_low = bg25[bg25["nlp"] < 2.5].copy()
     bg_low["bin125k"] = bg_low["BP"] // 125_000
     bg_low_kept = (
-        bg_low.sort_values("abs_z", ascending=False)
+        bg_low.sort_values(["abs_z", "CHR", "BP"], ascending=[False, True, True])
         .drop_duplicates(subset=["CHR", "bin125k"], keep="first")
         .drop(columns=["bin125k"])
     )
 
     combined = (
         pd.concat([must_keep_df, strong_kept, bg_mid, bg_low_kept], ignore_index=True)
-        .sort_values(["must_keep", "abs_z"], ascending=[False, False])
+        .sort_values(["must_keep", "abs_z", "CHR", "BP"], ascending=[False, False, True, True])
         .drop_duplicates(subset=["CHR", "BP"], keep="first")
     )
     if len(combined) > max_points:
-        combined = combined.sort_values(["must_keep", "nlp"], ascending=[False, False]).head(
+        combined = combined.sort_values(
+            ["must_keep", "nlp", "CHR", "BP"], ascending=[False, False, True, True]
+        ).head(
             max_points
         )
     combined = combined.sort_values(["CHR", "BP"]).reset_index(drop=True)
@@ -562,7 +564,6 @@ def load_thinned_candidates_from_duckdb(
 
     extra_inner = f", a.{extra_z_col} AS Z_EXTRA" if extra_z_col else ""
     extra_outer = ", Z_EXTRA" if extra_z_col else ""
-    extra_argmax = f", ARG_MAX(a.{extra_z_col}, ABS(a.{z_col})) AS Z_EXTRA" if extra_z_col else ""
 
     must_keep_values = ", ".join(f"({c}, {b})" for c, b in MUST_KEEP_VARIANTS)
 
@@ -581,7 +582,7 @@ def load_thinned_candidates_from_duckdb(
             SELECT a.CHR, a.BP, a.{z_col} {extra_inner},
                    ROW_NUMBER() OVER (
                        PARTITION BY a.CHR, a.BP // 20000
-                       ORDER BY ABS(a.{z_col}) DESC
+                       ORDER BY ABS(a.{z_col}) DESC, a.BP ASC, a.{z_col} DESC
                    ) AS rn
             FROM '{pq_file}' a
             WHERE ABS(a.{z_col}) >= 4.417
@@ -589,13 +590,17 @@ def load_thinned_candidates_from_duckdb(
         WHERE rn <= 3
     ),
     bg25 AS (
-        SELECT
-            a.CHR,
-            ARG_MAX(a.BP, ABS(a.{z_col})) AS BP,
-            ARG_MAX(a.{z_col}, ABS(a.{z_col})) AS Z
-            {extra_argmax}
-        FROM '{pq_file}' a
-        GROUP BY a.CHR, a.BP // 25000
+        -- Deterministic winner per 25-kb bin: largest |Z|, ties broken by position then sign.
+        SELECT CHR, BP, Z {extra_outer}
+        FROM (
+            SELECT a.CHR, a.BP, a.{z_col} AS Z {extra_inner},
+                   ROW_NUMBER() OVER (
+                       PARTITION BY a.CHR, a.BP // 25000
+                       ORDER BY ABS(a.{z_col}) DESC, a.BP ASC, a.{z_col} DESC
+                   ) AS rn
+            FROM '{pq_file}' a
+        )
+        WHERE rn = 1
     ),
     unioned AS (
         SELECT * FROM must_keep
@@ -604,8 +609,8 @@ def load_thinned_candidates_from_duckdb(
         UNION ALL
         SELECT * FROM bg25
     )
-    SELECT CHR, BP, FIRST(Z) AS Z
-           {', FIRST(Z_EXTRA) AS Z_EXTRA' if extra_z_col else ''}
+    SELECT CHR, BP, MIN(Z) AS Z
+           {', MIN(Z_EXTRA) AS Z_EXTRA' if extra_z_col else ''}
     FROM unioned
     GROUP BY CHR, BP
     """
@@ -617,8 +622,8 @@ def load_thinned_candidates_from_duckdb(
     mapped = con.execute(
         f"""
         SELECT t.CHR, t.BP,
-               FIRST(m."CHR.ARS") AS CHR_ARS,
-               FIRST(m."BP.ARS") AS BP_ARS
+               FIRST(m."CHR.ARS" ORDER BY m."CHR.ARS", m."BP.ARS") AS CHR_ARS,
+               FIRST(m."BP.ARS" ORDER BY m."CHR.ARS", m."BP.ARS") AS BP_ARS
         FROM thinned_pts t
         LEFT JOIN '{o10}' m ON t.CHR = m."CHR.UMD" AND t.BP = m."BP.UMD"
         GROUP BY t.CHR, t.BP

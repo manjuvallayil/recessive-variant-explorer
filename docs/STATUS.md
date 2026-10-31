@@ -1,84 +1,95 @@
 # Project Status: Recessive Variant Explorer
 
-Last verified: 2026-10-31, HEAD c01bf25. `ruff check .` clean, `uv run pytest` all passing,
-`node --test web/src/lib/power.test.ts` 5/5.
+Last updated: 2026-10-31. Last commit: b1a053b (Phase 4a/4b/4c, Makefile). Several phases are done in the
+working tree but NOT yet committed (see "Uncommitted work"). Read this file first, then run the checks in
+"Resume commands" before changing anything.
 
 ## Phase table
 
 | Phase | Status | Commit | Note |
 |---|---|---|---|
 | 0 | done | 231380e | Gate A recorded; data inventory verified. |
-| 1 | done | b5bfefb | Table 1 reproduction. PLCD4 homozygote body weight -108.7 kg (paper -109) under the gen_1 key. |
-| 2 | done | 3b572c2 | Gate B fix-ups (Manhattan, national burden, known differences). |
-| 3a | done | 8085809 | RNA splice/expression module. Not re-verified this session. |
-| 3b | done | 8085809 | Farm profiles module. Not re-verified this session. |
-| 3c | done | c01bf25 | Unit bug fixed: -0.740 kg per 1% F (paper -0.77). Recessive attenuation 2.1%. The het+hom 23.6% is a population-structure artefact, not a reproduction of the paper's 23.5%. |
-| 4a | blocked | - | ESM-2 loads. RefSeq residue check: PLCD4 A326, DPF2 K216, MTRF1 R341 match. ARSI N301 does not match (G is at 302). Decision needed (see issue c). No scoring code yet. |
-| 4b | partial | 3b32ad9 | Key bug fixed. Body-weight flag AUC 0.678 [0.643, 0.713]; CV logistic 0.690; Mahalanobis 0.579; 170 pooled positives. Only DPF2/MUS81 (99 positives) is evaluated alone. Autoencoder, isolation forest, LightGBM and nested CV not done. |
-| 4c | partial | 7d6271e | MAF and effects for the 30 truth QTL (MAF 0.96% to 5.06%). Dominance test detects 19/30 at GWS; additive detects 0/30. Recessive and genotype-class tests are not in ExtFig9b. Injected-effect scan not done. |
-| 4d | done | b420f9b | Exact noncentral chi-square (ncx2 / Poisson mixture in TS). Cow recessive 0.9477 (paper 0.947), genotype-class 0.9122 (paper 0.911); max residual vs ExtFig1 0.0021. |
-| 5 | not started | - | Mating-risk simulator. |
-| 6 | not started | - | Web app. No `web/package.json` yet. |
+| 1 | done | b5bfefb | Table 1 reproduction. PLCD4 homozygote body weight -110.9 kg (LOSO-adjusted; paper -109). |
+| 2 | done, determinism fix pending check | 3b572c2 (+ uncommitted) | Manhattan thinning made deterministic (tie-breaks in DuckDB queries). Run 1 finished after the fix; run 2 (for the comparison) was interrupted. See open issue (a). |
+| 3a | done | 8085809 | RNA module. Export has means only (no class comparison). |
+| 3b | done, thin | 8085809 | Farm export has group sizes only; no trait comparison. |
+| 3c | done | c01bf25 | Slope -0.740 kg per 1% F (CI -0.764 to -0.714; paper -0.77). Recessive (homozygote-only) attenuation 2.1%. The 24% het+hom figure is a population-structure artefact, not a reproduction of the paper's 23.5%. |
+| 4a | done (failed concordance) | b1a053b | ESM-2 scores for PLCD4, MTRF1, DPF2 (ARSI dropped). Ordering is the reverse of the observed effects; recorded as failed, not used as evidence. |
+| 4b | partial | 3b32ad9, b1a053b | Key bug fixed. Pooled B0 AUROC 0.678 (CI 0.643-0.713); CV logistic 0.690; Mahalanobis 0.579. Per-locus AUROC (n hom): PLCD4 0.79 (21), GALNT2 0.86 (29), FGD4 0.63 (28), DPF2/MUS81 0.63 (110). Not done: autoencoder, isolation forest, LightGBM, nested CV. |
+| 4c | done | 7d6271e, b1a053b | Threshold P < 5e-8 on ExtFig9b. Dominance detects 19/30 truth QTL; additive 0/30 (closest additive P 5.9e-8). Per-MAF-bin table exported. Overlay on power curve not done (planned after site). |
+| 4d | done | b420f9b | Exact noncentral chi-square. Cow recessive 0.9477 (paper 0.947); genotype class 0.9122 (paper 0.911). Max residual 0.0021. |
+| 5 | done in working tree, not committed | none | Mating-risk simulator. Math in web/src/lib/mating.ts (14 unit tests). Inputs from pipeline/phase5_inputs.py -> mating_inputs.json. Calibration gap vs national export is reported, not forced. |
+| 6 | built, Gate D pending review | none | Next.js static site in web/. npm run build, npm run dev, validate-data, tsc, eslint, node tests all pass. Lighthouse (served from out/): mobile 100/100/100/100, desktop 100/100/100/100 (first load only). Not committed. |
 
-## Verified findings (this session)
+## Uncommitted work (as of this update)
 
-- Key semantics: genotype rows are shared between gen_1 and gen_3 (identical order), but each
-  phenotype family has its own IID key. `phen_1` uses `gen_1.fam`; `phen_4` uses `gen_3.*.fam`.
-  Evidence: PLAG1 (gen_3.7) vs body weight gives t = 216 under the gen_1 key and nothing under
-  gen_3.7.fam; DGAT1-candidate (gen_3.6) vs milk/protein/fat gives t = 108, 71, -42 under
-  gen_3.6.fam and nothing under gen_1. All gen_3 `.fam` files share one order.
-- The earlier 4b AUC of about 0.5 came from joining phen_1 to gen_3 genotypes through the gen_3
-  key. Fixed.
-- ExtFig2c: its `ID` column does not match either genotype key (agreement at chance). Its
-  within-row bw and genotype pairing reproduces the paper's homozygote effects. Not used as a key.
-- phen_1 and phen_4 traits are uncorrelated when joined by ID. Expected if the families have
-  separate keys. Not used for any inference.
+- `Makefile`: data target runs phases 0-5 in order (phase 5 added).
+- `pipeline/phase2.py`: deterministic tie-breaks in Manhattan thinning SQL; ARS mapping ordered.
+- `pipeline/phase5_inputs.py`: new (simulator inputs).
+- `pipeline/phase4_plm.py`, `pipeline/data/refseq_proteins.fasta`: committed in b1a053b.
+- `web/`: full Next.js app (package.json, tsconfig, next/eslint/postcss configs, src/app, src/components, src/lib with schemas, mating, power, charts, data loader, scripts/validate-data.ts, tests). `web/package-lock.json` and `web/out/` are generated; `web/out` and `node_modules` are git-ignored.
+- `web/public/data/*.json`: regenerated by make data (generated_at / code_version changed; numbers unchanged except Manhattan and imputation rounding, pending the determinism check).
+- `web/src/lib/power.ts`: Lanczos fix (?? 0 for strict indexing), no numeric change.
+- `docs/ASSUMPTIONS.md`: items 40-48 (4a to 6 decisions) added.
 
 ## Open issues
 
-(a) Closed (b420f9b).
+(a) **Phase 2 determinism not yet confirmed.** Run 1 completed after the DuckDB fix. Run 2 was
+    interrupted. Next: run `uv run python pipeline/phase2.py` twice, copy web/public/data after each,
+    and compare manhattan_dom.json, manhattan_add.json and imputation_by_maf.json with metadata removed.
+    Expected: manhattan files identical; imputation identical to ~1e-12. If the manhattan files still
+    differ, look for other unordered windows or sums in phase2.py (the thinning SQL is the first place to check).
 
-(b) Closed for the core fix (3b32ad9). Still open: unsupervised autoencoder, isolation forest,
-    LightGBM, nested CV. Sire-grouped CV is not possible (pedigree sires are outside the
-    discovery ID space), so related animals can cross folds. Stated in ASSUMPTIONS item 36.
+(b) **Phase 5 and 6 are not committed.** Commit after (a) passes, in two commits (phase 5; web app), using
+    the repo's small-commit convention.
 
-(c) **ARSI needs a decision (STOP, per brief).** XP_002689338.1 has N at residue 301 and G at 302
-    (Met counted). PLCD4, DPF2 and MTRF1 numbering matches the brief with Met counted, so the
-    ARSI mismatch is not a general numbering offset. Options: (1) you supply the ARSI accession or
-    transcript the paper used (Supplementary Table 2); (2) drop ARSI from 4a and score
-    PLCD4, DPF2 and MTRF1 only (the previous plan). I have not guessed a numbering.
+(c) **Dryad dataset licence** not stated on the record text checked. Footer says to verify before reuse.
+    Must be resolved before any deploy.
 
-(d) Closed (7d6271e).
+(d) **Gate D review (user):** site runs with `npm run dev`. The user asked to stop at Gate D with: the
+    section list, the UI-number-to-source map (in the site at /methods/ and in docs/ASSUMPTIONS.md
+    items 40-48), and Lighthouse mobile scores. Not yet signed off.
 
-(e) Inbreeding: the unit bug is fixed. The 23.5% attenuation is not reproduced. The primary
-    recessive estimate is 2%. Open: a locus-consistent LOSO adjustment for a joint model (each
-    locus has its own other_2 window), which may change the het-dummy results.
+(e) **Visual checks outstanding:** panels checked by screenshot: hook, proxy, Manhattan, zoom, evidence,
+    common, signal, simulator. Not yet checked: power, limits, dark theme. Known nit: gene labels overlap
+    in dense regional windows (zoom).
 
-(f) New: Makefile `data` target runs only phases 0 to 2. Phases 3 and 4 are run by hand.
+(f) **Remaining 4b models** (autoencoder, isolation forest, LightGBM, nested CV) and the **4c overlay**
+    come after the site works, per user instruction.
 
-## Next steps (proposed, pending your decision on c)
+(g) **ARSI** dropped from 4a (residue mismatch: N301, G at 302) and from the simulator (no breed frequency).
+    Not guessed.
 
-1. 4a: score PLCD4, DPF2 and MTRF1 with ESM-2 (wild-type marginal, single pass). ARSI waits for (c).
-2. 4b: add the autoencoder and isolation forest, and LightGBM with nested CV.
-3. 4c: overlay the empirical detection points on the 4d power curve.
-4. Phase 5: mating-risk simulator (TypeScript, unit-tested).
-5. Phase 6: scaffold Next.js (`web/package.json`), then sections as each phase is complete.
+(h) **Phase 3b / 3a exports** have counts and means only. Trait comparisons with bootstrap intervals
+    are not implemented.
+
+## Key findings to keep
+
+- Key semantics: genotype rows are shared between gen_1 and gen_3; phen_1 is keyed to gen_1.fam,
+  phen_4 to gen_3.fam (PLAG1 and DGAT1-candidate checks). Do not "fix" this.
+- The 4b AUROC of about 0.5 earlier was caused by joining phen_1 to gen_3 keys. Fixed.
+- PLCD4 per-locus AUROC is capped near 0.82 by the effect size vs the 63 kg SD. 0.9 is not reachable.
+- Homozygote depletion: observed/expected 0.33-0.61 at the four loci (pooled-q HWE). Not explained by mixing.
+- Inbreeding: show only the 3c slope on the site (-0.74 kg per 1%). Do not show the 24%/2% attenuation.
+- QTL counts: 7 of 8 at candidate variants; 6 of 8 within ±1 Mb (DPF2/MUS81 window peak).
+- HF carrier union: 43.5% (DPF2 and MUS81 separate) / 35.3% (one locus); independence assumed.
 
 ## Resume commands
 
-- lint: `uv run ruff check .`
-- test: `uv run pytest`
-- data: `make data` (phases 0 to 2 only)
-- phase modules: `uv run python pipeline/phase<N>_<name>.py`
-  - phase4 syndrome: `uv run python pipeline/phase4_syndrome.py` (about 95 s)
-  - phase4 power: `uv run python pipeline/phase4_power.py`
-  - phase4 detection: `uv run python pipeline/phase4_detection.py`
-  - phase3 inbreeding: `uv run python pipeline/phase3_inbreeding.py`
-- phase4 TS: `node --test web/src/lib/power.test.ts`
-- site (once built): `make web` / `cd web && npm run dev`
+- Python lint and tests: `uv run ruff check . && uv run pytest`
+- Pipeline (phases 0-5): `make data` (phases 0-2 are slow; phase 4a loads ESM-2 locally, HF_HUB_OFFLINE=1)
+- Single phases: `uv run python pipeline/phase<N>_<name>.py`
+- Web (from web/):
+  - `npm run check` (validate-data, tsc, eslint, node tests)
+  - `npm run build` (writes web/out)
+  - `npm run dev` (http://localhost:3000)
+  - Lighthouse (after build): serve out/ on a port and run lighthouse with CHROME_PATH set to Google Chrome.
+- Node tests only: `node --test web/src/lib/power.test.ts web/src/lib/mating.test.ts`
 
 ## Rules
 
-- Nothing unvalidated goes into the site.
-- Derived data only in git.
-- No deploy before Gate D.
+- Nothing unvalidated goes into the site. The site reads only validated exports (zod schemas at build time).
+- Derived data only in git. No individual or sire identifiers (checked by validate-data).
+- No deploy before the Dryad licence is verified and the user signs off Gate D.
+- Do not claim the paper's 23.5% attenuation is reproduced.
+- Do not show the 4a protein-model ordering as support for any mutation.

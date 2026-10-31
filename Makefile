@@ -2,7 +2,7 @@
 
 PY := uv run python
 
-# Phases 0-4 in order. Phases 3 and 4 were previously run by hand.
+# Phases 0-5 in order (phase 5 = simulator inputs). Phases 3-5 were previously run by hand.
 data:
 	$(PY) pipeline/phase0_verify.py
 	$(PY) pipeline/phase1.py
@@ -14,6 +14,7 @@ data:
 	$(PY) pipeline/phase4_power.py
 	$(PY) pipeline/phase4_syndrome.py
 	HF_HUB_OFFLINE=1 $(PY) pipeline/phase4_plm.py
+	$(PY) pipeline/phase5_inputs.py
 
 verify: data
 
