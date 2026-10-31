@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-31T04:17:05.182024+00:00",
+  "code_version": "3b572c2",
+  "source_files": {
+    "phen_1_1": "dryad/phens/phen_1.1.txt",
+    "phen_1_2": "dryad/phens/phen_1.2.txt",
+    "phen_1_3": "dryad/phens/phen_1.3.txt",
+    "gen_3": "dryad/gens/gen_3.*.bed"
+  },
+  "syndrome_signal": {
+    "baseline": "body_weight_alone",
+    "baseline_auc": 0.48302690248433583,
+    "baseline_auprc": 0.0013128440534498687,
+    "baseline_auc_ci": [
+      0.4226833366284739,
+      0.5435053664384758
+    ],
+    "baseline_auprc_ci": null,
+    "full_auc": 0.5294583878155429,
+    "full_auprc": 0.0016092217720026399,
+    "full_auc_ci": [
+      0.4753084397413915,
+      0.5811761608116329
+    ],
+    "full_auprc_ci": null,
+    "base_rate": 0.0013486446788623313,
+    "top1_precision": 0.0026702269692923898,
+    "top5_precision": 0.0016021361815754338,
+    "n_positive_labels": 101,
+    "n_records": 74890
+  },
+  "per_locus": {
+    "PLCD4": {
+      "n_positive": 20,
+      "n_used": 30,
+      "homozygous_mutant_auc": null,
+      "homozygous_mutant_auprc": null
+    },
+    "FGD4": {
+      "n_positive": 26,
+      "n_used": 30,
+      "homozygous_mutant_auc": null,
+      "homozygous_mutant_auprc": null
+    },
+    "GALNT2": {
+      "n_positive": 27,
+      "n_used": 30,
+      "homozygous_mutant_auc": null,
+      "homozygous_mutant_auprc": null
+    },
+    "DPF2/MUS81": {
+      "n_positive": 101,
+      "n_used": 30,
+      "homozygous_mutant_auc": 1.0,
+      "homozygous_mutant_auprc": 1.0
+    }
+  },
+  "notes": [
+    "Phase 4b trimmed: B0 body weight alone as flag; label from homozygous-mutant status.",
+    "Full multi-trait logistic on bw/stature/BCS; paper-style negative results pending."
+  ]
+}

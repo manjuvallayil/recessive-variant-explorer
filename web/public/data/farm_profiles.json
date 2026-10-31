@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-31T03:44:36.716531+00:00",
+  "code_version": "3b572c2",
+  "source_files": {
+    "gen_8.1": "dryad/gens/gen_8.1.txt",
+    "phen_5.1": "dryad/phens/phen_5.1.txt",
+    "gen_7.1": "dryad/gens/gen_7.1.txt",
+    "phen_6.1": "dryad/phens/phen_6.1.txt"
+  },
+  "farm_profiles": {
+    "gen_8.1": {
+      "Control": {
+        "n_animals": 9
+      },
+      "DPF2/MUS81": {
+        "n_animals": 8
+      },
+      "FGD4": {
+        "n_animals": 9
+      },
+      "PLCD4": {
+        "n_animals": 8
+      }
+    },
+    "gen_7.1": {
+      "Case": {
+        "n_animals": 6
+      },
+      "Control": {
+        "n_animals": 6
+      }
+    }
+  },
+  "small_n_caveat": "Phase 3b trimmed: farm-cohort groups are small (e.g. PLCD4 n=8, FGD4 n=9, DPF2/MUS81 n=8, control n=9; GALNT2 6 vs 6); no p-hacking; report multiplicity."
+}

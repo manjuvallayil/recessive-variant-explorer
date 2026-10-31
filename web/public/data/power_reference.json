@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-31T03:48:46.503539+00:00",
+  "code_version": "3b572c2",
+  "source_files": {
+    "ext_fig1": "dryad/source_data/source_data.ExtFig1.csv"
+  },
+  "power": {
+    "test": "recessive_class",
+    "effect_size_sd": 2.2645540682891916,
+    "sample_size": 50000,
+    "noncentrality": 256410.25641025644,
+    "gws_alpha": 5e-08,
+    "power": 1.0
+  },
+  "paper_claim": {
+    "maf": 0.025,
+    "variance_explained": 0.1,
+    "heritability": 0.25,
+    "n_animals": 50000,
+    "power_recessive_class": 0.9
+  },
+  "notes": [
+    "Phase 4d trimmed: analytic noncentral chi-square power for recessive/class test.",
+    "Paper claim: MAF 2.5%, variance 0.1%, h2=0.25, n=50,000 -> ~90% power."
+  ]
+}

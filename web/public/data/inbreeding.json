@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-31T03:46:40.314297+00:00",
+  "code_version": "3b572c2",
+  "source_files": {
+    "other_7": "dryad/other/other_7.txt",
+    "phen_1.1": "dryad/phens/phen_1.1.txt"
+  },
+  "inbreeding": {
+    "n_animals": 68577,
+    "inbreeding_coefficient_mean": 0.23102818729311578,
+    "inbreeding_depression_slope_kg_per_unit_f": -74.02468095921671,
+    "inbreeding_depression_slope_kg_per_1pct_inbreeding": -7402.468095921671,
+    "r_squared_weight_on_f": 0.044706566558007865
+  },
+  "paper_comparison": {
+    "paper_kg_per_1pct_inbreeding": -0.77,
+    "paper_nonadditive_fraction": 0.235
+  },
+  "notes": [
+    "Phase 3c trimmed: inbreeding-depression slope from OLS of bodyweight on inbreeding.",
+    "Joint non-additive attenuation not computed here; paper 23.5%."
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-31T03:39:29.528991+00:00",
+  "code_version": "3b572c2",
+  "source_files": {
+    "phen_7.1": "dryad/phens/phen_7.1.txt",
+    "phen_7.2": "dryad/phens/phen_7.2.txt",
+    "proxy_gene_for_mus81": "dryad/gens/gen_1.9.bim"
+  },
+  "rna": {
+    "splice": {
+      "FGD4": {
+        "n_animals": 350,
+        "mean_value": 1.378658954621849
+      },
+      "GALNT2": {
+        "n_animals": 350,
+        "mean_value": 1.8265250571428582
+      }
+    },
+    "expression": {
+      "FGD4": {
+        "n_animals": 350,
+        "mean_value": 11.02869914285714
+      },
+      "GALNT2": {
+        "n_animals": 350,
+        "mean_value": 9.033019428571428
+      },
+      "MUS81": {
+        "n_animals": 350,
+        "mean_value": 8.71232257142857
+      }
+    }
+  },
+  "proxy": {
+    "MUS81": {
+      "proxy_gene": "DPF2",
+      "note": "MUS81 exact variant absent from gen_6.1; DPF2 used as labelled proxy."
+    }
+  },
+  "notes": [
+    "Phase 3a trimmed: splice/expression means for the recessive RNA targets.",
+    "MUS81 expression reported via DPF2 labelled proxy."
+  ]
+}
