@@ -4,12 +4,11 @@ from __future__ import annotations
 
 import csv
 import json
-import math
 import subprocess
 from datetime import UTC, datetime
 from pathlib import Path
 
-from scipy.stats import chi2
+from scipy.stats import chi2, ncx2
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "web" / "public" / "data"
@@ -34,8 +33,8 @@ def code_version() -> str:
         return "unknown"
 
 
-def normal_cdf(z: float) -> float:
-    return 0.5 * (1.0 + math.erf(z / math.sqrt(2.0)))
+def noncentrality(variance_explained: float, sample_size: int) -> float:
+    return sample_size * variance_explained / (1.0 - variance_explained)
 
 
 def power_for(
@@ -44,26 +43,33 @@ def power_for(
     df: int = 1,
     alpha: float = 5e-8,
 ) -> float:
-    lam = sample_size * variance_explained / (1.0 - variance_explained)
+    """Exact power: P(noncentral chi2(df, lambda) > central chi2 critical value at alpha)."""
+    lam = noncentrality(variance_explained, sample_size)
     crit = float(chi2.ppf(1.0 - alpha, df))
-    root_lam = math.sqrt(lam)
-    root_x = math.sqrt(crit)
-    sd = math.sqrt(df)
-    return float(
-        1.0 - normal_cdf((root_x - root_lam) / sd) + normal_cdf(-((root_x + root_lam) / sd))
-    )
+    return float(ncx2.sf(crit, df, lam))
+
+
+# Only the cow recessive and genotype-class curves are the closed-form test this module
+# implements (1-df and 2-df noncentral chi2 at a single variance explained). The additive
+# curves use a different coding (variance captured by the additive term is not 0.1%), and
+# the bull/sire curves include progeny-based designs. They are reported, not validated.
+COMPARABLE_MODELS = {"Cow - Recessive": 1, "Cow - Genotype Class": 2}
 
 
 def compute_validation() -> dict:
     rows = []
     max_abs_diff = 0.0
     worst = None
+    not_compared: dict[str, float] = {}
     with open(EXT_FIG1, newline="") as fh:
         for row in csv.DictReader(fh):
             n = int(round(float(row["N"])))
             model = row["model"]
             p_csv = float(row["Power"])
-            df = 2 if "Genotype Class" in model else 1
+            if model not in COMPARABLE_MODELS:
+                not_compared[model] = max(not_compared.get(model, 0.0), abs(p_csv))
+                continue
+            df = COMPARABLE_MODELS[model]
             p_an = float(power_for(VARIANCE_EXPLAINED, n, df=df))
             diff = abs(p_an - p_csv)
             if diff > max_abs_diff:
@@ -78,6 +84,10 @@ def compute_validation() -> dict:
                 }
             )
     return {
+        "compared_models": sorted(COMPARABLE_MODELS),
+        "not_compared_models": sorted(not_compared),
+        "tolerance_abs": 0.005,
+        "passes": max_abs_diff <= 0.005,
         "source_ext_fig1": {
             "variance_explained": VARIANCE_EXPLAINED,
             "n": 50_000,
@@ -90,7 +100,7 @@ def compute_validation() -> dict:
         "worst_row": worst,
         "paper_claim": PAPER_CLAIM,
         "notes": [
-            "Phase 4d trimmed: analytic power via Z-transformation of noncentral chi-square.",
+            "Analytic power: exact noncentral chi-square (scipy.stats.ncx2), df = 1 or 2.",
         ],
     }
 
@@ -114,7 +124,7 @@ def compute_power() -> dict:
         "paper_claim": PAPER_CLAIM,
         "validation": compute_validation(),
         "notes": [
-            "Phase 4d trimmed: analytic power via Z-transformation of noncentral chi-square.",
+            "Analytic power: exact noncentral chi-square (scipy.stats.ncx2), df = 1 or 2.",
             "Paper claim: MAF 2.5%, variance 0.1%, h2=0.25, n=50,000 -> ~90% power.",
         ],
     }

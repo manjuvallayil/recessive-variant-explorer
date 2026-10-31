@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-31T04:36:24.015059+00:00",
-  "code_version": "b900fea",
+  "generated_at": "2026-10-31T05:10:22.032455+00:00",
+  "code_version": "1428d93",
   "source_files": {
     "ext_fig1": "dryad/source_data/source_data.ExtFig1.csv"
   },
@@ -12,7 +12,7 @@
     "lambda": 50.050050050050054,
     "gws_alpha": 5e-08,
     "critical_chi2_df1": 29.716785488631203,
-    "power": 0.9477368810833096
+    "power": 0.9477368810833091
   },
   "paper_claim": {
     "maf": 0.025,
@@ -22,21 +22,34 @@
     "power_recessive_class": 0.9
   },
   "validation": {
+    "compared_models": [
+      "Cow - Genotype Class",
+      "Cow - Recessive"
+    ],
+    "not_compared_models": [
+      "Bull - Additive",
+      "Bull - Additive - No affecteds",
+      "Bull - Genotype Class",
+      "Bull - Recessive",
+      "Cow - Additive"
+    ],
+    "tolerance_abs": 0.005,
+    "passes": true,
     "source_ext_fig1": {
       "variance_explained": 0.001,
       "n": 50000,
       "cow_recessive_power": 0.947,
       "cow_genotype_class_power": 0.911,
-      "analytic_recessive_power": 0.9477368810833096,
-      "analytic_genotype_class_power": 0.8165645971645715
+      "analytic_recessive_power": 0.9477368810833091,
+      "analytic_genotype_class_power": 0.9121927131996364
     },
-    "max_abs_diff_vs_source": 0.9999924075698887,
+    "max_abs_diff_vs_source": 0.002109617799987862,
     "worst_row": {
-      "model": "Cow - Additive",
-      "n": 95500,
-      "analytic": 0.9999924075698887,
-      "source": 0.0,
-      "diff": 0.9999924075698887
+      "model": "Cow - Genotype Class",
+      "n": 31500,
+      "analytic": 0.4621096177999879,
+      "source": 0.46,
+      "diff": 0.002109617799987862
     },
     "paper_claim": {
       "maf": 0.025,
@@ -46,11 +59,11 @@
       "power_recessive_class": 0.9
     },
     "notes": [
-      "Phase 4d trimmed: analytic power via Z-transformation of noncentral chi-square."
+      "Analytic power: exact noncentral chi-square (scipy.stats.ncx2), df = 1 or 2."
     ]
   },
   "notes": [
-    "Phase 4d trimmed: analytic power via Z-transformation of noncentral chi-square.",
+    "Analytic power: exact noncentral chi-square (scipy.stats.ncx2), df = 1 or 2.",
     "Paper claim: MAF 2.5%, variance 0.1%, h2=0.25, n=50,000 -> ~90% power."
   ]
 }
