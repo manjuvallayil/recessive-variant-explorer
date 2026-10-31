@@ -1,4 +1,16 @@
-"""Phase 4b: syndrome-signal detection with AUROC/AUPRC metrics (trimmed)."""
+"""Phase 4b: syndrome-signal detection with AUROC/AUPRC metrics.
+
+Key facts (see docs/ASSUMPTIONS.md item 5):
+- phen_1.* (body weight, stature, BCS) is keyed by gen_1.*.fam IIDs. Labels for phen_1
+  outcomes must therefore come from the gen_1 windows. Using gen_3.*.fam (the phen_4 key)
+  for phen_1 gives no signal at all.
+- Labels are homozygous-mutant status. DPF2 and MUS81 are one locus (hom for either).
+- Pre-specified direction: mutant homozygotes are lighter (Phase 1 effects are negative),
+  so the body-weight flag is -bw. The direction comes from Phase 1 effect signs, not from
+  label-tuned thresholds.
+- Labels with fewer than N_PER_LOCUS_MIN positives are not evaluated on their own. They
+  are included in the pooled "any" label.
+"""
 
 from __future__ import annotations
 
@@ -12,6 +24,9 @@ import pandas as pd
 from bed_reader import open_bed
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import average_precision_score, roc_auc_score
+from sklearn.model_selection import StratifiedKFold
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
 
 ROOT = Path(__file__).resolve().parents[1]
 DRYAD = ROOT / "dryad"
@@ -20,13 +35,18 @@ GENS = DRYAD / "gens"
 OUT = ROOT / "web" / "public" / "data"
 N_PER_LOCUS_MIN = 30
 BOOTSTRAP_B = 1000
+CV_FOLDS = 5
+CV_SEED = 0
 
-LOCI = [
-    ("PLCD4", "gen_3.2", 2, 107313998),
-    ("FGD4", "gen_3.3", 5, 77632752),
-    ("GALNT2", "gen_3.10", 28, 1312334),
-    ("DPF2/MUS81", "gen_3.11", 29, 44213160),
+# (variant name, gen_1 window, chrom, bp, label group)
+VARIANTS = [
+    ("PLCD4", "gen_1.2", 2, 107313998, "PLCD4"),
+    ("FGD4", "gen_1.3", 5, 77632752, "FGD4"),
+    ("GALNT2", "gen_1.8", 28, 1312334, "GALNT2"),
+    ("DPF2", "gen_1.9", 29, 44213160, "DPF2/MUS81"),
+    ("MUS81", "gen_1.9", 29, 44645469, "DPF2/MUS81"),
 ]
+GROUPS = ["PLCD4", "FGD4", "GALNT2", "DPF2/MUS81"]
 
 
 def code_version() -> str:
@@ -38,128 +58,127 @@ def code_version() -> str:
         return "unknown"
 
 
-def load_fam_iids(path: Path) -> np.ndarray:
-    return pd.read_csv(path, sep=r"\s+", header=None)[1].astype(int).to_numpy()
-
-
-def read_bed_variants(path: Path, indices: list[int]) -> np.ndarray:
-    bed = open_bed(path)
-    arr = bed.read((slice(None), indices), dtype="int8")
-    return arr.reshape((arr.shape[0], len(indices)))
-
-
-def find_bim_index(bim: pd.DataFrame, chrom: int, bp: int) -> int:
+def variant_homozygous(stem: str, chrom: int, bp: int) -> pd.Series:
+    """Index: IID (gen_1.fam key). Value 1 if homozygous for A1 (mutant), else 0."""
+    bim = pd.read_csv(GENS / f"{stem}.bim", sep=r"\s+", header=None)
     hit = bim.index[(bim[0] == chrom) & (bim[3] == bp)]
     if len(hit) == 0:
-        raise ValueError(f"variant {chrom}:{bp} not found")
-    return int(hit[0])
+        raise ValueError(f"variant {chrom}:{bp} not found in {stem}")
+    bed = open_bed(GENS / f"{stem}.bed")
+    g = bed.read((slice(None), [int(hit[0])]), dtype="int8")[:, 0]
+    iids = pd.read_csv(GENS / f"{stem}.fam", sep=r"\s+", header=None)[1].astype(int).to_numpy()
+    keep = g >= 0
+    return pd.Series((g[keep] == 2).astype(int), index=iids[keep])
 
 
-def locus_genotypes(locus: str, stem: str, chrom: int, bp: int) -> dict[int, int]:
-    bim = pd.read_csv(GENS / f"{stem}.bim", sep=r"\s+", header=None)
-    idx = find_bim_index(bim, chrom, bp)
-    g = read_bed_variants(GENS / f"{stem}.bed", [idx])[:, 0]
-    iids = load_fam_iids(GENS / f"{stem}.fam")
-    return {int(iid): int(geno) for iid, geno in zip(iids, g, strict=True)}
-
-
-def _discovery() -> tuple[np.ndarray, pd.DataFrame]:
-    bw_df = pd.read_csv(PHENS / "phen_1.1.txt", sep=r"\s+").rename(columns={"yd_trait": "bw"})
-    sta_df = pd.read_csv(PHENS / "phen_1.2.txt", sep=r"\s+").rename(columns={"yd_trait": "stature"})
-    bcs_df = pd.read_csv(PHENS / "phen_1.3.txt", sep=r"\s+").rename(columns={"yd_trait": "bcs"})
+def _discovery() -> tuple[pd.DataFrame, dict[str, np.ndarray], dict[str, int]]:
+    bw = pd.read_csv(PHENS / "phen_1.1.txt", sep=r"\s+").rename(columns={"yd_trait": "bw"})
+    sta = pd.read_csv(PHENS / "phen_1.2.txt", sep=r"\s+").rename(columns={"yd_trait": "stature"})
+    bcs = pd.read_csv(PHENS / "phen_1.3.txt", sep=r"\s+").rename(columns={"yd_trait": "bcs"})
     frame = (
-        bw_df[["ID", "bw"]]
-        .merge(sta_df[["ID", "stature"]], on="ID", how="inner")
-        .merge(bcs_df[["ID", "bcs"]], on="ID", how="inner")
+        bw[["ID", "bw"]]
+        .merge(sta[["ID", "stature"]], on="ID", how="inner")
+        .merge(bcs[["ID", "bcs"]], on="ID", how="inner")
+        .dropna()
+        .reset_index(drop=True)
     )
-    frame = frame.dropna().reset_index(drop=True)
-    per_locus: dict[str, np.ndarray] = {}
-    pooled = np.zeros(len(frame), dtype=int)
-    for locus, stem, chrom, bp in LOCI:
-        gm = locus_genotypes(locus, stem, chrom, bp)
+    hom: dict[str, pd.Series] = {}
+    for name, stem, chrom, bp, _group in VARIANTS:
+        hom[name] = variant_homozygous(stem, chrom, bp)
+    labels: dict[str, np.ndarray] = {}
+    ids = frame["ID"].astype(int)
+    for group in GROUPS:
+        members = [name for name, _stem, _chrom, _bp, grp in VARIANTS if grp == group]
         lab = np.zeros(len(frame), dtype=int)
-        for pos, (_, row) in enumerate(frame.iterrows()):
-            iid = int(row["ID"])
-            g = gm.get(iid)
-            if g is not None and g == 2:
-                lab[pos] = 1
-        per_locus[locus] = lab
-        print(f"{locus}: homozygous-mutant positives = {int(lab.sum())}")
-        if int(lab.sum()) >= N_PER_LOCUS_MIN:
-            pooled = pooled | lab.astype(bool)
-    frame["label"] = pooled.astype(float)
-    return frame[["ID", "bw", "stature", "bcs", "label"]].to_numpy(dtype=float), frame, per_locus
+        for name in members:
+            lab = lab | ids.map(hom[name]).fillna(0).astype(int).to_numpy()
+        labels[group] = lab
+    pooled = np.zeros(len(frame), dtype=int)
+    for group in GROUPS:
+        pooled = pooled | labels[group]
+    counts = {g: int(labels[g].sum()) for g in GROUPS}
+    counts["any"] = int(pooled.sum())
+    frame["label"] = pooled
+    return frame, labels, counts
 
 
-def _boot_auc(
-    y: np.ndarray, pred: np.ndarray, b: int = BOOTSTRAP_B
-) -> tuple[float, float, float, float]:
+def _boot_ci(y: np.ndarray, score: np.ndarray, b: int = BOOTSTRAP_B) -> dict:
     rng = np.random.default_rng(0)
     aucs: list[float] = []
     auprcs: list[float] = []
+    n = len(y)
     for _ in range(b):
-        idx = rng.integers(0, len(y), len(y))
-        if len(np.unique(y[idx])) < 2:
+        idx = rng.integers(0, n, n)
+        yi = y[idx]
+        if yi.min() == yi.max():
             continue
-        y_i = y[idx]
-        p_i = pred[idx]
-        aucs.append(float(roc_auc_score(y_i, p_i)))
-        auprcs.append(float(average_precision_score(y_i, p_i)))
-    aucs_arr = np.array(aucs)
-    auprcs_arr = np.array(auprcs)
-    return (
-        float(np.percentile(aucs_arr, 2.5)),
-        float(np.percentile(aucs_arr, 97.5)),
-        float(np.percentile(auprcs_arr, 2.5)),
-        float(np.percentile(auprcs_arr, 97.5)),
-    )
+        aucs.append(float(roc_auc_score(yi, score[idx])))
+        auprcs.append(float(average_precision_score(yi, score[idx])))
+    a = np.array(aucs)
+    p = np.array(auprcs)
+    return {
+        "auc": float(roc_auc_score(y, score)),
+        "auc_ci": [float(np.percentile(a, 2.5)), float(np.percentile(a, 97.5))],
+        "auprc": float(average_precision_score(y, score)),
+        "auprc_ci": [float(np.percentile(p, 2.5)), float(np.percentile(p, 97.5))],
+    }
+
+
+def _top_precision(y: np.ndarray, score: np.ndarray, frac: float) -> dict:
+    k = max(1, int(np.ceil(frac * len(y))))
+    top = np.argsort(-score, kind="stable")[:k]
+    prec = float(np.mean(y[top]))
+    base = float(np.mean(y))
+    return {"k": k, "precision": prec, "enrichment": prec / base if base > 0 else None}
+
+
+def _mahalanobis(X: np.ndarray) -> np.ndarray:
+    """Unsupervised: distance from the sample mean in the sample covariance metric."""
+    mu = X.mean(axis=0)
+    cov = np.cov(X, rowvar=False)
+    inv = np.linalg.inv(cov)
+    d = X - mu
+    return np.sqrt(np.einsum("ij,jk,ik->i", d, inv, d))
+
+
+def _oof_logistic(X: np.ndarray, y: np.ndarray) -> np.ndarray:
+    """5-fold stratified out-of-fold predicted probabilities (scaler fit inside each fold)."""
+    oof = np.zeros(len(y), dtype=float)
+    skf = StratifiedKFold(n_splits=CV_FOLDS, shuffle=True, random_state=CV_SEED)
+    for tr, te in skf.split(X, y):
+        model = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000))
+        model.fit(X[tr], y[tr])
+        oof[te] = model.predict_proba(X[te])[:, 1]
+    return oof
 
 
 def compute_syndrome() -> dict:
-    data, frame, per_locus = _discovery()
-    bw = data[:, 1]
-    stature = data[:, 2]
-    bcs = data[:, 3]
-    y = data[:, 4]
-    if len(np.unique(y)) < 2:
+    frame, labels, counts = _discovery()
+    y = frame["label"].to_numpy(dtype=int)
+    if y.min() == y.max():
         raise ValueError("syndrome labels must have at least two classes")
-    base_auc = float(roc_auc_score(y, bw)) if len(np.unique(y)) > 1 else float("nan")
-    base_auprc = float(average_precision_score(y, bw)) if len(np.unique(y)) > 1 else float("nan")
-    full_X = np.column_stack([np.ones(len(frame)), bw, stature, bcs])
-    clf = LogisticRegression(max_iter=1000).fit(full_X, y)
-    full_pred = clf.predict_proba(full_X)[:, 1]
-    full_auc = float(roc_auc_score(y, full_pred))
-    full_auprc = float(average_precision_score(y, full_pred))
+    bw = frame["bw"].to_numpy(dtype=float)
+    X = frame[["bw", "stature", "bcs"]].to_numpy(dtype=float)
 
-    ba, bh, baup, bauphi = _boot_auc(y, bw)
-    base_auc_ci = [float(ba), float(bh)]
-    base_auprc_ci = [float(baup), float(bauphi)]
-    fa, fh, faup, fauphi = _boot_auc(y, full_pred)
-    full_auc_ci = [float(fa), float(fh)]
-    full_auprc_ci = [float(faup), float(fauphi)]
+    scores = {
+        "B0_body_weight_flag": -bw,
+        "B1_mahalanobis": _mahalanobis(X),
+        "S_logistic_cv": _oof_logistic(X, y),
+    }
+    metrics = {name: _boot_ci(y, s) for name, s in scores.items()}
+    top = {
+        name: {"top1": _top_precision(y, s, 0.01), "top5": _top_precision(y, s, 0.05)}
+        for name, s in scores.items()
+    }
 
-    order = np.argsort(-full_pred)
-    n = len(y)
-    top1 = order[: max(1, int(np.ceil(0.01 * n)))]
-    top5 = order[: max(1, int(np.ceil(0.05 * n)))]
-    prec1 = float(np.mean(y[top1]))
-    prec5 = float(np.mean(y[top5]))
-    base_rate = float(np.mean(y))
-
-    per_locus_out = {}
-    for locus, lab in per_locus.items():
-        per_locus_out[locus] = {
-            "n_positive": int(lab.sum()),
-            "n_used": N_PER_LOCUS_MIN,
-            "homozygous_mutant_auc": (
-                float(roc_auc_score(y, lab.astype(float))) if lab.sum() >= N_PER_LOCUS_MIN else None
-            ),
-            "homozygous_mutant_auprc": (
-                float(average_precision_score(y, lab.astype(float)))
-                if lab.sum() >= N_PER_LOCUS_MIN
-                else None
-            ),
-        }
+    per_group = {}
+    for group in GROUPS:
+        lab = labels[group]
+        n_pos = int(lab.sum())
+        entry: dict = {"n_positive": n_pos, "evaluated": n_pos >= N_PER_LOCUS_MIN}
+        if entry["evaluated"]:
+            entry["B0_body_weight_flag"] = _boot_ci(lab, scores["B0_body_weight_flag"])
+        per_group[group] = entry
 
     return {
         "schema_version": "1.0.0",
@@ -169,28 +188,28 @@ def compute_syndrome() -> dict:
             "phen_1_1": "dryad/phens/phen_1.1.txt",
             "phen_1_2": "dryad/phens/phen_1.2.txt",
             "phen_1_3": "dryad/phens/phen_1.3.txt",
-            "gen_3": "dryad/gens/gen_3.*.bed",
+            "gen_1_windows": "dryad/gens/gen_1.2, gen_1.3, gen_1.8, gen_1.9 (.bed/.bim/.fam)",
         },
         "syndrome_signal": {
             "baseline": "body_weight_alone",
-            "baseline_auc": base_auc,
-            "baseline_auprc": base_auprc,
-            "baseline_auprc_ci": base_auprc_ci,
-            "baseline_auc_ci": base_auc_ci,
-            "full_auc": full_auc,
-            "full_auprc": full_auprc,
-            "full_auprc_ci": full_auprc_ci,
-            "full_auc_ci": full_auc_ci,
-            "base_rate": base_rate,
-            "top1_precision": float(prec1),
-            "top5_precision": float(prec5),
-            "n_positive_labels": int(y.sum()),
+            "baseline_direction": "lower body weight flagged (from Phase 1 effect signs)",
             "n_records": int(len(frame)),
+            "n_positive_labels": int(y.sum()),
+            "base_rate": float(np.mean(y)),
+            "label_counts": counts,
+            "scores": metrics,
+            "top_precision": top,
         },
-        "per_locus": per_locus_out,
+        "per_group": per_group,
         "notes": [
-            "Phase 4b trimmed: B0 body weight alone as flag; label from homozygous-mutant status.",
-            "Full multi-trait logistic on bw/stature/BCS; paper-style negative results pending.",
+            "Labels: homozygous-mutant status, gen_1 key (matches phen_1 IIDs).",
+            "DPF2 and MUS81 are one locus (homozygous for either).",
+            "Per-group metrics only for groups with >= N_PER_LOCUS_MIN positives.",
+            "Logistic model: 5-fold stratified out-of-fold predictions. Sire grouping not "
+            "possible (pedigree parents are outside the discovery ID space): leakage risk "
+            "from related animals across folds.",
+            "Mahalanobis is unsupervised (no labels used).",
+            "Not yet done: unsupervised isolation forest / PCA / autoencoder, LightGBM, nested CV.",
         ],
     }
 

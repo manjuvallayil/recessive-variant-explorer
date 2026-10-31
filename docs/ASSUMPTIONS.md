@@ -148,6 +148,29 @@ explicitly marked as an open question.
   5.03e-442 ~ 4.97e-442); re-introduced GGPv3 causal SNP `chr14:25,015,640` gives **-log10 P = 480.2`;
   the 480.2 vs 441.3 difference is the GGPv3 re-introduction / lead change.
 
+## Phase 4b syndrome-signal decisions
+
+32. **Key check (verified, not assumed).** Genotype rows are shared across `gen_1.*` and `gen_3.*`,
+    but each phenotype family has its own IID key. Checks: PLAG1 `gen_3.7` vs body weight
+    (phen_1.1) gives slope 50 kg/allele, t = 216, under the `gen_1.fam` key and nothing under
+    `gen_3.7.fam`. The DGAT1-candidate `gen_3.6` vs milk/protein/fat (phen_4.1-3) gives t = 108,
+    71 and -42 under `gen_3.6.fam` and nothing under `gen_1.fam`. So `phen_1` -> `gen_1.fam` and
+    `phen_4` -> `gen_3.fam` (item 5 stands). All `gen_3.*.fam` files share one order.
+33. **Bug fixed in 4b.** Labels were built from `gen_3.*.fam` and joined to `phen_1` body weight,
+    which mixes two keys. The AUC was about 0.5 for this reason. Labels now come from the
+    `gen_1` windows. Check: PLCD4 homozygote body weight is -108.7 kg, against -109 in the paper.
+34. **Labels.** Homozygous-mutant status (A1 = mutant, as in item 2). DPF2 and MUS81 form one
+    locus (homozygous for either). The pooled "any" label covers PLCD4, FGD4, GALNT2 and
+    DPF2/MUS81. Groups with fewer than 30 positives (PLCD4 20, FGD4 27, GALNT2 25 after
+    dropping records without BCS) are not evaluated alone; they are only in "any".
+35. **Scores.** B0 = -body weight (lower weight flagged; direction from Phase 1 effect signs,
+    not tuned). B1 = Mahalanobis distance on bw/stature/BCS (unsupervised). S = logistic
+    regression, 5-fold stratified out-of-fold predictions, scaler fit inside folds. AUC and AUPRC
+    use bootstrap CIs with B = 1000.
+36. **Known limitations.** Sire-grouped CV is not possible: pedigree sires are outside the
+    discovery ID space (only dams partly match). Related animals may therefore cross folds. The
+    unsupervised autoencoder, isolation forest, LightGBM and nested CV are not yet implemented.
+
 ## Deviations from the brief
 
 1. **V11 replaced** by the addendum's source-data inventory (10 CSVs + 16 images), as instructed.

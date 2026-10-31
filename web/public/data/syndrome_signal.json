@@ -1,69 +1,139 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-31T04:27:52.410593+00:00",
-  "code_version": "73c9962",
+  "generated_at": "2026-10-31T05:18:12.134797+00:00",
+  "code_version": "b420f9b",
   "source_files": {
     "phen_1_1": "dryad/phens/phen_1.1.txt",
     "phen_1_2": "dryad/phens/phen_1.2.txt",
     "phen_1_3": "dryad/phens/phen_1.3.txt",
-    "gen_3": "dryad/gens/gen_3.*.bed"
+    "gen_1_windows": "dryad/gens/gen_1.2, gen_1.3, gen_1.8, gen_1.9 (.bed/.bim/.fam)"
   },
   "syndrome_signal": {
     "baseline": "body_weight_alone",
-    "baseline_auc": 0.48302690248433583,
-    "baseline_auprc": 0.0013128440534498687,
-    "baseline_auprc_ci": [
-      0.001028636223849036,
-      0.0017590695896236364
-    ],
-    "baseline_auc_ci": [
-      0.4226833366284739,
-      0.5435053664384758
-    ],
-    "full_auc": 0.5294583878155429,
-    "full_auprc": 0.0016092217720026399,
-    "full_auprc_ci": [
-      0.0012241034142921098,
-      0.002691410709849166
-    ],
-    "full_auc_ci": [
-      0.4753084397413915,
-      0.5811761608116329
-    ],
-    "base_rate": 0.0013486446788623313,
-    "top1_precision": 0.0026702269692923898,
-    "top5_precision": 0.0016021361815754338,
-    "n_positive_labels": 101,
-    "n_records": 74890
+    "baseline_direction": "lower body weight flagged (pre-specified from Phase 1 effect signs)",
+    "n_records": 74890,
+    "n_positive_labels": 170,
+    "base_rate": 0.002269995994124716,
+    "label_counts": {
+      "PLCD4": 20,
+      "FGD4": 27,
+      "GALNT2": 25,
+      "DPF2/MUS81": 99,
+      "any": 170
+    },
+    "scores": {
+      "B0_body_weight_flag": {
+        "auc": 0.6778970903136415,
+        "auc_ci": [
+          0.6425199345897783,
+          0.7133116335216055
+        ],
+        "auprc": 0.008691935306628337,
+        "auprc_ci": [
+          0.005374137346440312,
+          0.01752983733268243
+        ]
+      },
+      "B1_mahalanobis": {
+        "auc": 0.5791465392366796,
+        "auc_ci": [
+          0.537530525731054,
+          0.6239735795365555
+        ],
+        "auprc": 0.003528953902283038,
+        "auprc_ci": [
+          0.0027287818198285666,
+          0.004947654702788491
+        ]
+      },
+      "S_logistic_cv": {
+        "auc": 0.6902563295125331,
+        "auc_ci": [
+          0.6543159458631778,
+          0.7267035925168246
+        ],
+        "auprc": 0.009457707890769395,
+        "auprc_ci": [
+          0.00577274239309505,
+          0.0199896363313286
+        ]
+      }
+    },
+    "top_precision": {
+      "B0_body_weight_flag": {
+        "top1": {
+          "k": 749,
+          "precision": 0.017356475300400534,
+          "enrichment": 7.646037854394095
+        },
+        "top5": {
+          "k": 3745,
+          "precision": 0.007743658210947931,
+          "enrichment": 3.411309196575827
+        }
+      },
+      "B1_mahalanobis": {
+        "top1": {
+          "k": 749,
+          "precision": 0.009345794392523364,
+          "enrichment": 4.117097306212204
+        },
+        "top5": {
+          "k": 3745,
+          "precision": 0.004806408544726302,
+          "enrichment": 2.117364328909134
+        }
+      },
+      "S_logistic_cv": {
+        "top1": {
+          "k": 749,
+          "precision": 0.018691588785046728,
+          "enrichment": 8.234194612424409
+        },
+        "top5": {
+          "k": 3745,
+          "precision": 0.009078771695594125,
+          "enrichment": 3.9994659546061415
+        }
+      }
+    }
   },
-  "per_locus": {
+  "per_group": {
     "PLCD4": {
       "n_positive": 20,
-      "n_used": 30,
-      "homozygous_mutant_auc": null,
-      "homozygous_mutant_auprc": null
+      "evaluated": false
     },
     "FGD4": {
-      "n_positive": 26,
-      "n_used": 30,
-      "homozygous_mutant_auc": null,
-      "homozygous_mutant_auprc": null
+      "n_positive": 27,
+      "evaluated": false
     },
     "GALNT2": {
-      "n_positive": 27,
-      "n_used": 30,
-      "homozygous_mutant_auc": null,
-      "homozygous_mutant_auprc": null
+      "n_positive": 25,
+      "evaluated": false
     },
     "DPF2/MUS81": {
-      "n_positive": 101,
-      "n_used": 30,
-      "homozygous_mutant_auc": 1.0,
-      "homozygous_mutant_auprc": 1.0
+      "n_positive": 99,
+      "evaluated": true,
+      "B0_body_weight_flag": {
+        "auc": 0.6224185133278475,
+        "auc_ci": [
+          0.5752672559370436,
+          0.6694835472258301
+        ],
+        "auprc": 0.0022306274878523356,
+        "auprc_ci": [
+          0.0016143553822712904,
+          0.004194442581172355
+        ]
+      }
     }
   },
   "notes": [
-    "Phase 4b trimmed: B0 body weight alone as flag; label from homozygous-mutant status.",
-    "Full multi-trait logistic on bw/stature/BCS; paper-style negative results pending."
+    "Labels: homozygous-mutant status, gen_1 key (matches phen_1 IIDs).",
+    "DPF2 and MUS81 are one locus (homozygous for either).",
+    "Per-group metrics only for groups with >= N_PER_LOCUS_MIN positives.",
+    "Logistic model: 5-fold stratified out-of-fold predictions. Sire grouping not possible (pedigree parents are outside the discovery ID space): leakage risk from related animals across folds.",
+    "Mahalanobis is unsupervised (no labels used).",
+    "Not yet done: unsupervised isolation forest / PCA / autoencoder, LightGBM, nested CV."
   ]
 }
