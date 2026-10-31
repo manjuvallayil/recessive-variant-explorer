@@ -1,24 +1,64 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-31T03:46:40.314297+00:00",
-  "code_version": "3b572c2",
+  "generated_at": "2026-10-31T05:23:05.214895+00:00",
+  "code_version": "7d6271e",
   "source_files": {
     "other_7": "dryad/other/other_7.txt",
-    "phen_1.1": "dryad/phens/phen_1.1.txt"
+    "phen_1_1": "dryad/phens/phen_1.1.txt",
+    "gen_1_windows": "dryad/gens/gen_1.1 .. gen_1.9 (8 non-additive loci)"
   },
   "inbreeding": {
-    "n_animals": 68577,
-    "inbreeding_coefficient_mean": 0.23102818729311578,
-    "inbreeding_depression_slope_kg_per_unit_f": -74.02468095921671,
-    "inbreeding_depression_slope_kg_per_1pct_inbreeding": -7402.468095921671,
-    "r_squared_weight_on_f": 0.044706566558007865
+    "n_animals": 68578,
+    "F_mean": 0.2310293388550264,
+    "F_median": 0.19,
+    "F_n_above_1": 179,
+    "slope_kg_per_unit_F": -74.02608371055574,
+    "slope_kg_per_1pct_F": -0.7402608371055573,
+    "slope_kg_per_1pct_F_ci": [
+      -0.764446545971435,
+      -0.7143988072270172
+    ],
+    "r2_F_only": 0.044708045218835646
+  },
+  "nonadditive_model": {
+    "loci_in_model": [
+      "Chr2:22",
+      "PLCD4",
+      "FGD4",
+      "ARSI",
+      "MTRF1",
+      "MYH1",
+      "GALNT2",
+      "DPF2_MUS81"
+    ],
+    "slope_kg_per_unit_F_with_loci": -56.54242340581149,
+    "slope_kg_per_1pct_F_with_loci": -0.5654242340581149,
+    "attenuation_fraction": 0.23618242960286673,
+    "attenuation_fraction_ci": [
+      0.22209779191340354,
+      0.25030341205038886
+    ],
+    "attenuation_fraction_excluding_F_gt_1": 0.23808389394658802,
+    "r2_loci_and_F": 0.14099470231509936,
+    "r2_gain_from_loci": 0.09628665709626372,
+    "attenuation_fraction_homozygote_only": 0.02072693850746521,
+    "slope_kg_per_1pct_F_homozygote_only": -0.7249174962553857,
+    "r2_homozygote_only_and_F": 0.05171707532903058,
+    "method": "OLS approximation (not BayesC0); attenuation = 1 - b_with_loci / b_F_only"
   },
   "paper_comparison": {
     "paper_kg_per_1pct_inbreeding": -0.77,
-    "paper_nonadditive_fraction": 0.235
+    "paper_nonadditive_fraction": 0.235,
+    "paper_nonadditive_fraction_is_variance": true
   },
   "notes": [
-    "Phase 3c trimmed: inbreeding-depression slope from OLS of bodyweight on inbreeding.",
-    "Joint non-additive attenuation not computed here; paper 23.5%."
+    "Phenotype: raw yield deviation (yd_trait), not LOSO-adjusted.",
+    "F assumed to be a fraction; the -0.77 kg per 1% comparison depends on this.",
+    "Attenuation is a slope comparison, not the paper's variance fraction; the two numbers are not directly comparable.",
+    "Genomic scale cross-check inconclusive (single 4,447-variant window).",
+    "Loci: 8 non-additive loci; DPF2 and MUS81 combined (hom for either).",
+    "PRIMARY recessive estimate = homozygote-only attenuation (about 2%).",
+    "The het+hom attenuation (about 24%) is NOT evidence of a recessive effect: het dummies on raw yd absorb population structure (PLCD4 het is +24 kg raw vs -1 kg LOSO-adjusted). Do not present it as reproducing the paper's 23.5%.",
+    "Paper 23.5% is a variance fraction from BayesC0; not reproduced here."
   ]
 }

@@ -171,6 +171,21 @@ explicitly marked as an open question.
     discovery ID space (only dams partly match). Related animals may therefore cross folds. The
     unsupervised autoencoder, isolation forest, LightGBM and nested CV are not yet implemented.
 
+## Phase 3c inbreeding decisions
+
+37. **Unit bug fixed.** Per-1% slope was computed as slope x 100 (gave -7,402 kg). It is now
+    slope / 100 = -0.740 kg per 1% F (95% bootstrap CI -0.764 to -0.714), against the paper's -0.77.
+38. **F units assumed to be fractions.** F ranges 0 to 3.1; 179 animals exceed 1. Excluding them
+    does not change the attenuation (23.8% vs 23.6%). Genomic cross-check of the scale is
+    inconclusive (one 4,447-variant window; correlation 0.007 vs a -0.003 shuffled control).
+39. **Attenuation: recessive estimate is homozygote-only (about 2%).** The het + hom model gives
+    about 24% (CI 22-25%), but this comes from heterozygote dummies on raw yd absorbing population
+    structure (PLCD4 het is +24 kg raw, -1 kg LOSO-adjusted). It is not evidence of a recessive
+    effect and must not be presented as reproducing the paper's 23.5%. The paper's figure is a
+    variance fraction from BayesC0; this is an OLS slope attenuation. Not directly comparable.
+    LOSO adjustment is locus-specific and cannot be applied to a joint model without a decision;
+    this is open.
+
 ## Deviations from the brief
 
 1. **V11 replaced** by the addendum's source-data inventory (10 CSVs + 16 images), as instructed.
