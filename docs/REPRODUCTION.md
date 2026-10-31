@@ -1,6 +1,7 @@
-# Phase 1 Reproduction Report
+# Phase 1 + Phase 2 Reproduction Report
 
-Status: **Phase 1 complete.** Generated from `web/public/data/*.json` produced by `pipeline/phase1.py`.
+Status: **Phase 2 complete; Gate B not yet approved.** Generated from `web/public/data/*.json`
+produced by `pipeline/phase1.py` and `pipeline/phase2.py`.
 
 ## 1. Estimators and Weighting
 
@@ -218,3 +219,45 @@ OLS model: `weight ~ VARIANT + age + HERD + breed_hf + breed_j` (`CONTROL` n = 5
 
 - **Regional LD & `ExtFig3` cross-check**: For `MYH1` (`gen_1.7`, BTA19), all 7,862 rows of `source_data.ExtFig3.csv` match our regional variants with `R²` correlation `r = 0.9949` and identical peak BCS dominance significance (`−log10 P = 7.12`, `P = 7.6 × 10⁻⁸`).
 - **Imputation `AR2`**: Mean `AR2` increases monotonically from `0.931` (`MAF 0.01–0.02`, median `0.971`) to `0.974` (`MAF 0.40–0.50`, median `0.993`). All 8 body-weight recessive/dominance candidate variants in Table 1 exceed `AR2 > 0.95` (range `0.979–1.000`).
+
+### 9.4 `-log10 P` Reconciliation with the Paper's Figure 1 Legend
+
+The `fig1_legend_reconciliation` block in `web/public/data/qtl_contrast.json` records the
+follow-up reconciliation of the `-log10 P` values against the paper's Figure 1 legend, after the
+`other_8.1` `P_A` `<1e-308` parsing fix and parquet rebuild:
+
+1. **Body weight, chromosome 14.** Paper Fig. 1 legend `P = 4.97e-442` (`-log10 P = 441.30`). After
+   the rebuild, the matching lead is BovineSNP50 SNP `chr14:25,307,116` (`Z_A = -44.991`, two-sided
+   `-log10 P = 441.299`, `P = 5.03e-442`), while the standard-additive #1 is the reintroduced GGPv3
+   causal SNP `chr14:25,015,640` (`Z_A = 46.94`, `-log10 P = 480.2`). The earlier value of 457.30 was
+   the dominance-model genotypic additive term (`Z_A = -45.802` at `chr14:24,974,811` in
+   `other_1.1`), not the standard-additive value. The residual 3-dp difference (`4.97e-442` vs
+   `5.03e-442`) is Z rounding (`-44.9913` to `-44.991`); tests are two-sided.
+2. **Body weight, chromosome 5.** Paper `P = 3.59e-127`. `other_8.1` matching lead is
+   `chr5:106,250,171` A/G SNP (`Z_A = -23.989`, file P = 3.58619e-127, `-log10 P = 126.44`, which
+   rounds to 3.59e-127); #1 is indel `chr5:106,266,836` (`P = 5.05e-132`) - different lead in the
+   same CCND2 peak.
+3. **Stature.** Paper chr5 `P = 3.23e-97` and chr14 `P = 2.0e-306`; `other_8.2` top #1 variants
+   match exactly; third-digit differences are 3-dp Z rounding.
+
+---
+
+## 10. Gate B Package (pending user approval)
+
+Full Gate B package:
+
+- **Full REPRODUCTION table** (paper vs estimator A vs B vs `other_1.*` lead row, with n per
+  genotype class): complete in Sections 2.1-2.3 (class n `0/1/2` reported).
+- **qtl_contrast table** (`qtl_contrast.json`): 8 primary non-additive QTL, all detected by
+  dominance GWS; 7 invisible to standard-additive at candidate/lead (PLAG1 exception).
+- **Export file sizes (raw/gzipped)**: Phase 2 wrote 16 Phase 2 exports in 90.3 s (raw = 6.48 MB,
+  gzip = 2.32 MB); all < 500 KB gz; 27 files total approx 6.94 MB raw / 2.41 MB gz.
+- **chip_vs_sequence result**: 45,865 distinct positions, 100% present in sequence; only
+  DPF2/MUS81 among major recessive syndromes GWS-significant on 50k chip.
+- **national_burden vs paper**: 5 BW-significant loci approx 1.015% (9,543 females/yr) vs paper
+  ~1% (~9,700); incl. MYH1 approx 1.315% (12,367).
+- **Depletion and carrier-cross tests**: depletion (Obs/Exp e.g. PLCD4 HF 0.482, LRT 1.14e-5) and
+  carrier crosses (e.g. FGD4 HF 0.0071, GALNT2 HF 0.0058, MTRF1 J 0.0447).
+- **Disagreements with the paper**: `-log10 P` reconciliation in Section 9.4; PLAG1 standard-additive
+  candidate `-log10 P = 311.06` vs window best 323.10; PLCD4 gene merged into CNOT9 (ARS-UCD1.2);
+  PLAG1 gene approx 263 kb outside genotyped window (no LD colouring).

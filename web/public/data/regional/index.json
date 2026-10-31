@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-31T02:15:16.972898+00:00",
-  "code_version": "b5bfefb",
+  "generated_at": "2026-10-31T02:41:51.869587+00:00",
+  "code_version": "54822e0",
   "source_files": [
     "dryad/gens/gen_1.*"
   ],
@@ -58,13 +58,13 @@
     },
     {
       "slug": "plag1",
-      "locus": "PLAG1",
-      "gene": "PLAG1",
+      "locus": "chr14 QTL (PLAG1 regulatory domain; gene ~263 kb outside the genotyped window)",
+      "gene": null,
       "chr": 14,
       "candidate_bp_umd": 26064929,
       "file": "regional/plag1.json",
       "n_variants": 10473,
-      "n_genes": 9
+      "n_genes": 8
     },
     {
       "slug": "myh1",

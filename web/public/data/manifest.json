@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-31T02:15:19.093411+00:00",
-  "code_version": "b5bfefb",
+  "generated_at": "2026-10-31T02:41:54.186171+00:00",
+  "code_version": "54822e0",
   "files": [
     {
       "file": "carrier_cross.json",
@@ -15,7 +15,7 @@
     {
       "file": "chip_vs_sequence.json",
       "bytes": 1198207,
-      "gzip_bytes": 443057,
+      "gzip_bytes": 443053,
       "source_files": [
         "dryad/other/other_15.txt",
         "dryad/other/other_1.1.txt",
@@ -64,8 +64,8 @@
     },
     {
       "file": "imputation_by_maf.json",
-      "bytes": 8610,
-      "gzip_bytes": 1981,
+      "bytes": 8606,
+      "gzip_bytes": 1977,
       "source_files": [
         "dryad/other/other_9.txt",
         "dryad/other/other_1.1.txt"
@@ -82,8 +82,8 @@
     },
     {
       "file": "manhattan_add.json",
-      "bytes": 1325895,
-      "gzip_bytes": 465224,
+      "bytes": 1325845,
+      "gzip_bytes": 465332,
       "source_files": [
         "dryad/other/other_8.1.txt",
         "dryad/other/other_8.2.txt",
@@ -92,8 +92,8 @@
     },
     {
       "file": "manhattan_dom.json",
-      "bytes": 1300983,
-      "gzip_bytes": 481419,
+      "bytes": 1300962,
+      "gzip_bytes": 481414,
       "source_files": [
         "dryad/other/other_1.1.txt",
         "dryad/other/other_1.2.txt",
@@ -130,8 +130,8 @@
     },
     {
       "file": "qtl_contrast.json",
-      "bytes": 14817,
-      "gzip_bytes": 2989,
+      "bytes": 17840,
+      "gzip_bytes": 3987,
       "source_files": [
         "dryad/other/other_1.1.txt",
         "dryad/other/other_8.1.txt",
@@ -142,8 +142,8 @@
     },
     {
       "file": "regional/arsi.json",
-      "bytes": 225269,
-      "gzip_bytes": 78703,
+      "bytes": 226595,
+      "gzip_bytes": 78960,
       "source_files": [
         "dryad/gens/gen_1.4.*",
         "dryad/other/other_1.1.txt",
@@ -152,8 +152,8 @@
     },
     {
       "file": "regional/chr2_22.json",
-      "bytes": 198546,
-      "gzip_bytes": 69959,
+      "bytes": 199196,
+      "gzip_bytes": 70094,
       "source_files": [
         "dryad/gens/gen_1.1.*",
         "dryad/other/other_1.1.txt",
@@ -162,8 +162,8 @@
     },
     {
       "file": "regional/dpf2.json",
-      "bytes": 213595,
-      "gzip_bytes": 74767,
+      "bytes": 217261,
+      "gzip_bytes": 75397,
       "source_files": [
         "dryad/gens/gen_1.9.*",
         "dryad/other/other_1.1.txt",
@@ -172,8 +172,8 @@
     },
     {
       "file": "regional/fgd4.json",
-      "bytes": 304944,
-      "gzip_bytes": 102732,
+      "bytes": 305334,
+      "gzip_bytes": 102816,
       "source_files": [
         "dryad/gens/gen_1.3.*",
         "dryad/other/other_1.1.txt",
@@ -182,8 +182,8 @@
     },
     {
       "file": "regional/galnt2.json",
-      "bytes": 321761,
-      "gzip_bytes": 117823,
+      "bytes": 322275,
+      "gzip_bytes": 117950,
       "source_files": [
         "dryad/gens/gen_1.8.*",
         "dryad/other/other_1.1.txt",
@@ -192,16 +192,16 @@
     },
     {
       "file": "regional/index.json",
-      "bytes": 2358,
-      "gzip_bytes": 584,
+      "bytes": 2428,
+      "gzip_bytes": 640,
       "source_files": [
         "dryad/gens/gen_1.*"
       ]
     },
     {
       "file": "regional/mtrf1.json",
-      "bytes": 321076,
-      "gzip_bytes": 109755,
+      "bytes": 321830,
+      "gzip_bytes": 109915,
       "source_files": [
         "dryad/gens/gen_1.5.*",
         "dryad/other/other_1.1.txt",
@@ -210,8 +210,8 @@
     },
     {
       "file": "regional/mus81.json",
-      "bytes": 213570,
-      "gzip_bytes": 74765,
+      "bytes": 217236,
+      "gzip_bytes": 75387,
       "source_files": [
         "dryad/gens/gen_1.9.*",
         "dryad/other/other_1.1.txt",
@@ -220,8 +220,8 @@
     },
     {
       "file": "regional/myh1.json",
-      "bytes": 294588,
-      "gzip_bytes": 104342,
+      "bytes": 295758,
+      "gzip_bytes": 104575,
       "source_files": [
         "dryad/gens/gen_1.7.*",
         "dryad/other/other_1.1.txt",
@@ -230,8 +230,8 @@
     },
     {
       "file": "regional/plag1.json",
-      "bytes": 363324,
-      "gzip_bytes": 131697,
+      "bytes": 333633,
+      "gzip_bytes": 125371,
       "source_files": [
         "dryad/gens/gen_1.6.*",
         "dryad/other/other_1.1.txt",
@@ -240,8 +240,8 @@
     },
     {
       "file": "regional/plcd4.json",
-      "bytes": 188390,
-      "gzip_bytes": 63758,
+      "bytes": 190898,
+      "gzip_bytes": 64180,
       "source_files": [
         "dryad/gens/gen_1.2.*",
         "dryad/other/other_1.1.txt",
@@ -268,6 +268,6 @@
       "gzip_bytes": 9606
     }
   ],
-  "total_bytes": 6940739,
-  "total_gzip_bytes": 2405509
+  "total_bytes": 6928710,
+  "total_gzip_bytes": 2403002
 }

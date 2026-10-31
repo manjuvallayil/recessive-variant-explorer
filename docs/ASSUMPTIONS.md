@@ -1,7 +1,8 @@
 # Assumptions and Deviations (Phase 0)
 
-Status: **Phase 0 complete; Gate A approved; Phase 1 in progress.** Every assumption below is
-either verified in `work/phase0_summary.json` or explicitly marked as an open question.
+Status: **Phase 0 complete; Gate A approved; Phase 2 complete; Gate B not yet approved.** Every
+assumption below is either verified in `work/phase0_summary.json`, updated through Phase 2, or
+explicitly marked as an open question.
 
 ## Data and assembly
 
@@ -110,6 +111,31 @@ either verified in `work/phase0_summary.json` or explicitly marked as an open qu
 27. **Privacy/export.** Only aggregates are exported. No animal or sire IDs, no individual-level
     rows. Suppress or merge cells with n < 5. Each JSON gets `schema_version` and a manifest
     entry. First-load payload < 1.5 MB gzipped; each file < ~500 KB gz where possible.
+28. **Stature ×5.0 cm factor was inferred** by scaling NZ TOP linear score units to cm
+    (`×5.0 cm / score`) to match Table 1 across all nine loci; MAE = 0.058 cm. Both raw TOP-score
+    and scaled cm values are preserved in `web/public/data/effects.json`.
+29. **`other_8.1.txt` `P_A` underflow strings.** 506 `chr14` rows had `P_A` written as the literal
+    string `"<1e-308"`, causing those rows to drop during DuckDB `read_csv` (DOUBLE type);
+    `ensure_parquet_files` now reads it via
+    `TRY_CAST(REPLACE(P_A, '<', '') AS DOUBLE) AS P_A` and unlinks/rebuilds `other_8.1.parquet` when
+    the row count is below 16,128,364. After the rebuild, `chr14` standard-additive leads re-derive
+    (e.g. GGPv3 causal SNP `chr14:25,015,640`, `Z_A = 46.94`).
+
+## Regional plots, candidate-gene mapping, and Gate B (Phase 2 complete)
+
+30. **PLAG1 chr14 regional window label.** The `plag1` regional plot is labelled
+    `chr14 QTL (PLAG1 regulatory domain; gene ~263 kb outside the genotyped window)`, `gene` is
+    `null`, LD colouring is disabled (`ld_available = false`, `r2_x1000 = null`), and the window
+    must not be claimed to contain the PLAG1 gene.
+31. **PLCD4 explicit gene entry.** Ensembl ARS-UCD1.2 merges PLCD4 into the CNOT9 readthrough
+    locus; an explicit PLCD4 gene entry was added to the regional gene track (NCBI:509076).
+
+## Stop Gate B checklist
+
+- [ ] Full Gate B package re-posted to the user: full REPRODUCTION table (paper vs estimator A vs
+      B vs `other_1.*` lead row, with n per genotype class), qtl_contrast table, export file sizes
+      (raw and gzipped), chip_vs_sequence result, national_burden result vs paper (~1% and ~9,700),
+      depletion and carrier-cross tests, and list of anything that disagrees with the paper.
 
 ## Deviations from the brief
 

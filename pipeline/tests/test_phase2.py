@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 from scipy import stats
 
-from pipeline.phase2 import neg_log10_p_from_z
+from pipeline.phase2 import MUST_KEEP_VARIANTS, neg_log10_p_from_z
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "web" / "public" / "data"
@@ -47,9 +47,9 @@ def test_log_ndtr_extreme_z_no_underflow() -> None:
     expected = -math.log10(2.0 * float(stats.norm.sf(z_mod)))
     assert abs(neg_log10_p_from_z(z_mod) - expected) < 1e-6
 
-    # Extreme Z (PLAG1 P ~ 4.97e-442, Z ~ 44.991) where float64 P underflows to 0.0
-    nlp_extreme = neg_log10_p_from_z(44.991)
-    assert 440.0 < nlp_extreme < 443.0
+    # Extreme Z (PLAG1 P ~ 4.97e-442, Z = -44.991) where float64 P underflows to 0.0
+    nlp_extreme = neg_log10_p_from_z(-44.991)
+    assert abs(nlp_extreme - 441.2987) < 0.01
 
 
 def test_all_phase2_exports_exist_and_fit_size_budget() -> None:
@@ -89,12 +89,55 @@ def test_manhattan_thinning_and_unclipped_peaks() -> None:
 
     # PLAG1 standard-additive peak on BTA14 exceeds int16 max (32767) and is unclipped
     max_add_bw = max(add["traits"]["bodyweight"]["columns"]["neg_log10_p_x100"])
-    assert max_add_bw > 32_000
+    assert max_add_bw > 47_000
     max_dom_bw = max(dom["traits"]["bodyweight"]["columns"]["neg_log10_p_x100"])
     assert max_dom_bw > 5_500
 
 
-def test_qtl_contrast_7_of_8_invisible_to_additive() -> None:
+def test_every_lead_and_candidate_present_in_thinned_manhattan_sets() -> None:
+    """Gate B test 2a: every lead variant and candidate mutation is in thinned Manhattan sets."""
+    dom = load("manhattan_dom.json")
+    add = load("manhattan_add.json")
+    qtl = load("qtl_contrast.json")
+
+    # Collect all candidate positions + window-best dominance and additive leads from qtl_contrast
+    required_bw = set(MUST_KEEP_VARIANTS)
+    for row in qtl["rows"]:
+        c = int(row["chr"])
+        required_bw.add((c, int(row["candidate_bp"])))
+        bw = row["bodyweight"]
+        required_bw.add((c, int(bw["window_best_dom_d_bp"])))
+        required_bw.add((c, int(bw["window_best_dom_a_bp"])))
+        required_bw.add((c, int(bw["window_best_add_bp"])))
+
+    for model_name, payload in (("dominance", dom), ("standard_additive", add)):
+        cols_bw = payload["traits"]["bodyweight"]["columns"]
+        pts_bw = set(zip(cols_bw["chr"], cols_bw["bp_umd"], strict=True))
+        missing_bw = required_bw - pts_bw
+        assert not missing_bw, f"{model_name} bodyweight missing leads/candidates: {missing_bw}"
+
+        # Also check all 9 Table 1 candidate positions + 3 comparators in stature
+        cols_st = payload["traits"]["stature"]["columns"]
+        pts_st = set(zip(cols_st["chr"], cols_st["bp_umd"], strict=True))
+        core_12 = {
+            (2, 22836659),
+            (2, 107313998),
+            (5, 77632752),
+            (7, 63649071),
+            (12, 11463981),
+            (19, 30114249),
+            (28, 1312334),
+            (29, 44213160),
+            (29, 44645469),
+            (14, 1802265),
+            (14, 25015640),
+            (14, 26064929),
+        }
+        missing_st = core_12 - pts_st
+        assert not missing_st, f"{model_name} stature missing candidates: {missing_st}"
+
+
+def test_qtl_contrast_and_fig1_legend_reconciliation() -> None:
     qtl = load("qtl_contrast.json")
     s = qtl["summary"]
     assert s["n_primary_non_additive_qtl"] == 8
@@ -111,20 +154,86 @@ def test_qtl_contrast_7_of_8_invisible_to_additive() -> None:
         assert bw["candidate_detected_by_additive_gws"] is False
         assert bw["candidate_add_neg_log10_p"] < 3.0
 
+    rec_fig1 = qtl["fig1_legend_reconciliation"]
+    c14 = rec_fig1["bodyweight_chr14"]
+    c5 = rec_fig1["bodyweight_chr5"]
+    assert c14["other_8_1_matching_legend_bp"] == 25307116
+    assert abs(c14["other_8_1_matching_legend_neg_log10_p"] - 441.30) < 0.02
+    assert c5["other_8_1_matching_legend_bp"] == 106250171
+    assert abs(c5["other_8_1_matching_legend_p_file"] - 3.59e-127) < 1e-129
 
-def test_regional_plots_and_extfig3_crosscheck() -> None:
+
+def test_regional_candidate_inside_gene_and_umd31_assembly() -> None:
+    """Gate B tests 2b, 2c, and 3:
+    - Each candidate mutation lies inside its gene's UMD3.1 coordinates in the regional track.
+    - Every gene coordinate in a regional track is on the UMD3.1 assembly (same as x-axis)
+      and overlaps the regional window.
+    - The chr14 window is labelled 'chr14 QTL (PLAG1 regulatory domain; gene ~263 kb outside
+      the genotyped window)', has no LD colouring, and does not claim the window contains PLAG1.
+    """
     idx = load("regional/index.json")
     assert len(idx["loci"]) == 10
+
+    candidate_gene_slugs = {
+        "plcd4": "PLCD4",
+        "fgd4": "FGD4",
+        "arsi": "ARSI",
+        "mtrf1": "MTRF1",
+        "myh1": "MYH1",
+        "galnt2": "GALNT2",
+        "dpf2": "DPF2",
+        "mus81": "MUS81",
+    }
+
     for item in idx["loci"]:
         reg = load(item["file"])
+        slug = reg["slug"]
+        w_min, w_max = reg["window_umd"]
+        assert reg["x_axis_assembly"] == "UMD3.1"
+        assert reg["gene_track_assembly"] == "UMD3.1"
+
         cand = reg["candidate_variant"]
         c_idx = cand["index_in_columns"]
         assert c_idx is not None
-        assert reg["columns"]["r2_x1000"][c_idx] == 1000
         assert reg["columns"]["bp_umd"][c_idx] == cand["bp_umd"]
-        if reg["gene"] is not None:
-            symbols = {g["symbol"] for g in reg["genes"]}
-            assert reg["gene"] in symbols, f"{reg['gene']} not in {item['file']} gene track"
+
+        # Check (c): every gene in track is on UMD3.1 and overlaps the UMD3.1 window
+        for g in reg["genes"]:
+            assert g["assembly"] == "UMD3.1", f"non-UMD3.1 gene in {item['file']}"
+            assert g["start"] == g["start_umd"]
+            assert g["end"] == g["end_umd"]
+            assert g["start_umd"] <= g["end_umd"]
+            assert g["end_umd"] >= w_min and g["start_umd"] <= w_max, (
+                f"gene {g['symbol']} ({g['start_umd']}..{g['end_umd']}) outside "
+                f"UMD3.1 window {w_min}..{w_max} in {item['file']}"
+            )
+
+        if slug == "plag1":
+            # Check item 3: chr14 label, no LD colouring, no PLAG1 inside window gene track
+            assert (
+                reg["locus"]
+                == "chr14 QTL (PLAG1 regulatory domain; gene ~263 kb outside the genotyped window)"
+            )
+            assert reg["gene"] is None
+            assert reg["ld_available"] is False
+            assert reg["columns"]["r2_x1000"] is None
+            assert "PLAG1" not in {g["symbol"] for g in reg["genes"]}
+        else:
+            assert reg["ld_available"] is True
+            assert reg["columns"]["r2_x1000"][c_idx] == 1000
+
+        # Check (b): each candidate variant lies inside its gene's UMD3.1 coordinates
+        if slug in candidate_gene_slugs:
+            expected_gene = candidate_gene_slugs[slug]
+            assert reg["gene"] == expected_gene
+            matching = [g for g in reg["genes"] if g["symbol"] == expected_gene]
+            assert len(matching) == 1, f"{expected_gene} missing from {item['file']}"
+            g_cand = matching[0]
+            assert g_cand["is_candidate_gene"] is True
+            assert g_cand["start_umd"] <= cand["bp_umd"] <= g_cand["end_umd"], (
+                f"{slug} candidate {cand['bp_umd']} not inside {expected_gene} "
+                f"[{g_cand['start_umd']}, {g_cand['end_umd']}]"
+            )
 
     myh1 = load("regional/myh1.json")
     ext3 = myh1["extfig3_comparison"]

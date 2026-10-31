@@ -79,7 +79,7 @@ PARQUET_SPECS = [
         " ",
         (
             "{'CHR':'INTEGER','BP':'BIGINT','A1':'VARCHAR','A2':'VARCHAR','MAF':'DOUBLE',"
-            "'B_A':'DOUBLE','Z_A':'DOUBLE','P_A':'DOUBLE'}"
+            "'B_A':'DOUBLE','Z_A':'DOUBLE','P_A':'VARCHAR'}"
         ),
     ),
     (
@@ -88,7 +88,7 @@ PARQUET_SPECS = [
         " ",
         (
             "{'CHR':'INTEGER','BP':'BIGINT','A1':'VARCHAR','A2':'VARCHAR','MAF':'DOUBLE',"
-            "'B_A':'DOUBLE','Z_A':'DOUBLE','P_A':'DOUBLE'}"
+            "'B_A':'DOUBLE','Z_A':'DOUBLE','P_A':'VARCHAR'}"
         ),
     ),
     (
@@ -97,7 +97,7 @@ PARQUET_SPECS = [
         " ",
         (
             "{'CHR':'INTEGER','BP':'BIGINT','A1':'VARCHAR','A2':'VARCHAR','MAF':'DOUBLE',"
-            "'B_A':'DOUBLE','Z_A':'DOUBLE','P_A':'DOUBLE'}"
+            "'B_A':'DOUBLE','Z_A':'DOUBLE','P_A':'VARCHAR'}"
         ),
     ),
     (
@@ -249,11 +249,65 @@ REGIONAL_LOCI = [
     ("fgd4", "FGD4", "FGD4", 5, 77632752, "gen_1.3", "g.77632752C>T"),
     ("arsi", "ARSI", "ARSI", 7, 63649071, "gen_1.4", "g.63649071C>T"),
     ("mtrf1", "MTRF1", "MTRF1", 12, 11463981, "gen_1.5", "g.11463981G>A"),
-    ("plag1", "PLAG1", "PLAG1", 14, 26064929, "gen_1.6", "rs109686357"),
+    (
+        "plag1",
+        "chr14 QTL (PLAG1 regulatory domain; gene ~263 kb outside the genotyped window)",
+        None,
+        14,
+        26064929,
+        "gen_1.6",
+        "rs109686357 (dominance GWAS lead in PLAG1 regulatory domain)",
+    ),
     ("myh1", "MYH1", "MYH1", 19, 30114249, "gen_1.7", "g.30114249C>CCCACCTGGG (proxy)"),
     ("galnt2", "GALNT2", "GALNT2", 28, 1312334, "gen_1.8", "g.1312334G>A"),
     ("dpf2", "DPF2", "DPF2", 29, 44213160, "gen_1.9", "g.44213160A>G"),
     ("mus81", "MUS81", "MUS81", 29, 44645469, "gen_1.9", "g.44645469G>T"),
+]
+
+# Candidate mutations, comparators, and window-best lead variants that must never be dropped
+# by spatial bin thinning in manhattan_dom.json or manhattan_add.json.
+MUST_KEEP_VARIANTS = [
+    # 9 Table 1 candidate / lead positions
+    (2, 22836659),
+    (2, 107313998),
+    (5, 77632752),
+    (7, 63649071),
+    (12, 11463981),
+    (19, 30114249),
+    (28, 1312334),
+    (29, 44213160),
+    (29, 44645469),
+    # 3 BTA14 comparators (DGAT1, PLAG1 causal, PLAG1 dominance lead)
+    (14, 1802265),
+    (14, 25015640),
+    (14, 26064929),
+    # Window-best dominance and additive leads across bodyweight and stature
+    (2, 21999730),
+    (2, 23118213),
+    (2, 108131543),
+    (5, 77241202),
+    (5, 106266836),
+    (5, 106250171),
+    (5, 106250892),
+    (5, 106264863),
+    (5, 106289128),
+    (7, 62891843),
+    (7, 62718020),
+    (7, 64626068),
+    (12, 11415931),
+    (12, 11159910),
+    (14, 24974811),
+    (14, 24973953),
+    (14, 24991209),
+    (14, 25307116),
+    (14, 25474773),
+    (19, 30805217),
+    (19, 30592432),
+    (19, 29149312),
+    (28, 680910),
+    (28, 334652),
+    (29, 44143856),
+    (29, 45056385),
 ]
 
 
@@ -343,13 +397,30 @@ def connect_duckdb() -> duckdb.DuckDBPyConnection:
 
 
 def ensure_parquet_files(con: duckdb.DuckDBPyConnection) -> None:
+    # Rebuild other_8.1.parquet if it was created before '<1e-308' string handling (506 rows short)
+    o81_pq = PARQUET / "other_8.1.parquet"
+    if o81_pq.exists():
+        n_o81 = con.execute(f"SELECT COUNT(*) FROM '{o81_pq.as_posix()}'").fetchone()[0]
+        if n_o81 < 16_128_364:
+            o81_pq.unlink()
+            cov_cache = WORK / "ars_coverage_cache.json"
+            if cov_cache.exists():
+                cov_cache.unlink()
+
     for stem, fname, delim, cols in PARQUET_SPECS:
         out_path = PARQUET / f"{stem}.parquet"
         if out_path.exists():
             continue
         src = OTHER / fname
+        if stem.startswith("other_8."):
+            select_expr = (
+                "SELECT CHR, BP, A1, A2, MAF, B_A, Z_A, "
+                "TRY_CAST(REPLACE(P_A, '<', '') AS DOUBLE) AS P_A"
+            )
+        else:
+            select_expr = "SELECT *"
         con.execute(
-            f"COPY (SELECT * FROM read_csv({src.as_posix()!r}, delim={delim!r}, "
+            f"COPY ({select_expr} FROM read_csv({src.as_posix()!r}, delim={delim!r}, "
             f"header=true, columns={cols}, ignore_errors=true)) "
             f"TO {out_path.as_posix()!r} (FORMAT PARQUET, COMPRESSION ZSTD)"
         )
@@ -401,6 +472,13 @@ def thin_manhattan_df(df: pd.DataFrame, max_points: int = 24_000) -> tuple[pd.Da
     nlp = neg_log10_p_from_z(z)
     df = df.assign(nlp=nlp, abs_z=np.abs(z))
 
+    must_keep_set = set(MUST_KEEP_VARIANTS)
+    df["must_keep"] = [
+        (int(c), int(b)) in must_keep_set
+        for c, b in zip(df["CHR"].to_numpy(), df["BP"].to_numpy(), strict=False)
+    ]
+    must_keep_df = df[df["must_keep"]].copy()
+
     strong = df[df["nlp"] >= 5.0].copy()
     strong["bin20k"] = strong["BP"] // 20_000
     strong_kept = (
@@ -427,12 +505,14 @@ def thin_manhattan_df(df: pd.DataFrame, max_points: int = 24_000) -> tuple[pd.Da
     )
 
     combined = (
-        pd.concat([strong_kept, bg_mid, bg_low_kept], ignore_index=True)
-        .sort_values("abs_z", ascending=False)
+        pd.concat([must_keep_df, strong_kept, bg_mid, bg_low_kept], ignore_index=True)
+        .sort_values(["must_keep", "abs_z"], ascending=[False, False])
         .drop_duplicates(subset=["CHR", "BP"], keep="first")
     )
     if len(combined) > max_points:
-        combined = combined.sort_values("nlp", ascending=False).head(max_points)
+        combined = combined.sort_values(["must_keep", "nlp"], ascending=[False, False]).head(
+            max_points
+        )
     combined = combined.sort_values(["CHR", "BP"]).reset_index(drop=True)
 
     meta = {
@@ -472,8 +552,18 @@ def load_thinned_candidates_from_duckdb(
     extra_outer = ", Z_EXTRA" if extra_z_col else ""
     extra_argmax = f", ARG_MAX(a.{extra_z_col}, ABS(a.{z_col})) AS Z_EXTRA" if extra_z_col else ""
 
+    must_keep_values = ", ".join(f"({c}, {b})" for c, b in MUST_KEEP_VARIANTS)
+
     query = f"""
-    WITH strong AS (
+    WITH must_keep_keys(CHR, BP) AS (
+        VALUES {must_keep_values}
+    ),
+    must_keep AS (
+        SELECT a.CHR, a.BP, a.{z_col} AS Z {extra_inner}
+        FROM '{pq_file}' a
+        SEMI JOIN must_keep_keys k USING (CHR, BP)
+    ),
+    strong AS (
         SELECT CHR, BP, {z_col} AS Z {extra_outer}
         FROM (
             SELECT a.CHR, a.BP, a.{z_col} {extra_inner},
@@ -496,6 +586,8 @@ def load_thinned_candidates_from_duckdb(
         GROUP BY a.CHR, a.BP // 25000
     ),
     unioned AS (
+        SELECT * FROM must_keep
+        UNION ALL
         SELECT * FROM strong
         UNION ALL
         SELECT * FROM bg25
@@ -745,10 +837,75 @@ def compute_qtl_contrast(con: duckdb.DuckDBPyConnection) -> dict:
         r["bodyweight"]["window_best_add_neg_log10_p"] >= GWS_NEG_LOG10_P for r in primary8
     )
 
+    fig1_reconciliation = {
+        "bodyweight_chr14": {
+            "paper_fig1_legend_p": "4.97e-442",
+            "paper_fig1_legend_neg_log10_p": 441.3036,
+            "other_1_1_dom_za_top_bp": 24974811,
+            "other_1_1_dom_za_top_z": -45.802,
+            "other_1_1_dom_za_top_neg_log10_p": float(neg_log10_p_from_z(-45.802)),
+            "other_8_1_std_add_top_bp": 25015640,
+            "other_8_1_std_add_top_z": 46.94,
+            "other_8_1_std_add_top_neg_log10_p": float(neg_log10_p_from_z(46.94)),
+            "other_8_1_matching_legend_bp": 25307116,
+            "other_8_1_matching_legend_z": -44.991,
+            "other_8_1_matching_legend_neg_log10_p": float(neg_log10_p_from_z(-44.991)),
+            "other_8_1_matching_legend_p_from_3dp_z": "5.03e-442",
+            "cause": (
+                "Three factors explain the numbers: (1) 457.30 is the dominance-model genotypic "
+                "additive term (Z_A=-45.802 at chr14:24,974,811 in other_1.1.txt), not the "
+                "standard-additive model (other_8.1.txt); (2) in other_8.1.txt, 506 chr14 rows "
+                "have P_A written as the literal string '<1e-308'; once parsed, the #1 variant is "
+                "the reintroduced GGPv3 causal SNP chr14:25,015,640 (Z_A=46.940, -log10 P=480.22), "
+                "while the #6 variant is BovineSNP50 SNP chr14:25,307,116 (Z_A=-44.991, two-sided "
+                "-log10 P=441.299, P=5.03e-442), which matches the Fig. 1 legend's 4.97e-442 "
+                "(different lead variant before/after custom GGPv3 site reintroduction); and "
+                "(3) 3-d.p. Z rounding (-44.9913 rounds to -44.991, shifting P from 4.97e-442 "
+                "to 5.03e-442). Tests are two-sided."
+            ),
+        },
+        "bodyweight_chr5": {
+            "paper_fig1_legend_p": "3.59e-127",
+            "paper_fig1_legend_neg_log10_p": 126.4449,
+            "other_8_1_std_add_top_bp": 106266836,
+            "other_8_1_std_add_top_z": 24.45,
+            "other_8_1_std_add_top_p_file": 5.05328e-132,
+            "other_8_1_std_add_top_neg_log10_p": float(neg_log10_p_from_z(24.45)),
+            "other_8_1_matching_legend_bp": 106250171,
+            "other_8_1_matching_legend_z": -23.989,
+            "other_8_1_matching_legend_p_file": 3.58619e-127,
+            "other_8_1_matching_legend_neg_log10_p": float(neg_log10_p_from_z(-23.989)),
+            "cause": (
+                "Different lead variant in the same CCND2 peak: chr5:106,250,171 (A/G SNP, rank #7 "
+                "on chr5 in other_8.1.txt) has file P_A=3.58619e-127, which rounds to the exact "
+                "Fig. 1 legend value 3.59e-127 (-log10 P=126.441 from 3-d.p. Z_A=-23.989), whereas "
+                "the #1 variant in other_8.1.txt (and in ExtFig2a.csv) is the 15-bp indel "
+                "chr5:106,266,836 (Z_A=24.450, P_A=5.05e-132, -log10 P=131.30)."
+            ),
+        },
+        "stature_chr5_and_chr14": {
+            "chr5_paper_legend_p": "3.23e-97",
+            "chr5_other_8_2_top_bp": 106264863,
+            "chr5_other_8_2_top_z": 20.924,
+            "chr5_other_8_2_top_p_file": 3.22659e-97,
+            "chr5_other_8_2_top_neg_log10_p": float(neg_log10_p_from_z(20.924)),
+            "chr14_paper_legend_p": "2.0e-306",
+            "chr14_other_8_2_top_bp": 24973953,
+            "chr14_other_8_2_top_z": 37.418,
+            "chr14_other_8_2_top_p_file": 2.02645e-306,
+            "chr14_other_8_2_top_neg_log10_p": float(neg_log10_p_from_z(37.418)),
+            "cause": (
+                "Exact match to the #1 variants in other_8.2.txt; third-digit difference between "
+                "file P_A and log_ndtr(Z_A) is purely 3-d.p. rounding of Z_A."
+            ),
+        },
+    }
+
     return {
         "gws_threshold_p": GWS_P,
         "gws_threshold_neg_log10_p": GWS_NEG_LOG10_P,
         "rows": rows,
+        "fig1_legend_reconciliation": fig1_reconciliation,
         "summary": {
             "n_primary_non_additive_qtl": len(primary8),
             "detected_by_dominance_gws": int(n_dom_detected),
@@ -881,18 +1038,29 @@ def compute_regional_exports(con: duckdb.DuckDBPyConnection) -> list[dict]:
         nlp_dom_a = neg_log10_p_from_z(merged["Z_A"].fillna(0.0).to_numpy())
         nlp_add = neg_log10_p_from_z(merged["ADD_Z_A"].fillna(0.0).to_numpy())
 
-        # Lift gene annotations between ARS-UCD1.2 and UMD3.1 via other_10 anchors in this window
-        valid_anchors = merged[
+        # Lift gene annotations between ARS-UCD1.2 and UMD3.1 via other_10 anchors (with +-1.5 Mb
+        # margin so genes near window boundaries are interpolated without edge clamping).
+        wide_anchors = con.execute(
+            f"""
+            SELECT "BP.UMD" AS bp_umd, "BP.ARS" AS bp_ars
+            FROM '{o10}'
+            WHERE "CHR.UMD" = {chrom}
+              AND "CHR.ARS" = '{chrom}'
+              AND "BP.UMD" BETWEEN {max(1, min_bp - 1_500_000)} AND {max_bp + 1_500_000}
+              AND "BP.ARS" IS NOT NULL
+            ORDER BY "BP.ARS"
+            """
+        ).df()
+        in_win_anchors = merged[
             (merged["chr_ars"].astype(str) == str(chrom)) & merged["bp_ars"].notna()
-        ].sort_values("bp_ars")
+        ]
         genes_out = []
-        if len(valid_anchors) >= 10:
-            ars_min = int(valid_anchors["bp_ars"].min())
-            ars_max = int(valid_anchors["bp_ars"].max())
+        if len(in_win_anchors) >= 10 and len(wide_anchors) >= 10:
+            ars_min = int(in_win_anchors["bp_ars"].min())
+            ars_max = int(in_win_anchors["bp_ars"].max())
             raw_genes = fetch_ensembl_genes_ars(chrom, ars_min, ars_max)
-            xp = valid_anchors["bp_ars"].to_numpy(dtype=np.float64)
-            fp = valid_anchors["bp_umd"].to_numpy(dtype=np.float64)
-            # Ensure monotonic x for np.interp
+            xp = wide_anchors["bp_ars"].to_numpy(dtype=np.float64)
+            fp = wide_anchors["bp_umd"].to_numpy(dtype=np.float64)
             order = np.argsort(xp)
             xp, fp = xp[order], fp[order]
             for g in raw_genes:
@@ -900,53 +1068,47 @@ def compute_regional_exports(con: duckdb.DuckDBPyConnection) -> list[dict]:
                 e_umd = int(round(float(np.interp(g["end_ars"], xp, fp))))
                 if s_umd > e_umd:
                     s_umd, e_umd = e_umd, s_umd
+                if e_umd < min_bp or s_umd > max_bp:
+                    continue
                 genes_out.append(
                     {
-                        **g,
+                        "gene_id": g["gene_id"],
+                        "symbol": g["symbol"],
+                        "assembly": "UMD3.1",
+                        "start": s_umd,
+                        "end": e_umd,
                         "start_umd": s_umd,
                         "end_umd": e_umd,
+                        "start_ars": int(g["start_ars"]),
+                        "end_ars": int(g["end_ars"]),
+                        "strand": int(g["strand"]),
+                        "biotype": g["biotype"],
                         "is_candidate_gene": (gene is not None and g["symbol"] == gene),
                     }
                 )
 
-        # Ensure candidate genes affected by Ensembl ARS-UCD1.2 readthrough merge (PLCD4 merged
-        # into CNOT9 in Ensembl ARS-UCD1.2, separate in NCBI RefSeq NP_001039954.1 / Ensembl 86
-        # UMD3.1) or lying just upstream of gen_1.6 (PLAG1 at chr14:25,007,291-25,052,403 UMD3.1)
-        # are present in the gene track.
+        # In Ensembl ARS-UCD1.2, PLCD4 is merged into a CNOT9 readthrough transcript
+        # (ENSBTAG00000003807), whereas in NCBI RefSeq (NM_001046509.1 / NP_001039954.1) and
+        # Ensembl 86 (UMD3.1) PLCD4 is a distinct gene at chr2:107,298,023-107,321,320 UMD3.1.
         existing_symbols = {g["symbol"] for g in genes_out}
         if slug == "plcd4" and "PLCD4" not in existing_symbols:
             genes_out.append(
                 {
                     "gene_id": "NCBI:509076",
                     "symbol": "PLCD4",
+                    "assembly": "UMD3.1",
+                    "start": 107298023,
+                    "end": 107321320,
+                    "start_umd": 107298023,
+                    "end_umd": 107321320,
                     "start_ars": 106575326,
                     "end_ars": 106598623,
                     "strand": 1,
                     "biotype": "protein_coding",
-                    "start_umd": 107298023,
-                    "end_umd": 107321320,
                     "is_candidate_gene": True,
                     "note": (
                         "NCBI RefSeq NM_001046509.1 / Ensembl 86 UMD3.1 coordinates; "
                         "merged into CNOT9 readthrough in Ensembl ARS-UCD1.2."
-                    ),
-                }
-            )
-        if slug == "plag1" and "PLAG1" not in existing_symbols:
-            genes_out.append(
-                {
-                    "gene_id": "ENSBTAG00000004022",
-                    "symbol": "PLAG1",
-                    "start_ars": 23330541,
-                    "end_ars": 23375653,
-                    "strand": -1,
-                    "biotype": "protein_coding",
-                    "start_umd": 25007291,
-                    "end_umd": 25052403,
-                    "is_candidate_gene": True,
-                    "note": (
-                        "PLAG1 gene and causal variant rs109815800 (25,015,640) lie ~263 kb "
-                        "upstream of gen_1.6 start (25,315,124)."
                     ),
                 }
             )
@@ -955,17 +1117,37 @@ def compute_regional_exports(con: duckdb.DuckDBPyConnection) -> list[dict]:
         has_gwas = merged["Z_D"].notna() | (merged["bp_umd"] == lead_bp)
         sub = merged[has_gwas].copy().reset_index(drop=True)
         mask_arr = has_gwas.to_numpy()
+        ld_available = slug != "plag1"
 
         columns = {
             "bp_umd": sub["bp_umd"].astype(int).tolist(),
             "bp_ars": sub["bp_ars"].fillna(0).astype(int).tolist(),
-            "r2_x1000": np.rint(sub["r2"].to_numpy() * 1000.0).astype(int).tolist(),
+            "r2_x1000": (
+                np.rint(sub["r2"].to_numpy() * 1000.0).astype(int).tolist()
+                if ld_available
+                else None
+            ),
             "neg_log10_pd_x100": np.rint(nlp_dom_d[mask_arr] * 100.0).astype(int).tolist(),
             "neg_log10_pa_dom_x100": np.rint(nlp_dom_a[mask_arr] * 100.0).astype(int).tolist(),
             "neg_log10_pa_add_x100": np.rint(nlp_add[mask_arr] * 100.0).astype(int).tolist(),
         }
 
         extra_payload = {}
+        if slug == "plag1":
+            extra_payload["external_reference_gene"] = {
+                "symbol": "PLAG1",
+                "gene_id": "ENSBTAG00000004022",
+                "assembly": "UMD3.1",
+                "start_umd": 25007291,
+                "end_umd": 25052403,
+                "causal_variant_bp_umd": 25015640,
+                "distance_outside_window_bp": int(min_bp - 25052403),
+                "note": (
+                    "PLAG1 and its published causal variant rs109815800 (chr14:25,015,640) lie "
+                    "~263 kb upstream of the gen_1.6 window (25,315,124-26,814,744); "
+                    "no LD colouring is shown for this window."
+                ),
+            }
         if slug == "myh1":
             # Include BCS dominance & additive stats for MYH1 + ExtFig3 comparison
             bcs_df = con.execute(
@@ -999,6 +1181,9 @@ def compute_regional_exports(con: duckdb.DuckDBPyConnection) -> list[dict]:
             "slug": slug,
             "gene": gene,
             "chr": chrom,
+            "x_axis_assembly": "UMD3.1",
+            "gene_track_assembly": "UMD3.1",
+            "ld_available": ld_available,
             "window_umd": [min_bp, max_bp],
             "candidate_variant": {
                 "bp_umd": lead_bp,
@@ -1025,7 +1210,7 @@ def compute_regional_exports(con: duckdb.DuckDBPyConnection) -> list[dict]:
             },
             "n_variants_bim": int(len(bim)),
             "n_variants_exported": int(len(sub)),
-            "n_high_ld_r2_gt_0_8": int((sub["r2"] >= 0.8).sum()),
+            "n_high_ld_r2_gt_0_8": int((sub["r2"] >= 0.8).sum()) if ld_available else None,
             "annotation_source": (
                 "Ensembl REST API bos_taurus (ARS-UCD1.2 protein_coding genes), "
                 "lifted to UMD3.1 via piecewise-linear interpolation on other_10 anchors."

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-31T02:13:55.666366+00:00",
-  "code_version": "b5bfefb",
+  "generated_at": "2026-10-31T02:40:36.585404+00:00",
+  "code_version": "54822e0",
   "source_files": [
     "dryad/other/other_1.1.txt",
     "dryad/other/other_8.1.txt",
@@ -222,10 +222,10 @@
         "window_best_dom_d_z": 11.208,
         "window_best_dom_a_neg_log10_p": 457.295671909186,
         "window_best_dom_a_bp": 24974811,
-        "window_best_add_neg_log10_p": 323.0987159922197,
-        "window_best_add_bp": 25474773,
-        "window_best_add_z": 38.473,
-        "window_best_add_maf": 0.316,
+        "window_best_add_neg_log10_p": 480.224126459104,
+        "window_best_add_bp": 25015640,
+        "window_best_add_z": 46.94,
+        "window_best_add_maf": 0.471,
         "window_best_add_r2_to_candidate": null,
         "candidate_dom_d_neg_log10_p": 28.428855631984373,
         "candidate_dom_a_neg_log10_p": 217.787550161779,
@@ -364,6 +364,49 @@
       }
     }
   ],
+  "fig1_legend_reconciliation": {
+    "bodyweight_chr14": {
+      "paper_fig1_legend_p": "4.97e-442",
+      "paper_fig1_legend_neg_log10_p": 441.3036,
+      "other_1_1_dom_za_top_bp": 24974811,
+      "other_1_1_dom_za_top_z": -45.802,
+      "other_1_1_dom_za_top_neg_log10_p": 457.295671909186,
+      "other_8_1_std_add_top_bp": 25015640,
+      "other_8_1_std_add_top_z": 46.94,
+      "other_8_1_std_add_top_neg_log10_p": 480.224126459104,
+      "other_8_1_matching_legend_bp": 25307116,
+      "other_8_1_matching_legend_z": -44.991,
+      "other_8_1_matching_legend_neg_log10_p": 441.29869112338656,
+      "other_8_1_matching_legend_p_from_3dp_z": "5.03e-442",
+      "cause": "Three factors explain the numbers: (1) 457.30 is the dominance-model genotypic additive term (Z_A=-45.802 at chr14:24,974,811 in other_1.1.txt), not the standard-additive model (other_8.1.txt); (2) in other_8.1.txt, 506 chr14 rows have P_A written as the literal string '<1e-308'; once parsed, the #1 variant is the reintroduced GGPv3 causal SNP chr14:25,015,640 (Z_A=46.940, -log10 P=480.22), while the #6 variant is BovineSNP50 SNP chr14:25,307,116 (Z_A=-44.991, two-sided -log10 P=441.299, P=5.03e-442), which matches the Fig. 1 legend's 4.97e-442 (different lead variant before/after custom GGPv3 site reintroduction); and (3) 3-d.p. Z rounding (-44.9913 rounds to -44.991, shifting P from 4.97e-442 to 5.03e-442). Tests are two-sided."
+    },
+    "bodyweight_chr5": {
+      "paper_fig1_legend_p": "3.59e-127",
+      "paper_fig1_legend_neg_log10_p": 126.4449,
+      "other_8_1_std_add_top_bp": 106266836,
+      "other_8_1_std_add_top_z": 24.45,
+      "other_8_1_std_add_top_p_file": 5.05328e-132,
+      "other_8_1_std_add_top_neg_log10_p": 131.29822578247547,
+      "other_8_1_matching_legend_bp": 106250171,
+      "other_8_1_matching_legend_z": -23.989,
+      "other_8_1_matching_legend_p_file": 3.58619e-127,
+      "other_8_1_matching_legend_neg_log10_p": 126.44100682704934,
+      "cause": "Different lead variant in the same CCND2 peak: chr5:106,250,171 (A/G SNP, rank #7 on chr5 in other_8.1.txt) has file P_A=3.58619e-127, which rounds to the exact Fig. 1 legend value 3.59e-127 (-log10 P=126.441 from 3-d.p. Z_A=-23.989), whereas the #1 variant in other_8.1.txt (and in ExtFig2a.csv) is the 15-bp indel chr5:106,266,836 (Z_A=24.450, P_A=5.05e-132, -log10 P=131.30)."
+    },
+    "stature_chr5_and_chr14": {
+      "chr5_paper_legend_p": "3.23e-97",
+      "chr5_other_8_2_top_bp": 106264863,
+      "chr5_other_8_2_top_z": 20.924,
+      "chr5_other_8_2_top_p_file": 3.22659e-97,
+      "chr5_other_8_2_top_neg_log10_p": 96.48974451906223,
+      "chr14_paper_legend_p": "2.0e-306",
+      "chr14_other_8_2_top_bp": 24973953,
+      "chr14_other_8_2_top_z": 37.418,
+      "chr14_other_8_2_top_p_file": 2.02645e-306,
+      "chr14_other_8_2_top_neg_log10_p": 305.7007622983646,
+      "cause": "Exact match to the #1 variants in other_8.2.txt; third-digit difference between file P_A and log_ndtr(Z_A) is purely 3-d.p. rounding of Z_A."
+    }
+  },
   "summary": {
     "n_primary_non_additive_qtl": 8,
     "detected_by_dominance_gws": 8,
