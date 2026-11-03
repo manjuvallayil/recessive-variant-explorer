@@ -11,6 +11,7 @@ import CommonPanel from "@/components/panels/CommonPanel";
 import SignalPanel from "@/components/panels/SignalPanel";
 import PowerPanel from "@/components/panels/PowerPanel";
 import SimulatorPanel from "@/components/panels/SimulatorPanel";
+import SimulatorTeaser, { SimulatorChip } from "@/components/SimulatorTeaser";
 
 type Step = {
   id: string;
@@ -276,16 +277,17 @@ export default function Page() {
   return (
     <div className="min-h-screen">
       <header className="border-b border-[var(--rule)] px-4 py-6 sm:px-8">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-start justify-between gap-4">
-          <div>
+        <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)] items-start gap-4 md:grid-cols-[minmax(0,1fr)_auto] xl:grid-cols-[minmax(0,1fr)_auto_auto]">
+          <div className="min-w-0">
             <p className="text-xs uppercase tracking-wide text-[var(--muted)]">Independent project · not affiliated with LIC</p>
             <h1 className="serif mt-1 text-3xl font-semibold sm:text-4xl">Recessive Variant Explorer</h1>
             <p className="mt-2 max-w-2xl text-sm text-[var(--muted)]">
               A walkthrough of Reynolds et al. (2021), <em>Nature Genetics</em>: non-additive associations in cattle, reproduced
               from the authors&apos; public data.
             </p>
+            <SimulatorChip />
           </div>
-          <nav aria-label="Story steps" className="text-xs">
+          <nav aria-label="Story steps" className="text-xs md:justify-self-end">
             <ol className="grid grid-cols-1 gap-x-4 gap-y-1 sm:grid-cols-2">
               {STEPS.map((s, i) => (
                 <li key={s.id}>
@@ -300,6 +302,9 @@ export default function Page() {
               ))}
             </ol>
           </nav>
+          <div className="hidden xl:block xl:justify-self-end">
+            <SimulatorTeaser />
+          </div>
         </div>
       </header>
 
