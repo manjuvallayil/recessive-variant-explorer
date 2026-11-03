@@ -37,7 +37,7 @@ export default function SimulatorTeaser() {
       href="#simulator"
       aria-label="Open the mating-risk simulator"
       style={{ textDecoration: "none" }}
-      className="group block w-72 rounded border border-[var(--rule)] bg-[var(--surface)] p-3 no-underline transition-colors hover:border-[var(--fg)]"
+      className="group block w-96 max-w-full rounded border border-[var(--rule)] bg-[var(--surface)] p-3 no-underline transition-colors hover:border-[var(--fg)]"
     >
       <p className="text-[10px] uppercase tracking-[0.14em] text-[var(--muted)]">Interactive · Instrument 09</p>
       <p className="serif mt-1 text-base font-semibold">Mating-risk simulator</p>
