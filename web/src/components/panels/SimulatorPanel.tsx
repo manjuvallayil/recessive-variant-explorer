@@ -171,7 +171,9 @@ function Simulator({ inputs }: { inputs: MatingInputs }) {
         <p className="mt-1 text-xs">
           Selected strategy: {avoid === "avoid" ? "avoid" : "random"}; {num(herd.affectedPerYear, 1)} affected calves,{" "}
           {int(herd.homKgChangePerYear)} kg from homozygotes and {int(herd.netKgChangePerYear)} kg net per year (negative =
-          loss). The DPF2/MUS81 heterozygote effect is positive (+2.3 kg), so net change can be smaller than the homozygote loss.
+          loss). The DPF2/MUS81 heterozygote effect in this site&apos;s re-estimated model is positive (+2.3 kg, DPF2 proxy); the
+          paper&apos;s per-mutation estimates are +4.06 and +4.13 kg. Because the sign is positive, net change can be smaller than the
+          homozygote loss.
         </p>
       </div>
 

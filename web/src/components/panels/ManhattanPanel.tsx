@@ -107,7 +107,9 @@ function ManhattanBody(props: {
       <Caption>{summary} Orange points: 50k chip SNPs (dominance model only). Chromosome offsets are cumulative UMD3.1 positions.</Caption>
       {model === "add" && trait === "bodyweight" ? (
         <Caption>
-          PLAG1 (chr14) is the known additive locus. Its -log10 P is 480, above the axis cap. The additive model finds the PLAG1 locus and no other QTL in the list below.
+          PLAG1 (chr14) is the known additive locus. The plotted window-best additive peak is -log10 P 480 at the reintroduced
+          GGPv3 SNP; the paper&apos;s Fig. 1 legend reports 441.3 for a different lead variant (see Methods). The additive model
+          finds PLAG1 and no other QTL in the list below.
         </Caption>
       ) : null}
       <QtlTable qtl={qtl} />

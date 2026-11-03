@@ -46,10 +46,10 @@ function CommonBody({ nb, dep, freq }: { nb: NationalBurden; dep: Depletion; fre
         rowHeight={24}
       />
       <p className="mt-3 text-sm">
-        Body-weight-significant set (five loci): <strong>{pct(bwSet.rate_per_animal, 2)}</strong> of animals,
-        about <strong>{int(bwSet.scaled_per_year)}</strong> females per year, against the paper&apos;s about{" "}
-        {pct(nb.paper_homozygous_rate, 0)} and {int(nb.paper_scaled_homozygotes)}. Including MYH1 (BCS-suggestive only) gives{" "}
-        {pct(six.rate_per_animal, 2)} and about {int(six.scaled_per_year)} per year.
+        Body-weight-significant set (five variants; DPF2/MUS81 counted once):{" "}
+        <strong>{pct(bwSet.rate_per_animal, 2)}</strong> of animals, about <strong>{int(bwSet.scaled_per_year)}</strong> females per
+        year, against the paper&apos;s rounded {pct(nb.paper_homozygous_rate, 0)} and {int(nb.paper_scaled_homozygotes)}. Including
+        MYH1 (BCS-suggestive only) gives {pct(six.rate_per_animal, 2)} and about {int(six.scaled_per_year)} per year.
       </p>
       <Caption>
         The national export uses sire and grandsire genotypes from the pedigree, so it includes elite-carrier sires. That is

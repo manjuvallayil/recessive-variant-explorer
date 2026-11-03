@@ -102,8 +102,9 @@ function RnaBody({ rna }: { rna: Rna }) {
   return (
     <div>
       <p className="text-sm">
-        Splice-junction and expression values from 350 lactating cows. This export contains descriptive means only; no genotype-class
-        comparison is included, so no effect size or p-value is shown.
+        Splice-junction and expression values from 350 lactating cows in this public export (paper&apos;s RNA-seq dataset: 389
+        cows). This export contains descriptive means only; no genotype-class comparison is included, so no effect size or p-value
+        is shown.
       </p>
       <table className="mt-2 w-full text-left text-xs">
         <caption className="sr-only">Mean RNA values by gene</caption>
@@ -138,7 +139,7 @@ function RnaBody({ rna }: { rna: Rna }) {
         Carrier-versus-reference comparisons are the next step (Phase 3a output lacks class-level statistics). The paper reports
         splicing-based eQTL analysis for GALNT2 and FGD4; those comparisons are not reproduced here.
       </Caption>
-      <Source>rna_phase3.json (phen_7.1, phen_7.2; 350 animals).</Source>
+      <Source>rna_phase3.json (phen_7.1, phen_7.2; 350 animals in this export; paper: 389).</Source>
     </div>
   );
 }

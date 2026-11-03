@@ -34,9 +34,11 @@ const STEPS: Step[] = [
           serious disease. The rest are harder to read, and are assumed to affect fitness in less obvious ways.
         </p>
         <p>
-          The authors looked for recessive effects in about 130,000 cattle. Six new recessive loci emerged, with effects that
-          often exceed the largest additive QTL in cattle. Each carries a candidate mutation: missense (PLCD4, MTRF1, DPF2), a
-          premature stop (MUS81), or a splice change (GALNT2, FGD4).
+          The authors screened about 130,000 cattle and found eight body-weight QTL; seven were not detected by a standard
+          additive scan. Six of the QTL were novel. Five of those six carry compelling candidate mutations, with two
+          candidates at chr29:44 (DPF2 and MUS81), for six candidate mutations in total: missense (PLCD4, MTRF1, DPF2), a
+          premature stop (MUS81), or a splice change (GALNT2, FGD4). The sixth novel locus (chr2:22) has no candidate. A
+          separate BCS-suggestive frameshift in MYH1 is shown in the panel because the paper discusses it with these loci.
         </p>
         <p>
           The panel shows how common the carrier state is. A carrier is a healthy animal with one copy of the mutant allele; a
@@ -81,8 +83,9 @@ const STEPS: Step[] = [
         </p>
         <p>
           Fitting a dominance term recovers the recessive loci. The panel lists eight body-weight QTL, with PLAG1 included as the known
-          additive comparator. At each candidate variant, seven of the eight fall below genome-wide significance in the additive model.
-          PLAG1 is the exception. A wider ±1 Mb window gives a lower count, and the panel says why.
+          additive comparator. At the candidate or lead variant, seven of the eight fall below genome-wide significance in the additive
+          model; PLAG1 is the exception. Using the best additive SNP within ±1 Mb gives six of eight; the panel identifies the
+          additional locus.
         </p>
         <p>
           The chip toggle overlays a 50k SNP array on the sequence-level scan. Of the major recessive syndromes, only DPF2/MUS81 stays
@@ -136,9 +139,9 @@ const STEPS: Step[] = [
     body: (
       <>
         <p>
-          The national export uses the pedigree of about 2.8 million animals and the genotypes of their sires. It estimates that about 1% of
-          animals are homozygous for at least one of the five body-weight loci, close to the paper&apos;s 1% and about 9,700 animals a
-          year.
+          The national export uses the pedigree of about 2.8 million animals and the genotypes of their sires. It estimates that
+          about 1.02% of animals are homozygous for at least one of five body-weight-significant variants (DPF2/MUS81 counted
+          once); that is 9,548 per year in this export, close to the paper&apos;s rounded 1% and about 9,700 per year.
         </p>
         <p>
           Homozygotes are rarer than expected under random mating at most loci. That is consistent with selection against
@@ -160,8 +163,8 @@ const STEPS: Step[] = [
         </p>
         <p>
           Single-locus results depend on the effect size relative to the spread of body weight. PLCD4 and GALNT2 homozygotes are
-          clearly lighter. DPF2/MUS81 homozygotes are lighter by about half a standard deviation. I explain the expected ceiling in the
-          panel.
+          clearly lighter. In the site&apos;s combined DPF2/MUS81 homozygote group, the shift is smaller (about 0.5 SD); the paper
+          reports per-mutation effects of about −53 kg. I explain the expected ceiling in the panel.
         </p>
         <p>
           Imputation accuracy falls with minor allele frequency, and the simulated-QTL scan shows which recessive effects a
@@ -179,8 +182,8 @@ const STEPS: Step[] = [
       <>
         <p>
           How many animals are needed to see a recessive locus that explains 0.1% of the variance at 2.5% minor allele
-          frequency? The paper says about 50,000 gives roughly 90% power. The analytic calculation here gives 95% for the recessive
-          test, which matches the paper&apos;s Extended Data Fig. 1 at the reference point.
+          frequency? The paper text rounds the answer to about 90% at about 50,000 animals; its Extended Data Fig. 1 reference
+          point is about 94.7%. The analytic calculation here gives 94.8% for the recessive test, matching the figure.
         </p>
         <p>Move the sliders to see how power falls with a smaller locus, a lower sample size, or a two-degree-of-freedom test.</p>
       </>
@@ -198,8 +201,8 @@ const STEPS: Step[] = [
           change, and, for a herd, the difference between random mating and avoiding carrier-by-carrier matings.
         </p>
         <p>
-          It is a teaching tool built on the paper&apos;s frequencies and effects, and it is not a veterinary or breeding decision
-          tool. Calibration against the national export is shown in the panel.
+          It is a teaching tool built from the paper&apos;s frequencies and the site&apos;s re-estimated effects, and it is not a
+          veterinary or breeding decision tool. Calibration against the national export is shown in the panel.
         </p>
       </>
     ),
@@ -235,7 +238,7 @@ const STEPS: Step[] = [
 function LimitsPanel() {
   return (
     <ul className="list-disc space-y-2 pl-5 text-sm">
-      <li>Body-weight syndrome signal: AUROC 0.68 pooled; per-locus intervals include chance for FGD4 and DPF2/MUS81.</li>
+      <li>Body-weight syndrome signal: AUROC 0.68 pooled; per-locus CIs are wide (FGD4 0.54–0.70; DPF2/MUS81 0.58–0.68) and exclude 0.5.</li>
       <li>Protein-model concordance with observed effects failed (n = 3).</li>
       <li>Farm cohorts: 6 to 9 animals per group, descriptive only.</li>
       <li>Simulator: independence across loci; DPF2 stands in for DPF2/MUS81; purebred depletion ratios applied to crossbreds.</li>
