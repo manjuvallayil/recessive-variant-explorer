@@ -277,7 +277,7 @@ export default function Page() {
   return (
     <div className="min-h-screen">
       <header className="border-b border-[var(--rule)] px-4 py-6 sm:px-8">
-        <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)] items-start gap-4 md:grid-cols-[minmax(0,1fr)_auto] xl:grid-cols-[minmax(0,1fr)_auto_auto]">
+        <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)] items-start gap-6 xl:grid-cols-[minmax(0,1fr)_auto]">
           <div className="min-w-0">
             <p className="text-xs uppercase tracking-wide text-[var(--muted)]">Independent project · not affiliated with LIC</p>
             <h1 className="serif mt-1 text-3xl font-semibold sm:text-4xl">Recessive Variant Explorer</h1>
@@ -286,22 +286,22 @@ export default function Page() {
               from the authors&apos; public data.
             </p>
             <SimulatorChip />
+            <nav aria-label="Story steps" className="mt-4 max-w-2xl text-xs">
+              <ol className="grid grid-cols-1 gap-x-4 gap-y-1 sm:grid-cols-2">
+                {STEPS.map((s, i) => (
+                  <li key={s.id}>
+                    <a
+                      href={`#${s.id}`}
+                      className={`inline-flex min-h-6 items-center py-1 ${active === s.id ? "font-semibold text-[var(--fg)]" : "text-[var(--muted)]"}`}
+                      aria-current={active === s.id ? "step" : undefined}
+                    >
+                      {i + 1}. {s.title.split(":")[0]}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
           </div>
-          <nav aria-label="Story steps" className="text-xs md:justify-self-end">
-            <ol className="grid grid-cols-1 gap-x-4 gap-y-1 sm:grid-cols-2">
-              {STEPS.map((s, i) => (
-                <li key={s.id}>
-                  <a
-                    href={`#${s.id}`}
-                    className={`inline-flex min-h-6 items-center py-1 ${active === s.id ? "font-semibold text-[var(--fg)]" : "text-[var(--muted)]"}`}
-                    aria-current={active === s.id ? "step" : undefined}
-                  >
-                    {i + 1}. {s.title.split(":")[0]}
-                  </a>
-                </li>
-              ))}
-            </ol>
-          </nav>
           <div className="hidden xl:block xl:justify-self-end">
             <SimulatorTeaser />
           </div>
